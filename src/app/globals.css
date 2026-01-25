@@ -1,26 +1,416 @@
 @import "tailwindcss";
 
+/* ============================================
+   BILLFLOW NEO-BRUTALIST DESIGN SYSTEM
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Blue (#2563EB base) */
+  --color-primary-50: #EFF6FF;
+  --color-primary-100: #DBEAFE;
+  --color-primary-200: #BFDBFE;
+  --color-primary-300: #93C5FD;
+  --color-primary-400: #60A5FA;
+  --color-primary-500: #3B82F6;
+  --color-primary-600: #2563EB;
+  --color-primary-700: #1D4ED8;
+  --color-primary-800: #1E40AF;
+  --color-primary-900: #1E3A8A;
+
+  /* Accent Yellow (neo-brutalist pop) */
+  --color-accent-yellow: #FACC15;
+  --color-accent-yellow-light: #FEF9C3;
+
+  /* Accent Coral (warmth) */
+  --color-accent-coral: #F97316;
+  --color-accent-coral-light: #FFEDD5;
+
+  /* Neutrals */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F8FAFC;
+  --color-bg-tertiary: #F1F5F9;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #94A3B8;
+
+  /* Neo-brutalist borders */
+  --color-border-default: #000000;
+  --color-border-light: #E2E8F0;
+
+  /* Success / Paid */
+  --color-success-bg: #DCFCE7;
+  --color-success-text: #166534;
+  --color-success-border: #16A34A;
+
+  /* Warning / Pending */
+  --color-warning-bg: #FEF3C7;
+  --color-warning-text: #92400E;
+  --color-warning-border: #F59E0B;
+
+  /* Error / Overdue */
+  --color-error-bg: #FEE2E2;
+  --color-error-text: #991B1B;
+  --color-error-border: #DC2626;
+
+  /* Info / Sent */
+  --color-info-bg: #DBEAFE;
+  --color-info-text: #1E40AF;
+  --color-info-border: #3B82F6;
+
+  /* Neutral / Draft */
+  --color-neutral-bg: #F1F5F9;
+  --color-neutral-text: #475569;
+  --color-neutral-border: #94A3B8;
+
+  /* Hard offset shadows (no blur) - Neo-brutalist */
+  --shadow-sm: 2px 2px 0 0 #000000;
+  --shadow-md: 4px 4px 0 0 #000000;
+  --shadow-lg: 6px 6px 0 0 #000000;
+  --shadow-xl: 8px 8px 0 0 #000000;
+
+  /* Colored shadows */
+  --shadow-primary: 4px 4px 0 0 var(--color-primary-600);
+  --shadow-success: 4px 4px 0 0 var(--color-success-border);
+  --shadow-error: 4px 4px 0 0 var(--color-error-border);
+
+  /* Borders */
+  --border-thin: 1px solid var(--color-border-light);
+  --border-default: 2px solid var(--color-border-default);
+  --border-bold: 3px solid var(--color-border-default);
+  --border-heavy: 4px solid var(--color-border-default);
+
+  /* Font families */
+  --font-display: 'Space Grotesk', 'Noto Sans TC', system-ui, sans-serif;
+  --font-body: 'Noto Sans TC', 'Source Han Sans TC', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'Noto Sans Mono CJK TC', monospace;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors */
+  --color-background: var(--color-bg-primary);
+  --color-foreground: var(--color-text-primary);
+
+  /* Custom breakpoints */
+  --breakpoint-mobile: 390px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1000px;
+  --breakpoint-desktop-lg: 1440px;
+
+  /* Fonts */
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Chinese typography rules */
+:lang(zh-TW), :lang(zh) {
+  line-height: 1.75;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Financial numbers always use monospace */
+.numeric, [data-numeric] {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  padding: 1rem;
+  background: var(--color-primary-600);
+  color: white;
+  border: 2px solid black;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* Focus indicators - WCAG 2.4.11 compliant */
+:focus-visible {
+  outline: 3px solid var(--color-primary-600);
+  outline-offset: 2px;
+}
+
+/* Neo-brutalist focus for interactive elements */
+.btn:focus-visible,
+.card-interactive:focus-visible,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-primary-600);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 3px solid CanvasText;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Visible when focused (for skip links) */
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   NEO-BRUTALIST BASE COMPONENTS
+   ============================================ */
+
+/* Card base */
+.card {
+  background: var(--color-bg-primary);
+  border: var(--border-default);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+}
+
+.card-interactive {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-interactive:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-interactive:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Button base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  border: var(--border-default);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary button */
+.btn-primary {
+  background: var(--color-primary-600);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Secondary button */
+.btn-secondary {
+  background: white;
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--color-bg-secondary);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Ghost button */
+.btn-ghost {
+  background: transparent;
+  box-shadow: none;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--color-bg-tertiary);
+}
+
+/* Danger button */
+.btn-danger {
+  background: var(--color-error-border);
+  color: white;
+  box-shadow: 4px 4px 0 0 var(--color-error-text);
+}
+
+/* Button sizes */
+.btn-sm {
+  height: 36px;
+  padding: 0 12px;
+  font-size: 14px;
+}
+
+.btn-md {
+  height: 44px;
+  padding: 0 16px;
+  font-size: 15px;
+}
+
+.btn-lg {
+  height: 52px;
+  padding: 0 24px;
+  font-size: 16px;
+}
+
+/* Input base */
+.input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  background: white;
+  border: var(--border-default);
+  border-radius: 12px;
+  color: var(--color-text-primary);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary-600);
+  box-shadow: var(--shadow-primary);
+}
+
+.input-error {
+  border-color: var(--color-error-border);
+  box-shadow: var(--shadow-error);
+}
+
+/* Badge base */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 2px solid;
+  border-radius: 8px;
+}
+
+.badge-success {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  border-color: var(--color-success-border);
+}
+
+.badge-warning {
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  border-color: var(--color-warning-border);
+}
+
+.badge-error {
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+  border-color: var(--color-error-border);
+}
+
+.badge-info {
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+  border-color: var(--color-info-border);
+}
+
+.badge-neutral {
+  background: var(--color-neutral-bg);
+  color: var(--color-neutral-text);
+  border-color: var(--color-neutral-border);
+}
+
+/* ============================================
+   TOUCH TARGETS (WCAG 2.5.8)
+   ============================================ */
+
+.btn,
+.nav-link,
+.icon-btn,
+[role="button"] {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+@media (min-width: 1000px) {
+  .btn,
+  .nav-link,
+  .icon-btn,
+  [role="button"] {
+    min-height: 40px;
+    min-width: 40px;
+  }
 }
