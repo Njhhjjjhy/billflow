@@ -1,23 +1,21 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useMemo, useCallback, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { ArrowLeft, Send, Save, Info } from "lucide-react";
+import { ArrowLeft, Save, AlertTriangle } from "lucide-react";
 import { PageTransition, PageHeader, PageSection } from "@/components/layout";
 import { Button, Card, CardHeader, CardContent, Select, Input } from "@/components/ui";
 import { ClientSelector, LineItemsTable, InvoiceSummary } from "@/components/invoices";
 import { useToast } from "@/components/ui/Toast";
 import { invoiceSchema } from "@/lib/validations";
+import { formatDateForInput } from "@/lib/format";
+import type { Client, Currency, Language, DiscountType, InvoiceFull } from "@/types";
 
-// Infer the form type from the schema
 type InvoiceFormData = z.infer<typeof invoiceSchema>;
-import { formatDateForInput, generateInvoiceNumber } from "@/lib/format";
-import { addDays } from "@/lib/utils";
-import type { Client, Currency, Language, DiscountType } from "@/types";
 
 // Mock clients - will be replaced with real data from Supabase
 const mockClients: Client[] = [
@@ -65,29 +63,67 @@ const mockClients: Client[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
-  {
-    id: "c3",
-    business_id: "b1",
-    display_name: "Creative Agency",
-    company_name: null,
-    tax_id: null,
-    contact_name: "Mike Liu",
-    email: "mike@creative.agency",
-    phone: null,
-    line_id: "mikeliu",
-    address: "No. 789, Zhongshan North Road",
-    city: "Taipei",
-    postal_code: "104",
-    country: "Taiwan",
-    default_payment_terms: null,
-    preferred_currency: null,
-    preferred_language: null,
-    tags: [],
-    notes: null,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
 ];
+
+// Mock invoice - will be replaced with API fetch
+const mockInvoice: InvoiceFull = {
+  id: "1",
+  business_id: "b1",
+  client_id: "c1",
+  invoice_number: "INV-2026-042",
+  status: "draft",
+  currency: "TWD",
+  exchange_rate_to_twd: 1,
+  subtotal: 42857,
+  tax_rate: 0.05,
+  tax_amount: 2143,
+  discount_type: null,
+  discount_value: 0,
+  discount_amount: 0,
+  total: 45000,
+  issue_date: "2026-01-15",
+  due_date: "2026-01-29",
+  paid_date: null,
+  paid_amount: 0,
+  language: "en",
+  notes_external: "Payment due within 14 days. Thank you for your business!",
+  notes_internal: "Project: Website redesign phase 1",
+  pdf_url: null,
+  sent_at: null,
+  created_at: "2026-01-15T09:00:00Z",
+  updated_at: "2026-01-15T09:00:00Z",
+  client: mockClients[0],
+  items: [
+    {
+      id: "li1",
+      invoice_id: "1",
+      description: "Website Design - Homepage",
+      quantity: 1,
+      unit_price: 25000,
+      amount: 25000,
+      sort_order: 0,
+    },
+    {
+      id: "li2",
+      invoice_id: "1",
+      description: "Website Design - About Page",
+      quantity: 1,
+      unit_price: 12000,
+      amount: 12000,
+      sort_order: 1,
+    },
+    {
+      id: "li3",
+      invoice_id: "1",
+      description: "Responsive Development",
+      quantity: 2,
+      unit_price: 2928.5,
+      amount: 5857,
+      sort_order: 2,
+    },
+  ],
+  payments: [],
+};
 
 const currencyOptions = [
   { value: "TWD", label: "TWD - New Taiwan Dollar" },
@@ -106,53 +142,57 @@ const discountTypeOptions = [
   { value: "fixed", label: "Fixed amount" },
 ];
 
-// Generate default values
-function getDefaultValues(): Partial<InvoiceFormData> {
-  const today = new Date();
-  const dueDate = addDays(today, 14);
-
-  return {
-    client_id: "",
-    currency: "TWD" as Currency,
-    exchange_rate_to_twd: 1,
-    items: [
-      {
-        id: crypto.randomUUID(),
-        description: "",
-        quantity: 1,
-        unit_price: 0,
-        amount: 0,
-        sort_order: 0,
-      },
-    ],
-    tax_rate: 0.05,
-    discount_type: undefined,
-    discount_value: undefined,
-    issue_date: today,
-    due_date: dueDate,
-    language: "en" as Language,
-    notes_external: "",
-    notes_internal: "",
-  };
-}
-
-export default function NewInvoicePage() {
+export default function EditInvoicePage() {
+  const params = useParams();
   const router = useRouter();
   const toast = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // In real app, fetch invoice by ID
+  const invoice = mockInvoice;
+  const isDraft = invoice.status === "draft";
 
   const {
     control,
     handleSubmit,
     watch,
     setValue,
-    formState: { errors },
+    reset,
+    formState: { errors, isDirty },
   } = useForm<InvoiceFormData>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(invoiceSchema) as any,
-    defaultValues: getDefaultValues() as InvoiceFormData,
     mode: "onBlur",
   });
+
+  // Load invoice data into form
+  useEffect(() => {
+    if (invoice) {
+      reset({
+        client_id: invoice.client_id,
+        currency: invoice.currency,
+        exchange_rate_to_twd: invoice.exchange_rate_to_twd,
+        items: invoice.items.map((item) => ({
+          id: item.id,
+          description: item.description,
+          quantity: item.quantity,
+          unit_price: item.unit_price,
+          amount: item.amount,
+          sort_order: item.sort_order,
+        })),
+        tax_rate: invoice.tax_rate,
+        discount_type: invoice.discount_type || undefined,
+        discount_value: invoice.discount_value || undefined,
+        issue_date: new Date(invoice.issue_date),
+        due_date: new Date(invoice.due_date),
+        language: invoice.language,
+        notes_external: invoice.notes_external || "",
+        notes_internal: invoice.notes_internal || "",
+      } as InvoiceFormData);
+      setIsLoading(false);
+    }
+  }, [invoice, reset]);
 
   // Watch form values for live updates
   const watchedItems = watch("items") || [];
@@ -160,41 +200,11 @@ export default function NewInvoicePage() {
   const watchedTaxRate = watch("tax_rate") || 0.05;
   const watchedDiscountType = watch("discount_type") as DiscountType | undefined;
   const watchedDiscountValue = watch("discount_value");
-  const watchedClientId = watch("client_id");
-
-  // Get selected client
-  const selectedClient = useMemo(
-    () => mockClients.find((c) => c.id === watchedClientId),
-    [watchedClientId]
-  );
-
-  // Handle client selection and apply client preferences
-  const handleClientChange = useCallback(
-    (clientId: string) => {
-      setValue("client_id", clientId);
-
-      const client = mockClients.find((c) => c.id === clientId);
-      if (client) {
-        // Apply client preferences
-        if (client.preferred_currency) {
-          setValue("currency", client.preferred_currency);
-        }
-        if (client.preferred_language) {
-          setValue("language", client.preferred_language);
-        }
-        if (client.default_payment_terms) {
-          const today = new Date();
-          setValue("due_date", addDays(today, client.default_payment_terms));
-        }
-      }
-    },
-    [setValue]
-  );
 
   // Handle line items change
   const handleItemsChange = useCallback(
     (items: InvoiceFormData["items"]) => {
-      setValue("items", items, { shouldValidate: true });
+      setValue("items", items, { shouldValidate: true, shouldDirty: true });
     },
     [setValue]
   );
@@ -223,25 +233,21 @@ export default function NewInvoicePage() {
   }, [errors.items]);
 
   // Handle form submission
-  const submitInvoice = async (data: InvoiceFormData, action: "draft" | "send") => {
+  const submitInvoice: SubmitHandler<InvoiceFormData> = async (data) => {
     setIsSubmitting(true);
 
     try {
-      // Generate invoice number
-      const invoiceNumber = generateInvoiceNumber("INV", 43);
-
-      // Prepare data for API
       const invoiceData = {
         ...data,
-        invoice_number: invoiceNumber,
-        status: action === "send" ? "sent" : "draft",
+        id: invoice.id,
+        invoice_number: invoice.invoice_number,
       };
 
-      console.log("Submitting invoice:", invoiceData);
+      console.log("Updating invoice:", invoiceData);
 
       // TODO: Submit to API
-      // const response = await fetch('/api/invoices', {
-      //   method: 'POST',
+      // const response = await fetch(`/api/invoices/${invoice.id}`, {
+      //   method: 'PUT',
       //   headers: { 'Content-Type': 'application/json' },
       //   body: JSON.stringify(invoiceData),
       // });
@@ -249,39 +255,63 @@ export default function NewInvoicePage() {
       // Simulate API delay
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      toast.success(
-        action === "send" ? "Invoice sent!" : "Invoice saved",
-        {
-          description:
-            action === "send"
-              ? `Invoice ${invoiceNumber} has been sent to ${selectedClient?.email}`
-              : `Invoice ${invoiceNumber} saved as draft`,
-        }
-      );
+      toast.success("Invoice updated", {
+        description: `Invoice ${invoice.invoice_number} has been updated.`,
+      });
 
-      router.push("/app/invoices");
+      router.push(`/app/invoices/${invoice.id}`);
     } catch {
       toast.error("Error", {
-        description: "Failed to create invoice. Please try again.",
+        description: "Failed to update invoice. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Type-safe submit handlers
-  const onSubmitSend: SubmitHandler<InvoiceFormData> = (data) => submitInvoice(data, "send");
-  const onSubmitDraft: SubmitHandler<InvoiceFormData> = (data) => submitInvoice(data, "draft");
+  // Redirect if invoice is not a draft
+  if (!isDraft && !isLoading) {
+    return (
+      <PageTransition>
+        <div className="flex flex-col items-center justify-center py-20">
+          <div className="w-16 h-16 rounded-full bg-[var(--color-warning-bg)] flex items-center justify-center mb-4">
+            <AlertTriangle className="w-8 h-8 text-[var(--color-warning-text)]" />
+          </div>
+          <h1 className="text-xl font-semibold text-[var(--color-text-primary)] mb-2">
+            Cannot Edit Invoice
+          </h1>
+          <p className="text-[var(--color-text-secondary)] mb-6 text-center max-w-md">
+            Only draft invoices can be edited. This invoice has already been sent.
+          </p>
+          <Link href={`/app/invoices/${invoice.id}`}>
+            <Button>View Invoice</Button>
+          </Link>
+        </div>
+      </PageTransition>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <PageTransition>
+        <div className="animate-pulse space-y-6">
+          <div className="h-10 bg-[var(--color-bg-tertiary)] rounded w-1/3" />
+          <div className="h-64 bg-[var(--color-bg-tertiary)] rounded" />
+          <div className="h-64 bg-[var(--color-bg-tertiary)] rounded" />
+        </div>
+      </PageTransition>
+    );
+  }
 
   return (
     <PageTransition>
       <PageHeader
-        title="New Invoice"
-        description="Create a new invoice for your client"
+        title={`Edit ${invoice.invoice_number}`}
+        description="Update invoice details"
         actions={
-          <Link href="/app/invoices">
+          <Link href={`/app/invoices/${invoice.id}`}>
             <Button variant="ghost" leftIcon={<ArrowLeft className="h-4 w-4" />}>
-              Back
+              Cancel
             </Button>
           </Link>
         }
@@ -302,11 +332,10 @@ export default function NewInvoicePage() {
                       <ClientSelector
                         clients={mockClients}
                         value={field.value}
-                        onChange={handleClientChange}
+                        onChange={field.onChange}
                         placeholder="Select a client"
                         error={errors.client_id?.message}
                         required
-                        onAddNew={() => router.push("/app/clients/new")}
                       />
                     )}
                   />
@@ -323,7 +352,7 @@ export default function NewInvoicePage() {
                     control={control}
                     render={({ field }) => (
                       <LineItemsTable
-                        items={field.value.map((item) => ({
+                        items={(field.value || []).map((item) => ({
                           id: item.id || crypto.randomUUID(),
                           description: item.description,
                           quantity: item.quantity,
@@ -360,7 +389,7 @@ export default function NewInvoicePage() {
                         <Input
                           type="date"
                           label="Issue Date"
-                          value={formatDateForInput(field.value)}
+                          value={field.value ? formatDateForInput(field.value) : ""}
                           onChange={(e) => field.onChange(new Date(e.target.value))}
                           error={errors.issue_date?.message}
                           required
@@ -374,7 +403,7 @@ export default function NewInvoicePage() {
                         <Input
                           type="date"
                           label="Due Date"
-                          value={formatDateForInput(field.value)}
+                          value={field.value ? formatDateForInput(field.value) : ""}
                           onChange={(e) => field.onChange(new Date(e.target.value))}
                           error={errors.due_date?.message}
                           required
@@ -424,7 +453,7 @@ export default function NewInvoicePage() {
                         <Input
                           type="number"
                           label="Tax Rate (%)"
-                          value={(field.value * 100).toString()}
+                          value={((field.value || 0) * 100).toString()}
                           onChange={(e) =>
                             field.onChange(parseFloat(e.target.value) / 100 || 0)
                           }
@@ -555,42 +584,34 @@ export default function NewInvoicePage() {
                 <Button
                   type="button"
                   className="w-full"
-                  leftIcon={<Send className="h-4 w-4" />}
-                  onClick={() => void handleSubmit(onSubmitSend)()}
-                  isLoading={isSubmitting}
-                  disabled={isSubmitting}
-                >
-                  Save & Send
-                </Button>
-
-                <Button
-                  type="button"
-                  variant="secondary"
-                  className="w-full"
                   leftIcon={<Save className="h-4 w-4" />}
-                  onClick={() => void handleSubmit(onSubmitDraft)()}
+                  onClick={() => void handleSubmit(submitInvoice)()}
                   isLoading={isSubmitting}
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !isDirty}
                 >
-                  Save as Draft
+                  Save Changes
                 </Button>
+
+                <Link href={`/app/invoices/${invoice.id}`} className="block">
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    Cancel
+                  </Button>
+                </Link>
               </div>
 
-              {/* Help text */}
-              <div className="mt-6 p-4 bg-[var(--color-bg-tertiary)] rounded-[12px] border-2 border-[var(--color-border-light)]">
-                <div className="flex gap-3">
-                  <Info className="w-5 h-5 text-[var(--color-primary-600)] flex-shrink-0 mt-0.5" />
-                  <div className="text-sm text-[var(--color-text-secondary)]">
-                    <p className="font-medium text-[var(--color-text-primary)] mb-1">
-                      Taiwan Tax Invoice
-                    </p>
-                    <p>
-                      This invoice will include standard 5% 營業稅 (business tax).
-                      Make sure your business tax ID is set up in settings.
-                    </p>
-                  </div>
+              {/* Unsaved changes warning */}
+              {isDirty && (
+                <div className="mt-4 p-3 bg-[var(--color-warning-bg)] rounded-lg border-2 border-[var(--color-warning-border)]">
+                  <p className="text-sm text-[var(--color-warning-text)]">
+                    You have unsaved changes
+                  </p>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

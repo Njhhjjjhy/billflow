@@ -11,11 +11,9 @@ import {
   Copy,
   Trash2,
   CheckCircle,
-  MoreHorizontal,
   Mail,
   Calendar,
   Building2,
-  User,
   FileText,
 } from "lucide-react";
 import { PageTransition, PageHeader, PageSection } from "@/components/layout";
@@ -26,10 +24,12 @@ import {
   CardContent,
   InvoiceStatusBadge,
   Modal,
+  ModalHeader,
+  ModalFooter,
 } from "@/components/ui";
 import { useToast } from "@/components/ui/Toast";
 import { formatCurrency, formatDate, formatDueDate, getDaysUntilDue } from "@/lib/format";
-import type { InvoiceFull, InvoiceStatus, Currency } from "@/types";
+import type { InvoiceFull } from "@/types";
 
 // Mock invoice data - will be replaced with real data from Supabase
 const mockInvoice: InvoiceFull = {
@@ -112,10 +112,18 @@ const mockInvoice: InvoiceFull = {
   payments: [],
 };
 
+// Map our status type to Badge status type
+type BadgeStatus = "draft" | "sent" | "viewed" | "paid" | "overdue" | "pending";
+
+function mapStatusToBadge(status: string): BadgeStatus {
+  if (status === "cancelled") return "pending";
+  return status as BadgeStatus;
+}
+
 export default function InvoiceDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const { toast } = useToast();
+  const toast = useToast();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isMarkPaidModalOpen, setIsMarkPaidModalOpen] = useState(false);
@@ -137,18 +145,13 @@ export default function InvoiceDetailPage() {
   const handleSend = async () => {
     setIsLoading(true);
     try {
-      // TODO: Call API to send invoice
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast({
-        title: "Invoice sent!",
+      toast.success("Invoice sent!", {
         description: `Invoice ${invoice.invoice_number} has been sent to ${invoice.client.email}`,
-        variant: "success",
       });
-    } catch (error) {
-      toast({
-        title: "Error",
+    } catch {
+      toast.error("Error", {
         description: "Failed to send invoice. Please try again.",
-        variant: "error",
       });
     } finally {
       setIsLoading(false);
@@ -158,18 +161,31 @@ export default function InvoiceDetailPage() {
   const handleDownloadPDF = async () => {
     setIsLoading(true);
     try {
-      // TODO: Generate and download PDF
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast({
-        title: "PDF downloaded",
-        description: `Invoice ${invoice.invoice_number}.pdf`,
-        variant: "success",
+      const response = await fetch(`/api/invoices/${invoice.id}/pdf`);
+
+      if (!response.ok) {
+        throw new Error("Failed to generate PDF");
+      }
+
+      // Get the PDF blob
+      const blob = await response.blob();
+
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${invoice.invoice_number}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      toast.success("PDF downloaded", {
+        description: `${invoice.invoice_number}.pdf`,
       });
-    } catch (error) {
-      toast({
-        title: "Error",
+    } catch {
+      toast.error("Error", {
         description: "Failed to generate PDF. Please try again.",
-        variant: "error",
       });
     } finally {
       setIsLoading(false);
@@ -179,19 +195,14 @@ export default function InvoiceDetailPage() {
   const handleDuplicate = async () => {
     setIsLoading(true);
     try {
-      // TODO: Duplicate invoice via API
       await new Promise((resolve) => setTimeout(resolve, 500));
-      toast({
-        title: "Invoice duplicated",
+      toast.success("Invoice duplicated", {
         description: "A new draft invoice has been created.",
-        variant: "success",
       });
-      router.push("/app/invoices/new"); // In real app, go to new invoice ID
-    } catch (error) {
-      toast({
-        title: "Error",
+      router.push("/app/invoices/new");
+    } catch {
+      toast.error("Error", {
         description: "Failed to duplicate invoice. Please try again.",
-        variant: "error",
       });
     } finally {
       setIsLoading(false);
@@ -201,19 +212,14 @@ export default function InvoiceDetailPage() {
   const handleMarkPaid = async () => {
     setIsLoading(true);
     try {
-      // TODO: Mark as paid via API
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast({
-        title: "Invoice marked as paid",
+      toast.success("Invoice marked as paid", {
         description: `Invoice ${invoice.invoice_number} has been marked as paid.`,
-        variant: "success",
       });
       setIsMarkPaidModalOpen(false);
-    } catch (error) {
-      toast({
-        title: "Error",
+    } catch {
+      toast.error("Error", {
         description: "Failed to update invoice. Please try again.",
-        variant: "error",
       });
     } finally {
       setIsLoading(false);
@@ -223,19 +229,14 @@ export default function InvoiceDetailPage() {
   const handleDelete = async () => {
     setIsLoading(true);
     try {
-      // TODO: Delete invoice via API
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast({
-        title: "Invoice deleted",
+      toast.success("Invoice deleted", {
         description: `Invoice ${invoice.invoice_number} has been deleted.`,
-        variant: "success",
       });
       router.push("/app/invoices");
-    } catch (error) {
-      toast({
-        title: "Error",
+    } catch {
+      toast.error("Error", {
         description: "Failed to delete invoice. Please try again.",
-        variant: "error",
       });
     } finally {
       setIsLoading(false);
@@ -246,16 +247,10 @@ export default function InvoiceDetailPage() {
     <PageTransition>
       <PageHeader
         title={invoice.invoice_number}
-        description={
-          <div className="flex items-center gap-3">
-            <InvoiceStatusBadge status={invoice.status} />
-            <span className="text-[var(--color-text-tertiary)]">
-              {formatDate(invoice.issue_date, "en")}
-            </span>
-          </div>
-        }
+        description={`Issued ${formatDate(invoice.issue_date, "en")}`}
         actions={
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <InvoiceStatusBadge status={mapStatusToBadge(invoice.status)} />
             <Link href="/app/invoices">
               <Button variant="ghost" leftIcon={<ArrowLeft className="h-4 w-4" />}>
                 Back
@@ -270,9 +265,7 @@ export default function InvoiceDetailPage() {
         <div className="space-y-6">
           {/* Client Info */}
           <Card>
-            <CardHeader>
-              <h2 className="text-lg font-semibold">Bill To</h2>
-            </CardHeader>
+            <CardHeader title="Bill To" />
             <CardContent>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-[var(--color-bg-tertiary)] border-2 border-black flex items-center justify-center">
@@ -318,9 +311,7 @@ export default function InvoiceDetailPage() {
 
           {/* Line Items */}
           <Card>
-            <CardHeader>
-              <h2 className="text-lg font-semibold">Line Items</h2>
-            </CardHeader>
+            <CardHeader title="Line Items" />
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -408,9 +399,7 @@ export default function InvoiceDetailPage() {
           {/* Notes */}
           {(invoice.notes_external || invoice.notes_internal) && (
             <Card>
-              <CardHeader>
-                <h2 className="text-lg font-semibold">Notes</h2>
-              </CardHeader>
+              <CardHeader title="Notes" />
               <CardContent className="space-y-4">
                 {invoice.notes_external && (
                   <div>
@@ -441,9 +430,7 @@ export default function InvoiceDetailPage() {
         <div className="space-y-6">
           {/* Actions */}
           <Card>
-            <CardHeader>
-              <h2 className="text-lg font-semibold">Actions</h2>
-            </CardHeader>
+            <CardHeader title="Actions" />
             <CardContent className="space-y-3">
               {!isPaid && (
                 <Button
@@ -583,11 +570,7 @@ export default function InvoiceDetailPage() {
 
           {/* Activity */}
           <Card>
-            <CardHeader>
-              <h2 className="text-sm font-semibold text-[var(--color-text-secondary)] uppercase tracking-wide">
-                Activity
-              </h2>
-            </CardHeader>
+            <CardHeader title="Activity" />
             <CardContent className="space-y-3">
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 mt-2 rounded-full bg-[var(--color-success-text)]" />
@@ -617,45 +600,41 @@ export default function InvoiceDetailPage() {
       </div>
 
       {/* Delete Confirmation Modal */}
-      <Modal
-        isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)}
-        title="Delete Invoice"
-        description={`Are you sure you want to delete invoice ${invoice.invoice_number}? This action cannot be undone.`}
-        footer={
-          <div className="flex gap-3 justify-end">
-            <Button variant="ghost" onClick={() => setIsDeleteModalOpen(false)}>
-              Cancel
-            </Button>
-            <Button
-              variant="danger"
-              onClick={handleDelete}
-              isLoading={isLoading}
-              disabled={isLoading}
-            >
-              Delete
-            </Button>
-          </div>
-        }
-      />
+      <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
+        <ModalHeader
+          title="Delete Invoice"
+          description={`Are you sure you want to delete invoice ${invoice.invoice_number}? This action cannot be undone.`}
+        />
+        <ModalFooter>
+          <Button variant="secondary" onClick={() => setIsDeleteModalOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            variant="danger"
+            onClick={handleDelete}
+            isLoading={isLoading}
+            disabled={isLoading}
+          >
+            Delete
+          </Button>
+        </ModalFooter>
+      </Modal>
 
       {/* Mark Paid Modal */}
-      <Modal
-        isOpen={isMarkPaidModalOpen}
-        onClose={() => setIsMarkPaidModalOpen(false)}
-        title="Mark as Paid"
-        description={`Mark invoice ${invoice.invoice_number} as paid? This will update the invoice status to paid.`}
-        footer={
-          <div className="flex gap-3 justify-end">
-            <Button variant="ghost" onClick={() => setIsMarkPaidModalOpen(false)}>
-              Cancel
-            </Button>
-            <Button onClick={handleMarkPaid} isLoading={isLoading} disabled={isLoading}>
-              Mark as Paid
-            </Button>
-          </div>
-        }
-      />
+      <Modal isOpen={isMarkPaidModalOpen} onClose={() => setIsMarkPaidModalOpen(false)}>
+        <ModalHeader
+          title="Mark as Paid"
+          description={`Mark invoice ${invoice.invoice_number} as paid? This will update the invoice status to paid.`}
+        />
+        <ModalFooter>
+          <Button variant="secondary" onClick={() => setIsMarkPaidModalOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={handleMarkPaid} isLoading={isLoading} disabled={isLoading}>
+            Mark as Paid
+          </Button>
+        </ModalFooter>
+      </Modal>
     </PageTransition>
   );
 }
