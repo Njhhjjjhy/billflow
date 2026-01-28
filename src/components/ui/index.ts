@@ -76,6 +76,7 @@ export {
   SkeletonCard,
   SkeletonTableRow,
   SkeletonInvoiceCard,
+  SkeletonClientCard,
   SkeletonKPI,
   SkeletonPage,
 } from "./Skeleton";

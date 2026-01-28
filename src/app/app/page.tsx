@@ -6,10 +6,10 @@ import { PageTransition, PageHeader, PageSection } from "@/components/layout";
 import {
   Button,
   Card,
-  CardHeader,
   CardContent,
   InvoiceStatusBadge,
 } from "@/components/ui";
+import { RevenueChart, StatusChart } from "@/components/charts";
 
 // KPI Card Component
 function KPICard({
@@ -144,6 +144,24 @@ export default function DashboardPage() {
     { name: "Creative Agency", email: "accounts@creative.com", invoiceCount: 5, totalValue: "NT$195,000" },
   ];
 
+  // Revenue chart data (last 6 months)
+  const revenueData = [
+    { month: "Aug", revenue: 280000, paid: 265000 },
+    { month: "Sep", revenue: 420000, paid: 380000 },
+    { month: "Oct", revenue: 350000, paid: 340000 },
+    { month: "Nov", revenue: 480000, paid: 420000 },
+    { month: "Dec", revenue: 520000, paid: 485000 },
+    { month: "Jan", revenue: 390000, paid: 345000 },
+  ];
+
+  // Invoice status distribution
+  const statusData = [
+    { label: "Paid", value: 42, color: "var(--color-success-text)" },
+    { label: "Sent", value: 8, color: "var(--color-primary-600)" },
+    { label: "Overdue", value: 3, color: "var(--color-error-text)" },
+    { label: "Draft", value: 5, color: "var(--color-text-tertiary)" },
+  ];
+
   return (
     <PageTransition>
       <PageHeader
@@ -190,6 +208,31 @@ export default function DashboardPage() {
           />
         </div>
       </PageSection>
+
+      {/* Charts Row */}
+      <div className="grid grid-cols-1 desktop:grid-cols-[2fr_1fr] gap-6">
+        {/* Revenue Chart */}
+        <PageSection title="Revenue Overview">
+          <Card>
+            <CardContent className="pt-4">
+              <RevenueChart data={revenueData} />
+            </CardContent>
+          </Card>
+        </PageSection>
+
+        {/* Invoice Status */}
+        <PageSection title="Invoice Status">
+          <Card>
+            <CardContent className="flex items-center justify-center py-6">
+              <StatusChart
+                data={statusData}
+                centerValue="58"
+                centerLabel="total"
+              />
+            </CardContent>
+          </Card>
+        </PageSection>
+      </div>
 
       {/* Recent Activity Grid */}
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-6">

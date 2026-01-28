@@ -1,0 +1,372 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
+const Accessibility = () => (
+  <div className="max-w-4xl p-10 font-sans">
+    <div className="mb-12">
+      <h1 className="text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+        Accessibility
+      </h1>
+      <p className="text-xl text-slate-500">
+        All components follow WCAG 2.2 Level AA guidelines. Accessibility is built-in, not bolted-on.
+      </p>
+    </div>
+
+    {/* WCAG Compliance */}
+    <section className="mb-12">
+      <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+        WCAG 2.2 Level AA Compliance
+      </h2>
+      <p className="text-slate-600 mb-6">
+        Billflow meets or exceeds all Level AA success criteria. Here are the key areas we focus on:
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 rounded-lg border-2 border-black" style={{ boxShadow: '4px 4px 0 0 #000' }}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</span>
+            <h3 className="font-semibold">Perceivable</h3>
+          </div>
+          <p className="text-sm text-slate-500">
+            All content is presented in ways that users can perceive, with text alternatives for non-text content.
+          </p>
+        </div>
+        <div className="p-4 rounded-lg border-2 border-black" style={{ boxShadow: '4px 4px 0 0 #000' }}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</span>
+            <h3 className="font-semibold">Operable</h3>
+          </div>
+          <p className="text-sm text-slate-500">
+            All functionality is available from keyboard. Users have enough time and can navigate easily.
+          </p>
+        </div>
+        <div className="p-4 rounded-lg border-2 border-black" style={{ boxShadow: '4px 4px 0 0 #000' }}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</span>
+            <h3 className="font-semibold">Understandable</h3>
+          </div>
+          <p className="text-sm text-slate-500">
+            Text is readable, UI behaves predictably, and users are helped to avoid and correct mistakes.
+          </p>
+        </div>
+        <div className="p-4 rounded-lg border-2 border-black" style={{ boxShadow: '4px 4px 0 0 #000' }}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</span>
+            <h3 className="font-semibold">Robust</h3>
+          </div>
+          <p className="text-sm text-slate-500">
+            Content can be interpreted reliably by assistive technologies and future user agents.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Keyboard Navigation */}
+    <section className="mb-12">
+      <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+        Keyboard Navigation
+      </h2>
+      <p className="text-slate-600 mb-6">
+        All interactive elements are fully keyboard accessible with logical focus order.
+      </p>
+
+      <div className="rounded-lg border-2 border-black overflow-hidden">
+        <table className="w-full">
+          <thead className="bg-slate-50">
+            <tr>
+              <th className="text-left p-3 border-b-2 border-black font-semibold w-32">Key</th>
+              <th className="text-left p-3 border-b-2 border-black font-semibold">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-slate-200">
+              <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Tab</kbd></td>
+              <td className="p-3 text-slate-600">Move focus to next interactive element</td>
+            </tr>
+            <tr className="border-b border-slate-200">
+              <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Shift + Tab</kbd></td>
+              <td className="p-3 text-slate-600">Move focus to previous interactive element</td>
+            </tr>
+            <tr className="border-b border-slate-200">
+              <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Enter</kbd></td>
+              <td className="p-3 text-slate-600">Activate buttons, submit forms, follow links</td>
+            </tr>
+            <tr className="border-b border-slate-200">
+              <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Space</kbd></td>
+              <td className="p-3 text-slate-600">Activate buttons, toggle checkboxes</td>
+            </tr>
+            <tr className="border-b border-slate-200">
+              <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Arrow Keys</kbd></td>
+              <td className="p-3 text-slate-600">Navigate within components (radio groups, menus, tabs)</td>
+            </tr>
+            <tr>
+              <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Escape</kbd></td>
+              <td className="p-3 text-slate-600">Close modals, dropdowns, dismiss toasts</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {/* Focus Indicators */}
+    <section className="mb-12">
+      <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+        Focus Indicators
+      </h2>
+      <p className="text-slate-600 mb-6">
+        All interactive elements have visible focus indicators that meet WCAG 2.4.11 requirements.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="p-4 rounded-lg border-2 border-black">
+          <h3 className="font-semibold mb-3">Buttons</h3>
+          <button
+            className="w-full h-11 bg-blue-600 text-white border-2 border-black rounded-xl font-semibold"
+            style={{
+              outline: '3px solid #2563EB',
+              outlineOffset: '2px',
+              boxShadow: '4px 4px 0 0 #000'
+            }}
+          >
+            Focused Button
+          </button>
+        </div>
+        <div className="p-4 rounded-lg border-2 border-black">
+          <h3 className="font-semibold mb-3">Inputs</h3>
+          <input
+            type="text"
+            placeholder="Focused input"
+            className="w-full h-11 px-3 border-2 border-blue-600 rounded-xl"
+            style={{
+              outline: '3px solid #2563EB',
+              outlineOffset: '2px',
+              boxShadow: '4px 4px 0 0 #2563EB'
+            }}
+          />
+        </div>
+        <div className="p-4 rounded-lg border-2 border-black">
+          <h3 className="font-semibold mb-3">Cards</h3>
+          <div
+            className="p-4 bg-white border-2 border-black rounded-xl"
+            style={{
+              outline: '3px solid #2563EB',
+              outlineOffset: '2px',
+              boxShadow: '4px 4px 0 0 #000'
+            }}
+          >
+            <div className="font-semibold">Focused Card</div>
+            <div className="text-sm text-slate-500">Interactive content</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 bg-slate-50 rounded-lg border-2 border-black">
+        <h3 className="font-semibold mb-2">CSS Implementation</h3>
+        <pre className="text-sm font-mono bg-slate-900 text-slate-100 p-4 rounded overflow-x-auto">
+{`:focus-visible {
+  outline: 3px solid var(--color-primary-600);
+  outline-offset: 2px;
+}`}
+        </pre>
+      </div>
+    </section>
+
+    {/* Color Contrast */}
+    <section className="mb-12">
+      <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+        Color Contrast
+      </h2>
+      <p className="text-slate-600 mb-6">
+        All text and UI components meet minimum contrast requirements.
+      </p>
+
+      <div className="rounded-lg border-2 border-black overflow-hidden">
+        <table className="w-full">
+          <thead className="bg-slate-50">
+            <tr>
+              <th className="text-left p-3 border-b-2 border-black font-semibold">Element</th>
+              <th className="text-left p-3 border-b-2 border-black font-semibold">Minimum Ratio</th>
+              <th className="text-left p-3 border-b-2 border-black font-semibold">Our Ratio</th>
+              <th className="text-left p-3 border-b-2 border-black font-semibold">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-slate-200">
+              <td className="p-3">Body text (small)</td>
+              <td className="p-3 font-mono">4.5:1</td>
+              <td className="p-3 font-mono">12.6:1</td>
+              <td className="p-3"><span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded border border-green-500">AAA</span></td>
+            </tr>
+            <tr className="border-b border-slate-200">
+              <td className="p-3">Large text (18px+ bold)</td>
+              <td className="p-3 font-mono">3:1</td>
+              <td className="p-3 font-mono">12.6:1</td>
+              <td className="p-3"><span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded border border-green-500">AAA</span></td>
+            </tr>
+            <tr className="border-b border-slate-200">
+              <td className="p-3">UI components</td>
+              <td className="p-3 font-mono">3:1</td>
+              <td className="p-3 font-mono">21:1</td>
+              <td className="p-3"><span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded border border-green-500">AAA</span></td>
+            </tr>
+            <tr>
+              <td className="p-3">Focus indicators</td>
+              <td className="p-3 font-mono">3:1</td>
+              <td className="p-3 font-mono">4.5:1</td>
+              <td className="p-3"><span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded border border-green-500">AA</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {/* Screen Reader Support */}
+    <section className="mb-12">
+      <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+        Screen Reader Support
+      </h2>
+      <p className="text-slate-600 mb-6">
+        Components include proper ARIA attributes and semantic HTML.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 rounded-lg border-2 border-black">
+          <h3 className="font-semibold mb-3">ARIA Labels</h3>
+          <ul className="text-sm text-slate-600 space-y-2">
+            <li>All buttons have descriptive labels</li>
+            <li>Form inputs are associated with labels</li>
+            <li>Icons have aria-hidden or aria-label</li>
+            <li>Live regions announce dynamic content</li>
+          </ul>
+        </div>
+        <div className="p-4 rounded-lg border-2 border-black">
+          <h3 className="font-semibold mb-3">Semantic HTML</h3>
+          <ul className="text-sm text-slate-600 space-y-2">
+            <li>Proper heading hierarchy (h1-h6)</li>
+            <li>Lists use ul/ol/li elements</li>
+            <li>Tables use thead, tbody, th elements</li>
+            <li>Landmarks for navigation (nav, main, aside)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-6 p-4 bg-slate-50 rounded-lg border-2 border-black">
+        <h3 className="font-semibold mb-2">Screen Reader Only Text</h3>
+        <pre className="text-sm font-mono bg-slate-900 text-slate-100 p-4 rounded overflow-x-auto">
+{`.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}`}
+        </pre>
+      </div>
+    </section>
+
+    {/* Reduced Motion */}
+    <section className="mb-12">
+      <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+        Reduced Motion
+      </h2>
+      <p className="text-slate-600 mb-6">
+        Animations are disabled when users prefer reduced motion.
+      </p>
+
+      <div className="p-4 bg-slate-50 rounded-lg border-2 border-black">
+        <pre className="text-sm font-mono bg-slate-900 text-slate-100 p-4 rounded overflow-x-auto">
+{`@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}`}
+        </pre>
+      </div>
+    </section>
+
+    {/* Touch Targets */}
+    <section className="mb-12">
+      <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+        Touch Targets (WCAG 2.5.8)
+      </h2>
+      <p className="text-slate-600 mb-6">
+        Interactive elements meet minimum size requirements for motor accessibility.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 rounded-lg border-2 border-black">
+          <h3 className="font-semibold mb-3">Mobile (48x48px minimum)</h3>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-600 rounded-lg border-2 border-black flex items-center justify-center">
+              <span className="text-white text-lg">+</span>
+            </div>
+            <p className="text-sm text-slate-500">
+              Touch targets are at least 48x48 pixels on mobile devices
+            </p>
+          </div>
+        </div>
+        <div className="p-4 rounded-lg border-2 border-black">
+          <h3 className="font-semibold mb-3">Desktop (40x40px minimum)</h3>
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-blue-600 rounded-lg border-2 border-black flex items-center justify-center">
+              <span className="text-white text-lg">+</span>
+            </div>
+            <p className="text-sm text-slate-500">
+              Clickable areas are at least 40x40 pixels on desktop
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Testing */}
+    <section>
+      <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+        Testing Accessibility
+      </h2>
+      <p className="text-slate-600 mb-6">
+        We recommend using these tools to verify accessibility:
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="card">
+          <h3 className="font-semibold mb-2">Automated Testing</h3>
+          <ul className="text-sm text-slate-600 space-y-2">
+            <li>Storybook a11y addon (included)</li>
+            <li>axe DevTools browser extension</li>
+            <li>Lighthouse accessibility audits</li>
+            <li>WAVE evaluation tool</li>
+          </ul>
+        </div>
+        <div className="card">
+          <h3 className="font-semibold mb-2">Manual Testing</h3>
+          <ul className="text-sm text-slate-600 space-y-2">
+            <li>Keyboard-only navigation</li>
+            <li>Screen reader testing (VoiceOver, NVDA)</li>
+            <li>High contrast mode</li>
+            <li>Zoom to 200%</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+);
+
+const meta: Meta = {
+  title: 'Guidelines/Accessibility',
+  component: Accessibility,
+  parameters: {
+    layout: 'fullscreen',
+  },
+};
+
+export default meta;
+type Story = StoryObj;
+
+export const Default: Story = {};

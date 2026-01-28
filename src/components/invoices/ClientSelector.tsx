@@ -85,6 +85,7 @@ export function ClientSelector({
         !listboxRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
+        setFocusedIndex(-1);
         setSearchQuery("");
       }
     }
@@ -161,24 +162,24 @@ export function ClientSelector({
     [disabled, isOpen, focusedIndex, filteredClients, onChange]
   );
 
-  // Reset focused index when search changes or dropdown closes
-  useEffect(() => {
-    if (!isOpen) {
-      setFocusedIndex(-1);
-    } else {
-      setFocusedIndex(0);
-    }
-  }, [isOpen, searchQuery]);
+  const handleToggle = () => {
+    if (disabled) return;
+    const newIsOpen = !isOpen;
+    setIsOpen(newIsOpen);
+    setFocusedIndex(newIsOpen ? 0 : -1);
+  };
 
   const handleSelect = (clientId: string) => {
     onChange?.(clientId);
     setIsOpen(false);
+    setFocusedIndex(-1);
     setSearchQuery("");
     triggerRef.current?.focus();
   };
 
   const handleAddNew = () => {
     setIsOpen(false);
+    setFocusedIndex(-1);
     setSearchQuery("");
     onAddNew?.();
   };
@@ -209,7 +210,7 @@ export function ClientSelector({
           type="button"
           id={id}
           disabled={disabled}
-          onClick={() => !disabled && setIsOpen(!isOpen)}
+          onClick={handleToggle}
           onKeyDown={handleKeyDown}
           aria-haspopup="listbox"
           aria-expanded={isOpen}

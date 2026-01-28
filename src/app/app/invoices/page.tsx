@@ -169,13 +169,13 @@ export default function InvoicesPage() {
         </>
       ) : (
         <EmptyState
-          icon={<FileText className="w-full h-full" />}
-          title="No invoices yet"
-          description="Create your first invoice and get paid faster. You can set up automatic payment reminders too."
+          icon={<FileText className="w-10 h-10" />}
+          title="Create your first invoice"
+          description="Get started by creating an invoice for your client. Track payments, send reminders, and get paid faster."
           action={
             <Link href="/app/invoices/new">
               <Button leftIcon={<Plus className="h-4 w-4" />}>
-                Create invoice
+                New invoice
               </Button>
             </Link>
           }

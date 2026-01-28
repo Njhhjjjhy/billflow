@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -12,12 +12,11 @@ import {
   MapPin,
   FileText,
   Plus,
-  Building2,
   MessageCircle,
   Calendar,
   DollarSign,
 } from "lucide-react";
-import { PageTransition, PageHeader, PageSection } from "@/components/layout";
+import { PageTransition, PageHeader } from "@/components/layout";
 import {
   Button,
   Card,
@@ -135,14 +134,14 @@ function mapStatusToBadge(status: string): BadgeStatus {
 }
 
 export default function ClientDetailPage() {
-  const params = useParams();
+  const _params = useParams(); // Will be used when fetching from Supabase
   const router = useRouter();
   const toast = useToast();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // In real app, fetch client by ID
+  // TODO: Replace with real data fetch using _params.id
   const client = mockClient;
   const invoices = mockInvoices;
 

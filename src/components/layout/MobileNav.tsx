@@ -63,18 +63,7 @@ export function MobileNav({
       variants={mobileNavVariants}
       initial="hidden"
       animate="visible"
-      className={`
-        tablet:hidden
-        fixed bottom-0 left-0 right-0
-        h-16
-        bg-white
-        border-t-2 border-black
-        z-30
-        safe-area-inset-bottom
-        ${className}
-      `
-        .trim()
-        .replace(/\s+/g, " ")}
+      className={`tablet:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t-2 border-black z-30 safe-area-inset-bottom ${className}`}
       role="navigation"
       aria-label="Mobile navigation"
     >
@@ -96,15 +85,7 @@ export function MobileNav({
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               transition={spring.snappy}
-              className="
-                w-14 h-14
-                bg-[var(--color-primary-600)]
-                rounded-full
-                flex items-center justify-center
-                border-2 border-black
-                shadow-[4px_4px_0_0_#000000]
-                text-white
-              "
+              className="w-14 h-14 bg-[var(--color-primary-600)] rounded-full flex items-center justify-center border-2 border-black shadow-[4px_4px_0_0_#000000] text-white"
               aria-label={quickActionLabel}
             >
               <Plus size={24} aria-hidden="true" />
@@ -134,22 +115,7 @@ function MobileNavLink({ item, isActive }: MobileNavLinkProps) {
   return (
     <Link
       href={item.href}
-      className={`
-        flex flex-col items-center justify-center
-        gap-1
-        min-w-[48px] min-h-[48px]
-        px-3 py-2
-        rounded-lg
-        no-underline
-        transition-colors
-        ${
-          isActive
-            ? "text-[var(--color-primary-600)]"
-            : "text-[var(--color-text-secondary)]"
-        }
-      `
-        .trim()
-        .replace(/\s+/g, " ")}
+      className={`flex flex-col items-center justify-center gap-1 min-w-[48px] min-h-[48px] px-3 py-2 rounded-lg no-underline transition-colors ${isActive ? "text-[var(--color-primary-600)]" : "text-[var(--color-text-secondary)]"}`}
       aria-current={isActive ? "page" : undefined}
     >
       <motion.span

@@ -26,19 +26,22 @@ export type InvoiceStatus = z.infer<typeof invoiceStatusSchema>;
 // Taiwan Tax ID validation (統一編號) - 8 digits with checksum
 export const taxIdSchema = z
   .string()
-  .regex(/^\d{8}$/, "Tax ID must be exactly 8 digits")
+  .regex(/^\d{8}$/, "Enter 8 digits (e.g., 12345678)")
   .optional()
   .or(z.literal(""));
 
 // Email validation
-export const emailSchema = z.string().email("Enter a valid email address");
+export const emailSchema = z
+  .string()
+  .min(1, "Email is required")
+  .email("Enter a valid email (e.g., name@example.com)");
 
 // Phone validation (flexible for Taiwan formats)
 export const phoneSchema = z
   .string()
   .regex(
     /^(\+?886-?|0)?[2-9]\d{0,2}-?\d{3,4}-?\d{3,4}$/,
-    "Enter a valid phone number"
+    "Enter a valid phone (e.g., 02-1234-5678 or 0912-345-678)"
   )
   .optional()
   .or(z.literal(""));
@@ -78,7 +81,7 @@ export type BusinessFormData = z.infer<typeof businessSchema>;
 // ============================================
 
 export const clientSchema = z.object({
-  display_name: z.string().min(1, "Client name is required"),
+  display_name: z.string().min(1, "Enter a client name"),
   company_name: z.string().optional(),
   tax_id: taxIdSchema,
   contact_name: z.string().optional(),
@@ -89,7 +92,12 @@ export const clientSchema = z.object({
   city: z.string().optional(),
   postal_code: z.string().optional(),
   country: z.string().default("Taiwan"),
-  default_payment_terms: z.number().int().min(1).max(365).optional(),
+  default_payment_terms: z
+    .number()
+    .int("Must be a whole number")
+    .min(1, "Minimum 1 day")
+    .max(365, "Maximum 365 days")
+    .optional(),
   preferred_currency: currencySchema.optional(),
   preferred_language: languageSchema.optional(),
   tags: z.array(z.string()).default([]),
@@ -104,8 +112,8 @@ export type ClientFormData = z.infer<typeof clientSchema>;
 
 export const lineItemSchema = z.object({
   id: z.string().optional(), // Optional for new items
-  description: z.string().min(1, "Description is required"),
-  quantity: positiveNumberSchema,
+  description: z.string().min(1, "Enter item description"),
+  quantity: positiveNumberSchema.refine((n) => n > 0, "Enter quantity"),
   unit_price: nonNegativeNumberSchema,
   amount: nonNegativeNumberSchema, // Computed: quantity * unit_price
   sort_order: z.number().int().default(0),
@@ -123,8 +131,12 @@ export const invoiceSchema = z
     invoice_number: z.string().optional(), // Auto-generated if not provided
     currency: currencySchema.default("TWD"),
     exchange_rate_to_twd: z.number().positive().default(1),
-    items: z.array(lineItemSchema).min(1, "Add at least one line item"),
-    tax_rate: z.number().min(0).max(1).default(0.05),
+    items: z.array(lineItemSchema).min(1, "Add at least one item to the invoice"),
+    tax_rate: z
+      .number()
+      .min(0, "Tax rate cannot be negative")
+      .max(1, "Tax rate cannot exceed 100%")
+      .default(0.05),
     discount_type: z.enum(["percentage", "fixed"]).optional(),
     discount_value: nonNegativeNumberSchema.optional(),
     issue_date: z.coerce.date(),
@@ -134,7 +146,7 @@ export const invoiceSchema = z
     notes_internal: z.string().optional(),
   })
   .refine((data) => data.due_date >= data.issue_date, {
-    message: "Due date must be after or equal to issue date",
+    message: "Due date must be on or after issue date",
     path: ["due_date"],
   });
 

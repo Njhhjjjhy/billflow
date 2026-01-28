@@ -16,7 +16,7 @@ import {
   Building2,
   FileText,
 } from "lucide-react";
-import { PageTransition, PageHeader, PageSection } from "@/components/layout";
+import { PageTransition, PageHeader } from "@/components/layout";
 import {
   Button,
   Card,
@@ -121,7 +121,7 @@ function mapStatusToBadge(status: string): BadgeStatus {
 }
 
 export default function InvoiceDetailPage() {
-  const params = useParams();
+  const _params = useParams(); // Will be used when fetching from Supabase
   const router = useRouter();
   const toast = useToast();
 
@@ -129,7 +129,7 @@ export default function InvoiceDetailPage() {
   const [isMarkPaidModalOpen, setIsMarkPaidModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // In real app, fetch invoice by ID
+  // TODO: Replace with real data fetch using _params.id
   const invoice = mockInvoice;
 
   const daysUntilDue = useMemo(

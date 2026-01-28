@@ -7,7 +7,7 @@ import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Save, User } from "lucide-react";
 import { PageTransition, PageHeader, PageSection } from "@/components/layout";
-import { Button, Card, CardHeader, CardContent, Select, Input } from "@/components/ui";
+import { Button, Card, CardContent, Select, Input } from "@/components/ui";
 import { useToast } from "@/components/ui/Toast";
 import { clientSchema, type ClientFormData } from "@/lib/validations";
 

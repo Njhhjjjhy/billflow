@@ -8,12 +8,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowLeft, Save, AlertTriangle } from "lucide-react";
 import { PageTransition, PageHeader, PageSection } from "@/components/layout";
-import { Button, Card, CardHeader, CardContent, Select, Input } from "@/components/ui";
+import { Button, Card, CardContent, Select, Input } from "@/components/ui";
 import { ClientSelector, LineItemsTable, InvoiceSummary } from "@/components/invoices";
 import { useToast } from "@/components/ui/Toast";
 import { invoiceSchema } from "@/lib/validations";
 import { formatDateForInput } from "@/lib/format";
-import type { Client, Currency, Language, DiscountType, InvoiceFull } from "@/types";
+import type { Client, Currency, DiscountType, InvoiceFull } from "@/types";
 
 type InvoiceFormData = z.infer<typeof invoiceSchema>;
 
@@ -143,13 +143,13 @@ const discountTypeOptions = [
 ];
 
 export default function EditInvoicePage() {
-  const params = useParams();
+  const _params = useParams(); // Will be used when fetching from Supabase
   const router = useRouter();
   const toast = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // In real app, fetch invoice by ID
+  // TODO: Replace with real data fetch using _params.id
   const invoice = mockInvoice;
   const isDraft = invoice.status === "draft";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Plus, Search, Users, Mail, Phone } from "lucide-react";
 import { PageTransition, PageHeader, PageSection, EmptyState } from "@/components/layout";
@@ -10,6 +10,8 @@ import {
   Card,
   CardContent,
   Badge,
+  SkeletonClientCard,
+  Skeleton,
 } from "@/components/ui";
 
 interface Client {
@@ -104,9 +106,22 @@ function ClientCard({ client }: { client: Client }) {
 
 export default function ClientsPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [clients, setClients] = useState<Client[]>([]);
+
+  // Simulate loading data from API
+  useEffect(() => {
+    const loadClients = async () => {
+      // Simulate API delay
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      setClients(mockClients);
+      setIsLoading(false);
+    };
+    loadClients();
+  }, []);
 
   // Filter clients
-  const filteredClients = mockClients.filter((client) => {
+  const filteredClients = clients.filter((client) => {
     const searchLower = searchQuery.toLowerCase();
     return (
       client.name.toLowerCase().includes(searchLower) ||
@@ -116,7 +131,7 @@ export default function ClientsPage() {
     );
   });
 
-  const hasClients = mockClients.length > 0;
+  const hasClients = clients.length > 0;
 
   return (
     <PageTransition>
@@ -132,7 +147,25 @@ export default function ClientsPage() {
         }
       />
 
-      {hasClients ? (
+      {isLoading ? (
+        <>
+          {/* Search skeleton */}
+          <PageSection>
+            <div className="max-w-md">
+              <Skeleton variant="rounded" height={44} />
+            </div>
+          </PageSection>
+
+          {/* Client Grid skeleton */}
+          <PageSection>
+            <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-4">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <SkeletonClientCard key={i} />
+              ))}
+            </div>
+          </PageSection>
+        </>
+      ) : hasClients ? (
         <>
           {/* Search */}
           <PageSection>
@@ -156,12 +189,12 @@ export default function ClientsPage() {
               </div>
             ) : (
               <EmptyState
-                icon={<Search className="w-full h-full" />}
-                title="No clients found"
-                description={`No clients match "${searchQuery}"`}
+                icon={<Search className="w-10 h-10" />}
+                title="No matches found"
+                description={`Try a different search term or clear the search to see all clients.`}
                 action={
                   <Button
-                    variant="ghost"
+                    variant="secondary"
                     onClick={() => setSearchQuery("")}
                   >
                     Clear search
@@ -173,9 +206,9 @@ export default function ClientsPage() {
         </>
       ) : (
         <EmptyState
-          icon={<Users className="w-full h-full" />}
-          title="No clients yet"
-          description="Add your first client to start invoicing."
+          icon={<Users className="w-10 h-10" />}
+          title="Add your first client"
+          description="Keep track of your clients and their invoicing history. Save contact details, payment preferences, and more."
           action={
             <Link href="/app/clients/new">
               <Button leftIcon={<Plus className="h-4 w-4" />}>

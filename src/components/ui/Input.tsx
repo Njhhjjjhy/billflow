@@ -104,19 +104,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-describedby={
               error ? errorId : helperText ? helperId : undefined
             }
-            className={`
-              w-full
-              bg-white
-              border-2 border-black
-              rounded-[12px]
-              text-[var(--color-text-primary)]
-              placeholder:text-[var(--color-text-tertiary)]
-              outline-none
-              ${sizeClasses[inputSize]}
-              ${leftElement ? "pl-10" : "px-3"}
-              ${rightElement ? "pr-10" : "px-3"}
-              ${className}
-            `.trim().replace(/\s+/g, " ")}
+            className={`w-full bg-white border-2 border-black rounded-[12px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-tertiary)] outline-none ${sizeClasses[inputSize]} ${leftElement ? "pl-10" : "px-3"} ${rightElement ? "pr-10" : "px-3"} ${className}`}
             style={{ fontFamily: "var(--font-body)" }}
             {...props}
           />

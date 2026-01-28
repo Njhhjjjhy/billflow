@@ -48,11 +48,7 @@ export function Skeleton({
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className={`
-          bg-gray-200
-          ${variantClasses[variant]}
-          ${className}
-        `.trim().replace(/\s+/g, " ")}
+        className={`bg-gray-200 ${variantClasses[variant]} ${className}`}
         style={style}
         aria-hidden="true"
       />
@@ -61,11 +57,7 @@ export function Skeleton({
 
   return (
     <div
-      className={`
-        bg-gray-200
-        ${variantClasses[variant]}
-        ${className}
-      `.trim().replace(/\s+/g, " ")}
+      className={`bg-gray-200 ${variantClasses[variant]} ${className}`}
       style={style}
       aria-hidden="true"
     />
@@ -153,14 +145,7 @@ export function SkeletonCard({
 }: SkeletonCardProps) {
   return (
     <div
-      className={`
-        p-6
-        bg-white
-        border-2 border-black
-        rounded-[16px]
-        shadow-[4px_4px_0_0_#000000]
-        ${className}
-      `.trim().replace(/\s+/g, " ")}
+      className={`p-6 bg-white border-2 border-black rounded-[16px] shadow-[4px_4px_0_0_#000000] ${className}`}
       aria-label="Loading card..."
     >
       {showHeader && (
@@ -216,14 +201,7 @@ export function SkeletonTableRow({
 export function SkeletonInvoiceCard({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`
-        p-6
-        bg-white
-        border-2 border-black
-        rounded-[16px]
-        shadow-[4px_4px_0_0_#000000]
-        ${className}
-      `.trim().replace(/\s+/g, " ")}
+      className={`p-6 bg-white border-2 border-black rounded-[16px] shadow-[4px_4px_0_0_#000000] ${className}`}
       aria-label="Loading invoice..."
     >
       <div className="flex items-start justify-between mb-4">
@@ -252,18 +230,37 @@ export function SkeletonInvoiceCard({ className = "" }: { className?: string }) 
   );
 }
 
+// Client card skeleton
+export function SkeletonClientCard({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`p-6 bg-white border-2 border-black rounded-[16px] shadow-[4px_4px_0_0_#000000] ${className}`}
+      aria-label="Loading client..."
+    >
+      <div className="flex items-start gap-4">
+        <SkeletonAvatar size="lg" />
+        <div className="flex-1 min-w-0 space-y-2">
+          <Skeleton variant="text" width="60%" height="1.25em" />
+          <Skeleton variant="text" width="40%" height="0.875em" />
+          <div className="pt-2 space-y-1.5">
+            <Skeleton variant="text" width="70%" height="0.875em" />
+            <Skeleton variant="text" width="50%" height="0.875em" />
+          </div>
+        </div>
+        <div className="text-right space-y-1">
+          <Skeleton variant="text" width={80} height="1.25em" />
+          <Skeleton variant="text" width={60} height="0.75em" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Dashboard KPI skeleton
 export function SkeletonKPI({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`
-        p-6
-        bg-white
-        border-2 border-black
-        rounded-[16px]
-        shadow-[4px_4px_0_0_#000000]
-        ${className}
-      `.trim().replace(/\s+/g, " ")}
+      className={`p-6 bg-white border-2 border-black rounded-[16px] shadow-[4px_4px_0_0_#000000] ${className}`}
       aria-label="Loading metric..."
     >
       <div className="flex items-center gap-3 mb-3">

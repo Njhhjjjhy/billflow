@@ -101,14 +101,7 @@ export function AppShell({
             marginLeft: sidebarCollapsed ? 72 : 240,
           }}
           transition={spring.smooth}
-          className={`
-            min-h-screen
-            ml-0 tablet:ml-[240px]
-            pb-20 tablet:pb-0
-            transition-[margin]
-          `
-            .trim()
-            .replace(/\s+/g, " ")}
+          className="min-h-screen ml-0 tablet:ml-[240px] pb-20 tablet:pb-0 transition-[margin]"
           style={{
             // CSS fallback for SSR - JS will take over
             marginLeft: undefined,
@@ -132,15 +125,7 @@ export function AppShell({
           </header>
 
           {/* Page content */}
-          <div
-            className={`
-              p-4 tablet:p-6 desktop:p-8
-              max-w-[1400px]
-              ${className}
-            `
-              .trim()
-              .replace(/\s+/g, " ")}
-          >
+          <div className={`p-4 tablet:p-6 desktop:p-8 max-w-[1400px] ${className}`}>
             {children}
           </div>
         </motion.div>
@@ -183,29 +168,22 @@ export function EmptyState({
   className = "",
 }: EmptyStateProps) {
   return (
-    <div
-      className={`
-        flex flex-col items-center justify-center
-        py-12 tablet:py-16
-        text-center
-        ${className}
-      `
-        .trim()
-        .replace(/\s+/g, " ")}
-    >
+    <div className={`flex flex-col items-center justify-center py-12 tablet:py-16 text-center ${className}`}>
       {icon && (
-        <div className="w-16 h-16 mb-4 text-[var(--color-text-tertiary)]">
-          {icon}
+        <div className="w-20 h-20 mb-6 flex items-center justify-center bg-[var(--color-bg-tertiary)] border-2 border-black rounded-2xl shadow-[4px_4px_0_0_#000000]">
+          <div className="text-[var(--color-primary-600)]">
+            {icon}
+          </div>
         </div>
       )}
       <h3
-        className="text-lg font-semibold text-[var(--color-text-primary)] mb-2"
+        className="text-xl font-bold text-[var(--color-text-primary)] mb-2"
         style={{ fontFamily: "var(--font-display)" }}
       >
         {title}
       </h3>
       {description && (
-        <p className="text-[var(--color-text-secondary)] max-w-md mb-6">
+        <p className="text-[var(--color-text-secondary)] max-w-sm mb-6 leading-relaxed">
           {description}
         </p>
       )}

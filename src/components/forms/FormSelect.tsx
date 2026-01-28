@@ -10,7 +10,7 @@ import {
 } from "react-hook-form";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Check } from "lucide-react";
-import { dropdownVariants, spring } from "@/lib/motion";
+import { dropdownVariants } from "@/lib/motion";
 import { FormField } from "./FormField";
 
 export interface SelectOption {
@@ -164,7 +164,7 @@ export function FormSelect<T extends FieldValues>({
                 disabled={disabled}
                 aria-haspopup="listbox"
                 aria-expanded={isOpen}
-                aria-invalid={hasError ? "true" : undefined}
+                aria-describedby={hasError ? `${id}-error` : undefined}
                 className={`
                   w-full h-11 px-3 pr-10
                   bg-white

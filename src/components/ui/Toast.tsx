@@ -5,6 +5,7 @@ import {
   useContext,
   useCallback,
   useState,
+  useEffect,
   useId,
 } from "react";
 import { motion, AnimatePresence } from "motion/react";
@@ -97,6 +98,21 @@ export function ToastProvider({
   maxToasts = 5,
 }: ToastProviderProps) {
   const [toasts, setToasts] = useState<Toast[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  // Only render portal after client-side hydration
+  // This is necessary to avoid hydration mismatch errors with createPortal
+  useEffect(() => {
+    setMounted(true); // eslint-disable-line react-hooks/set-state-in-effect
+  }, []);
+
+  const removeToast = useCallback((id: string) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
+
+  const clearToasts = useCallback(() => {
+    setToasts([]);
+  }, []);
 
   const addToast = useCallback(
     (toast: Omit<Toast, "id">) => {
@@ -122,29 +138,16 @@ export function ToastProvider({
 
       return id;
     },
-    [defaultDuration, maxToasts]
+    [defaultDuration, maxToasts, removeToast]
   );
-
-  const removeToast = useCallback((id: string) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
-  }, []);
-
-  const clearToasts = useCallback(() => {
-    setToasts([]);
-  }, []);
 
   return (
     <ToastContext.Provider value={{ toasts, addToast, removeToast, clearToasts }}>
       {children}
-      {typeof window !== "undefined" &&
+      {mounted &&
         createPortal(
           <div
-            className={`
-              fixed z-50
-              flex flex-col gap-3
-              pointer-events-none
-              ${positionClasses[position]}
-            `.trim().replace(/\s+/g, " ")}
+            className={`fixed z-50 flex flex-col gap-3 pointer-events-none ${positionClasses[position]}`}
             aria-live="polite"
             aria-label="Notifications"
           >
@@ -219,16 +222,7 @@ function ToastItem({ toast, onDismiss }: ToastItemProps) {
       exit="exit"
       role={toast.type === "error" ? "alert" : "status"}
       aria-labelledby={labelId}
-      className={`
-        pointer-events-auto
-        flex items-start gap-3
-        w-80
-        p-4
-        ${config.bg}
-        border-2 ${config.border}
-        rounded-[12px]
-        shadow-[4px_4px_0_0_#000000]
-      `.trim().replace(/\s+/g, " ")}
+      className={`pointer-events-auto flex items-start gap-3 w-80 p-4 ${config.bg} border-2 ${config.border} rounded-[12px] shadow-[4px_4px_0_0_#000000]`}
     >
       <Icon className={`h-5 w-5 flex-shrink-0 mt-0.5 ${config.iconColor}`} aria-hidden={true} />
 
@@ -248,15 +242,7 @@ function ToastItem({ toast, onDismiss }: ToastItemProps) {
 
       <button
         onClick={onDismiss}
-        className="
-          flex-shrink-0
-          p-1
-          rounded-[6px]
-          text-[var(--color-text-secondary)]
-          hover:text-[var(--color-text-primary)]
-          hover:bg-black/5
-          transition-colors
-        "
+        className="flex-shrink-0 p-1 rounded-[6px] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
         aria-label="Dismiss notification"
       >
         <X className="h-4 w-4" aria-hidden="true" />

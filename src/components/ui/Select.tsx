@@ -98,12 +98,21 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           !listboxRef.current.contains(event.target as Node)
         ) {
           setIsOpen(false);
+          setFocusedIndex(-1);
         }
       }
 
       document.addEventListener("mousedown", handleClickOutside);
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [isOpen]);
+
+    // Toggle dropdown open/closed
+    const handleToggle = () => {
+      if (disabled) return;
+      const newIsOpen = !isOpen;
+      setIsOpen(newIsOpen);
+      setFocusedIndex(newIsOpen ? 0 : -1);
+    };
 
     // Handle keyboard navigation
     const handleKeyDown = useCallback(
@@ -121,10 +130,13 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
               if (focusedOption) {
                 onChange?.(focusedOption.value);
                 setIsOpen(false);
+                setFocusedIndex(-1);
                 triggerRef.current?.focus();
               }
             } else {
-              setIsOpen(!isOpen);
+              const newIsOpen = !isOpen;
+              setIsOpen(newIsOpen);
+              setFocusedIndex(newIsOpen ? 0 : -1);
             }
             break;
 
@@ -155,11 +167,13 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           case "Escape":
             event.preventDefault();
             setIsOpen(false);
+            setFocusedIndex(-1);
             triggerRef.current?.focus();
             break;
 
           case "Tab":
             setIsOpen(false);
+            setFocusedIndex(-1);
             break;
 
           case "Home":
@@ -176,16 +190,10 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
       [disabled, isOpen, focusedIndex, options, onChange]
     );
 
-    // Reset focused index when closed
-    useEffect(() => {
-      if (!isOpen) {
-        setFocusedIndex(-1);
-      }
-    }, [isOpen]);
-
     const handleSelect = (optionValue: string) => {
       onChange?.(optionValue);
       setIsOpen(false);
+      setFocusedIndex(-1);
       triggerRef.current?.focus();
     };
 
@@ -241,7 +249,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
             type="button"
             id={id}
             disabled={disabled}
-            onClick={() => !disabled && setIsOpen(!isOpen)}
+            onClick={handleToggle}
             onKeyDown={handleKeyDown}
             aria-haspopup="listbox"
             aria-expanded={isOpen}

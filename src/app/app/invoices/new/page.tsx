@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowLeft, Send, Save, Info } from "lucide-react";
 import { PageTransition, PageHeader, PageSection } from "@/components/layout";
-import { Button, Card, CardHeader, CardContent, Select, Input } from "@/components/ui";
+import { Button, Card, CardContent, Select, Input } from "@/components/ui";
 import { ClientSelector, LineItemsTable, InvoiceSummary } from "@/components/invoices";
 import { useToast } from "@/components/ui/Toast";
 import { invoiceSchema } from "@/lib/validations";

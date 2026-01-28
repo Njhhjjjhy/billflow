@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Building2, User, FileText, Bell, CreditCard, Shield } from "lucide-react";
-import { PageTransition, PageHeader, PageSection } from "@/components/layout";
+import { Building2, User, FileText, Bell } from "lucide-react";
+import { PageTransition, PageHeader } from "@/components/layout";
 import {
   Button,
   Card,

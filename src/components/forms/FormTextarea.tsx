@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useEffect } from "react";
+import { useId, useRef } from "react";
 import {
   Controller,
   useFormContext,
@@ -92,11 +92,6 @@ export function FormTextarea<T extends FieldValues>({
         const charCount = (field.value as string)?.length || 0;
         const isNearLimit = maxLength && charCount > maxLength * 0.9;
         const isOverLimit = maxLength && charCount > maxLength;
-
-        // Auto-resize on value change
-        useEffect(() => {
-          autoResize();
-        }, [field.value]);
 
         return (
           <FormField
