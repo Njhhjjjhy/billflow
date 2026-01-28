@@ -4,12 +4,12 @@ import { ToastProvider, useToast } from './Toast';
 
 // Demo component that triggers toasts
 const ToastDemo = ({ type, message, description }: { type: 'success' | 'error' | 'warning' | 'info'; message: string; description?: string }) => {
-  const { addToast } = useToast();
+  const toast = useToast();
 
   useEffect(() => {
-    // Add toast on mount
-    addToast({ type, message, description, duration: 10000 });
-  }, [addToast, type, message, description]);
+    // Add toast on mount based on type
+    toast[type](message, { description, duration: 10000 });
+  }, [toast, type, message, description]);
 
   return (
     <div className="p-8">
