@@ -1,9 +1,11 @@
-Billflow Design System 
+Billflow Design System
 Neo-Brutalist Invoice Management for Taiwan Freelancers
-Version: 2.1
+Version: 2.2
 Last Updated: January 2026
-Stack: Next.js 14 + Motion.dev + Tailwind CSS
+Stack: Next.js 16 + React 19 + Motion.dev + Tailwind CSS 4
 Languages: English only (Chinese translations deferred to post-MVP)
+
+> **Implementation Status:** Core UI components, layout system, and animations are fully implemented. Authentication, database integration (Supabase), and email (Resend) are not yet integrated.
 
 TABLE OF CONTENTS
 	1	Brand Foundation
@@ -302,21 +304,20 @@ Respectful
 Honor prefers-reduced-motion
 Consistent
 Same easing/timing across similar interactions
-6.2 Library Choice: Motion.dev vs GSAP
-Use Motion.dev (Framer Motion) for:
+6.2 Animation Library: Motion.dev
+All animations use Motion.dev (Framer Motion). This provides:
 	•	React component animations
 	•	Layout animations
 	•	Gesture interactions (drag, hover, tap)
 	•	Exit animations (AnimatePresence)
-	•	Most UI micro-interactions
-Use GSAP + ScrollTrigger for:
-	•	Complex timeline sequences
-	•	Scroll-linked animations
-	•	SVG morphing
-	•	Number counting animations
-	•	Marketing/landing page sections
-# Install both
-npm install motion gsap
+	•	All UI micro-interactions
+	•	Number counting with useMotionValue
+	•	Page transitions
+
+> **Note:** GSAP + ScrollTrigger was considered for complex timeline/scroll animations but is not currently implemented. Motion.dev handles all animation needs.
+
+# Install
+npm install motion
 6.3 Animation Tokens
 // lib/motion.ts
 export const spring = {
@@ -845,43 +846,29 @@ function Modal({ isOpen, onClose, title, children }) {
   );
 }
 
-6.12 SCROLL-TRIGGERED ANIMATIONS (GSAP)
-Dashboard KPI Card Reveal
-// For complex scroll animations, use GSAP
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+6.12 SCROLL & VIEWPORT ANIMATIONS
+Dashboard KPI Card Reveal (Motion.dev)
+// Use Motion.dev with whileInView for scroll-triggered animations
+import { motion } from 'motion/react';
 
 function DashboardKPIs({ kpis }) {
-  const containerRef = useRef(null);
-  
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.kpi-card', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: 'power2.out',
-      });
-    }, containerRef);
-    
-    return () => ctx.revert();
-  }, []);
-  
   return (
-    <div ref={containerRef} className="kpi-grid">
-      {kpis.map(kpi => (
-        <div key={kpi.id} className="kpi-card">
+    <div className="kpi-grid">
+      {kpis.map((kpi, index) => (
+        <motion.div
+          key={kpi.id}
+          className="kpi-card"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{
+            duration: 0.5,
+            delay: index * 0.1,
+            ease: [0.22, 1, 0.36, 1]
+          }}
+        >
           {/* KPI content */}
-        </div>
+        </motion.div>
       ))}
     </div>
   );
@@ -2046,58 +2033,73 @@ yellow-300
 ⏳
 
 PART 10: IMPLEMENTATION CHECKLIST
-Phase 1: Foundation
-	•	[ ] Next.js 14 with App Router
-	•	[ ] Tailwind CSS with custom config
-	•	[ ] Font loading (Space Grotesk, Noto Sans TC, Space Mono)
-	•	[ ] Motion.dev setup
-	•	[ ] CSS custom properties
-	•	[ ] Animation tokens
-Phase 2: Accessibility Infrastructure
-	•	[ ] Skip link component
-	•	[ ] Focus trap utility
-	•	[ ] Reduced motion hook
-	•	[ ] Screen reader utilities
-	•	[ ] ARIA live regions
-Phase 3: Core Components
-	•	[ ] Button (all variants + animations)
-	•	[ ] Input (all states + error shake)
-	•	[ ] Select / Combobox
-	•	[ ] Card (static + interactive)
-	•	[ ] Badge (all status variants)
-	•	[ ] Table (sortable, accessible)
-	•	[ ] Modal (with focus trap)
-	•	[ ] Toast system
-Phase 4: Layout
-	•	[ ] Sidebar navigation (desktop)
-	•	[ ] Bottom navigation (mobile)
-	•	[ ] Page transition wrapper
-	•	[ ] Responsive container
-Phase 5: Features
-	•	[ ] Invoice builder
-	•	[ ] Invoice list with animations
-	•	[ ] Client management
-	•	[ ] Dashboard KPIs with counters
-	•	[ ] PDF preview
-Phase 6: Polish
-	•	[ ] Micro-interaction audit
-	•	[ ] Loading states
-	•	[ ] Empty states
+Phase 1: Foundation ✅ COMPLETE
+	•	[x] Next.js 16 with App Router
+	•	[x] Tailwind CSS 4 with custom config
+	•	[x] Font loading (Space Grotesk, Noto Sans TC, Space Mono)
+	•	[x] Motion.dev setup
+	•	[x] CSS custom properties
+	•	[x] Animation tokens (lib/motion.ts)
+Phase 2: Accessibility Infrastructure ✅ COMPLETE
+	•	[x] Skip link component
+	•	[x] Focus trap utility
+	•	[x] Reduced motion hook (useReducedMotion)
+	•	[x] Screen reader utilities (.sr-only classes)
+	•	[x] ARIA live regions (Toast system)
+Phase 3: Core Components ✅ COMPLETE
+	•	[x] Button (all variants + animations)
+	•	[x] Input (all states + error shake)
+	•	[x] Select / Combobox
+	•	[x] Card (static + interactive)
+	•	[x] Badge (all status variants including InvoiceStatusBadge)
+	•	[x] Table (sortable, accessible)
+	•	[x] Modal (with focus trap, ConfirmModal)
+	•	[x] Toast system (ToastProvider, useToast)
+	•	[x] Skeleton (comprehensive loading states)
+	•	[x] Checkbox / Radio components
+Phase 4: Layout ✅ COMPLETE
+	•	[x] Sidebar navigation (desktop) - AppShell + Sidebar
+	•	[x] Bottom navigation (mobile) - MobileNav
+	•	[x] Page transition wrapper (PageTransition)
+	•	[x] Responsive container (PageSection, PageHeader)
+	•	[x] EmptyState component
+Phase 5: Features 🔄 IN PROGRESS
+	•	[x] Invoice builder (form + line items)
+	•	[x] Invoice list with animations
+	•	[x] Client management (list, search)
+	•	[x] Dashboard KPIs with counters (StatusChart)
+	•	[x] PDF generation (@react-pdf/renderer)
+	•	[ ] Invoice detail view (partial)
+	•	[ ] Invoice edit form (partial)
+	•	[ ] Client detail view (partial)
+	•	[ ] Settings page (basic structure only)
+Phase 6: Polish 🔄 IN PROGRESS
+	•	[x] Micro-interaction audit
+	•	[x] Loading states (Skeleton components)
+	•	[x] Empty states
 	•	[ ] Error boundaries
 	•	[ ] 404 / 500 pages
-Phase 7: i18n
-	•	[ ] react-i18next setup
-	•	[ ] English translations
-	•	[ ] Chinese translations
-	•	[ ] Number/date formatters
+Phase 7: i18n 🔄 IN PROGRESS
+	•	[x] react-i18next setup (package installed)
+	•	[ ] English translations (not fully implemented)
+	•	[ ] Chinese translations (deferred)
+	•	[x] Number/date formatters (lib/format.ts)
 	•	[ ] RTL-safe styles (future-proofing)
-Phase 8: Testing
+Phase 8: Testing ❌ NOT STARTED
 	•	[ ] Automated accessibility audit (axe)
 	•	[ ] Keyboard navigation test
 	•	[ ] Screen reader test
 	•	[ ] Cross-browser testing
 	•	[ ] Mobile device testing
 	•	[ ] Animation performance (60fps)
+Phase 9: Backend Integration ❌ NOT STARTED
+	•	[ ] Supabase client setup
+	•	[ ] Database schema & migrations
+	•	[ ] Row Level Security (RLS)
+	•	[ ] Authentication (Supabase Auth)
+	•	[ ] Email integration (Resend)
+
+> **Current State:** UI components and design system are production-ready. All pages currently use mock data. Backend integration is the next major milestone.
 
 APPENDIX: QUICK REFERENCE
 Animation Durations
@@ -2125,4 +2127,16 @@ Z-Index Scale
 	•	Toast: 50
 	•	Tooltip: 60
 
-End of Billflow Design System v2.0
+End of Billflow Design System v2.2
+
+---
+
+## Changelog
+
+### v2.2 (January 2026)
+- Synced with actual codebase implementation
+- Updated tech stack versions (Next.js 16, React 19, Tailwind 4)
+- Removed GSAP references (using Motion.dev exclusively)
+- Updated implementation checklist with actual completion status
+- Added Phase 9: Backend Integration
+- Added implementation status banner

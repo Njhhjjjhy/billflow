@@ -12,18 +12,17 @@ const preview: Preview = {
       expanded: true,
     },
     docs: {
-      toc: true,
+      toc: false,
       theme,
     },
     options: {
       storySort: {
         order: [
-          'Getting Started',
-          ['Introduction'],
+          'Introduction',
           'Foundations',
           ['Colors', 'Typography', 'Spacing', 'Shadows'],
           'Guidelines',
-          ['Philosophy', 'Accessibility'],
+          ['Design Principles', 'Accessibility'],
           'Components',
           ['Button', 'Input', 'Select', 'Checkbox', 'Textarea', 'Card', 'Badge', 'Table', 'Modal', 'Toast', 'Skeleton'],
           '*',

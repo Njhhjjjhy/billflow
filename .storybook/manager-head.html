@@ -1,98 +1,36 @@
+<script>
+  document.title = 'Billflow Design System';
+</script>
 <style>
-  /* Neo-brutalist Storybook Theme Overrides */
+  /* Billflow Neo-brutalist Storybook Theme */
+  /* Minimal, targeted styles only */
 
   /* Import fonts */
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
-  /* Sidebar styling */
-  .sidebar-container {
-    background: #F8FAFC !important;
+  /* Fix: All button icons should have good contrast */
+  button svg {
+    color: #0F172A !important;
+    opacity: 1 !important;
   }
 
-  /* Sidebar header */
-  .sidebar-header {
-    border-bottom: 2px solid #000 !important;
-    padding-bottom: 16px !important;
+  /* Fix: Icons inside buttons that are inside search area */
+  button svg path,
+  button svg circle,
+  button svg line {
+    stroke: #0F172A !important;
+    fill: none !important;
   }
 
-  /* Brand title */
-  [class*="brand"] {
-    font-family: 'Space Grotesk', sans-serif !important;
-    font-weight: 700 !important;
+  /* Ensure filled icons also have contrast */
+  button svg[fill] path,
+  button svg path[fill] {
+    fill: #0F172A !important;
   }
 
-  /* Sidebar items - neo-brutalist hover */
-  button[data-nodetype="component"],
-  button[data-nodetype="story"],
-  a[data-nodetype="document"] {
-    border-radius: 8px !important;
-    transition: all 0.1s ease !important;
-  }
-
-  button[data-nodetype="component"]:hover,
-  button[data-nodetype="story"]:hover,
-  a[data-nodetype="document"]:hover {
-    background: #EFF6FF !important;
-  }
-
-  /* Selected item */
-  button[data-selected="true"],
-  a[data-selected="true"] {
-    background: #2563EB !important;
+  /* Fix: Ensure selected items have proper icon colors */
+  [data-selected="true"] svg,
+  [aria-selected="true"]:not([role="tab"]) svg {
     color: white !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-  }
-
-  /* Section headers */
-  button[data-nodetype="root"] {
-    font-family: 'Space Grotesk', sans-serif !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    font-size: 11px !important;
-    letter-spacing: 0.5px !important;
-    color: #475569 !important;
-  }
-
-  /* Toolbar styling */
-  [class*="toolbar"] {
-    border-bottom: 2px solid #E2E8F0 !important;
-  }
-
-  /* Tool buttons */
-  button[class*="tool"] {
-    border-radius: 8px !important;
-  }
-
-  button[class*="tool"]:hover {
-    background: #EFF6FF !important;
-  }
-
-  /* Search input */
-  input[placeholder*="Find"] {
-    border: 2px solid #000 !important;
-    border-radius: 8px !important;
-    font-family: 'Space Grotesk', sans-serif !important;
-  }
-
-  input[placeholder*="Find"]:focus {
-    border-color: #2563EB !important;
-    box-shadow: 4px 4px 0 0 #2563EB !important;
-    outline: none !important;
-  }
-
-  /* Panel tabs */
-  button[role="tab"] {
-    font-family: 'Space Grotesk', sans-serif !important;
-    font-weight: 500 !important;
-  }
-
-  button[role="tab"][aria-selected="true"] {
-    border-bottom: 3px solid #2563EB !important;
-  }
-
-  /* Addon panel */
-  [class*="tabbutton"] {
-    font-family: 'Space Grotesk', sans-serif !important;
   }
 </style>

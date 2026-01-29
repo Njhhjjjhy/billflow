@@ -2,12 +2,13 @@ import type { StorybookConfig } from '@storybook/nextjs-vite';
 
 const config: StorybookConfig = {
   stories: [
-    '../src/components/docs/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/components/docs/**/*.mdx',
     '../src/components/ui/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-a11y',
+    '@storybook/addon-vitest',
     '@chromatic-com/storybook',
   ],
   framework: {

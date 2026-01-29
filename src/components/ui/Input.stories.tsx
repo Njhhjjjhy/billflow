@@ -49,49 +49,9 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof Input>;
 
-export const Default: Story = {
+export const Playground: Story = {
   args: {
     label: 'Client name',
     placeholder: 'e.g., Chen Design Co.',
-  },
-};
-
-export const WithHelper: Story = {
-  args: {
-    label: 'Email',
-    placeholder: 'name@example.com',
-    helperText: 'We will never share your email',
-  },
-};
-
-export const WithError: Story = {
-  args: {
-    label: 'Amount',
-    placeholder: '0.00',
-    error: 'Amount is required',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    label: 'Disabled input',
-    placeholder: 'Cannot edit',
-    disabled: true,
-  },
-};
-
-export const Password: Story = {
-  args: {
-    label: 'Password',
-    placeholder: 'Enter password',
-    type: 'password',
-  },
-};
-
-export const Number: Story = {
-  args: {
-    label: 'Quantity',
-    placeholder: '0',
-    type: 'number',
   },
 };

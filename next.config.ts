@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  reactCompiler: true,
+  // reactCompiler: true, // Disabled - causing Turbopack crashes
 };
 
 export default nextConfig;
