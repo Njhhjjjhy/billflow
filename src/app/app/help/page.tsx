@@ -2,7 +2,7 @@
 
 import { Mail, FileText, Users, CreditCard, Settings } from "lucide-react";
 import { PageTransition, PageHeader } from "@/components/layout";
-import { Card, CardHeader, CardContent } from "@/components/ui";
+import { Card, CardContent } from "@/components/ui";
 
 interface HelpTopic {
   title: string;
@@ -70,25 +70,30 @@ export default function HelpPage() {
       <div className="grid grid-cols-1 tablet:grid-cols-2 gap-6">
         {helpTopics.map((topic) => (
           <Card key={topic.title}>
-            <CardHeader
-              title={
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[var(--color-primary-50)] rounded-lg flex items-center justify-center text-[var(--color-primary-600)]">
-                    {topic.icon}
-                  </div>
-                  <span>{topic.title}</span>
-                </div>
-              }
-              description={topic.description}
-            />
             <CardContent>
-              <ul className="space-y-2">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-10 h-10 bg-[var(--color-primary-50)] rounded-lg flex items-center justify-center text-[var(--color-primary-600)] flex-shrink-0">
+                  {topic.icon}
+                </div>
+                <div>
+                  <h3
+                    className="text-lg font-semibold text-[var(--color-text-primary)]"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {topic.title}
+                  </h3>
+                  <p className="text-sm text-[var(--color-text-secondary)] mt-1">
+                    {topic.description}
+                  </p>
+                </div>
+              </div>
+              <ul className="space-y-2 ml-14">
                 {topic.items.map((item, index) => (
                   <li
                     key={index}
                     className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]"
                   >
-                    <span className="text-[var(--color-primary-600)] mt-1">•</span>
+                    <span className="text-[var(--color-primary-600)] mt-0.5">•</span>
                     {item}
                   </li>
                 ))}
