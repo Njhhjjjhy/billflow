@@ -65,12 +65,12 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <header
-      className={`mb-6 tablet:mb-8 ${className}`.trim()}
+      className={`mb-6 tablet:mb-8 desktop:mb-10 ${className}`.trim()}
     >
       <div className="flex flex-col tablet:flex-row tablet:items-center tablet:justify-between gap-4">
         <div>
           <h1
-            className="text-2xl tablet:text-3xl font-bold text-[var(--color-text-primary)]"
+            className="text-2xl tablet:text-3xl desktop-lg:text-4xl font-bold text-[var(--color-text-primary)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {title}
@@ -117,9 +117,9 @@ export function PageSection({
   className = "",
 }: PageSectionProps) {
   return (
-    <section className={`mb-6 tablet:mb-8 ${className}`.trim()}>
+    <section className={`mb-6 tablet:mb-8 desktop:mb-10 ${className}`.trim()}>
       {(title || actions) && (
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-4 tablet:mb-5">
           <div>
             {title && (
               <h2

@@ -85,7 +85,7 @@ export function LineItemsTable({
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="hidden md:grid md:grid-cols-[1fr_100px_120px_120px_40px] gap-3 mb-2 px-2">
+      <div className="hidden tablet:grid tablet:grid-cols-[1fr_100px_120px_120px_40px] gap-3 mb-2 px-2">
         <div className="text-sm font-medium text-[var(--color-text-secondary)]">
           Description
         </div>
@@ -114,7 +114,7 @@ export function LineItemsTable({
               className="bg-white border-2 border-black rounded-[12px] p-3"
             >
               {/* Desktop Layout */}
-              <div className="hidden md:grid md:grid-cols-[1fr_100px_120px_120px_40px] gap-3 items-start">
+              <div className="hidden tablet:grid tablet:grid-cols-[1fr_100px_120px_120px_40px] gap-3 items-start">
                 {/* Description */}
                 <div>
                   <input
@@ -233,7 +233,7 @@ export function LineItemsTable({
               </div>
 
               {/* Mobile Layout */}
-              <div className="md:hidden space-y-3">
+              <div className="tablet:hidden space-y-3">
                 {/* Description */}
                 <div>
                   <label className="block text-xs font-medium text-[var(--color-text-secondary)] mb-1">

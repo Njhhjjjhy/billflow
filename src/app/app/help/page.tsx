@@ -67,7 +67,7 @@ export default function HelpPage() {
         description="Learn how to use Billflow"
       />
 
-      <div className="grid grid-cols-1 tablet:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-6 desktop-lg:gap-8">
         {helpTopics.map((topic) => (
           <Card key={topic.title}>
             <CardContent>

@@ -125,7 +125,7 @@ export default function SettingsPage() {
         description="Manage your account and preferences"
       />
 
-      <div className="grid grid-cols-1 desktop:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 desktop:grid-cols-4 gap-4 tablet:gap-6 desktop-lg:gap-8">
         {/* Settings Navigation */}
         <div className="desktop:col-span-1">
           <Card>

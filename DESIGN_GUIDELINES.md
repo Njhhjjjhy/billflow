@@ -13,9 +13,9 @@ TABLE OF CONTENTS
 	3	Typography
 	4	Color System
 	5	Neo-Brutalist Styling
-	6	Interactions & Animations ⭐
-	7	WCAG AA Accessibility ⭐
-	8	UX Writing & Voice ⭐
+	6	Interactions & Animations 
+	7	WCAG AA Accessibility 
+	8	UX Writing & Voice 
 	9	Component Specifications
 	10	Implementation Checklist
 

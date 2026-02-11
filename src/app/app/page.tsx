@@ -178,7 +178,7 @@ export default function DashboardPage() {
 
       {/* KPI Grid */}
       <PageSection>
-        <div className="grid grid-cols-2 desktop:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 tablet:grid-cols-2 desktop:grid-cols-4 gap-4 tablet:gap-5 desktop:gap-6">
           <KPICard
             label="Outstanding"
             value="NT$127,500"
@@ -210,7 +210,7 @@ export default function DashboardPage() {
       </PageSection>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 desktop:grid-cols-[2fr_1fr] gap-6">
+      <div className="grid grid-cols-1 desktop:grid-cols-[2fr_1fr] gap-4 tablet:gap-6 desktop-lg:gap-8">
         {/* Revenue Chart */}
         <PageSection title="Revenue Overview">
           <Card>
@@ -235,7 +235,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Recent Activity Grid */}
-      <div className="grid grid-cols-1 desktop:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 tablet:grid-cols-1 desktop:grid-cols-2 gap-4 tablet:gap-6 desktop-lg:gap-8">
         {/* Recent Invoices */}
         <PageSection
           title="Recent invoices"

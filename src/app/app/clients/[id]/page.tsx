@@ -179,7 +179,7 @@ export default function ClientDetailPage() {
         }
       />
 
-      <div className="grid grid-cols-1 desktop:grid-cols-[1fr_320px] gap-6">
+      <div className="grid grid-cols-1 desktop:grid-cols-[1fr_320px] gap-4 tablet:gap-6 desktop-lg:gap-8">
         {/* Main Content */}
         <div className="space-y-6">
           {/* Contact Information */}

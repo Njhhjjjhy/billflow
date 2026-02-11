@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { Sidebar, type NavItem } from "./Sidebar";
 import { MobileNav, type MobileNavItem } from "./MobileNav";
 import { spring } from "@/lib/motion";
+import { useIsTablet } from "@/hooks/useMediaQuery";
 
 // Context for app shell state
 interface AppShellContextValue {
@@ -70,6 +71,7 @@ export function AppShell({
   className = "",
 }: AppShellProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(defaultSidebarCollapsed);
+  const isTablet = useIsTablet();
 
   const toggleSidebar = useCallback(() => {
     setSidebarCollapsed((prev) => !prev);
@@ -97,15 +99,9 @@ export function AppShell({
         {/* Main content area */}
         <motion.div
           initial={false}
-          animate={{
-            marginLeft: sidebarCollapsed ? 72 : 240,
-          }}
+          animate={isTablet ? { marginLeft: sidebarCollapsed ? 72 : 240 } : undefined}
           transition={spring.smooth}
           className="min-h-screen ml-0 tablet:ml-[240px] pb-20 tablet:pb-0 transition-[margin]"
-          style={{
-            // CSS fallback for SSR - JS will take over
-            marginLeft: undefined,
-          }}
         >
           {/* Top header bar for mobile - optional branding/actions */}
           <header className="tablet:hidden sticky top-0 z-10 bg-white border-b-2 border-black">
@@ -125,7 +121,7 @@ export function AppShell({
           </header>
 
           {/* Page content */}
-          <div className={`p-4 tablet:p-6 desktop:p-8 max-w-[1400px] ${className}`}>
+          <div className={`p-4 tablet:p-6 desktop:p-8 desktop-lg:p-10 max-w-[1400px] desktop-lg:mx-auto ${className}`}>
             {children}
           </div>
         </motion.div>

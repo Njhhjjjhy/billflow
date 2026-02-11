@@ -158,7 +158,7 @@ export default function ClientsPage() {
 
           {/* Client Grid skeleton */}
           <PageSection>
-            <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 desktop-lg:grid-cols-4 gap-4 tablet:gap-5 desktop:gap-6">
               {Array.from({ length: 6 }).map((_, i) => (
                 <SkeletonClientCard key={i} />
               ))}
@@ -182,7 +182,7 @@ export default function ClientsPage() {
           {/* Client Grid */}
           <PageSection>
             {filteredClients.length > 0 ? (
-              <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 desktop-lg:grid-cols-4 gap-4 tablet:gap-5 desktop:gap-6">
                 {filteredClients.map((client) => (
                   <ClientCard key={client.id} client={client} />
                 ))}
