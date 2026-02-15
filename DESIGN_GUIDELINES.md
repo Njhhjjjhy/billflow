@@ -1,8 +1,8 @@
 Billflow Design System
 Neo-Brutalist Invoice Management for Taiwan Freelancers
-Version: 2.2
-Last Updated: January 2026
-Stack: Next.js 16 + React 19 + Motion.dev + Tailwind CSS 4
+Version: 2.3
+Last Updated: February 2026
+Stack: Turborepo 2 + Next.js 16 + React 19 + Motion.dev + Tailwind CSS 4
 Languages: English only (Chinese translations deferred to post-MVP)
 
 > **Implementation Status:** Core UI components, layout system, and animations are fully implemented. Authentication, database integration (Supabase), and email (Resend) are not yet integrated.
@@ -319,7 +319,7 @@ All animations use Motion.dev (Framer Motion). This provides:
 # Install
 npm install motion
 6.3 Animation Tokens
-// lib/motion.ts
+// packages/ui/src/lib/motion.ts
 export const spring = {
   snappy: { type: 'spring', stiffness: 500, damping: 30 },
   bouncy: { type: 'spring', stiffness: 400, damping: 20 },
@@ -344,7 +344,7 @@ export const ease = {
 6.4 BUTTON INTERACTIONS
 Primary Button (Neo-Brutalist Press Effect)
 The signature Billflow interaction: buttons "lift" on hover and "press" on click.
-// components/ui/Button.tsx
+// packages/ui/src/components/Button.tsx
 import { motion } from 'motion/react';
 
 const buttonVariants = {
@@ -518,7 +518,7 @@ function Input({ error, success, ...props }) {
   );
 }
 Error Shake Animation
-// hooks/useShakeAnimation.ts
+// packages/ui/src/hooks/useShakeAnimation.ts
 import { useAnimationControls } from 'motion/react';
 
 export function useShakeAnimation() {
@@ -706,7 +706,7 @@ function ProgressBar({ progress, label }) {
 
 6.9 PAGE TRANSITIONS
 Route Transition Wrapper
-// components/PageTransition.tsx
+// apps/web/src/components/layout/PageTransition.tsx
 import { AnimatePresence, motion } from 'motion/react';
 import { usePathname } from 'next/navigation';
 
@@ -903,7 +903,7 @@ function InvoiceCardSkeleton() {
 }
 
 6.14 REDUCED MOTION SUPPORT
-// hooks/useReducedMotion.ts
+// packages/ui/src/hooks/useReducedMotion.ts
 import { useReducedMotion } from 'motion/react';
 
 export function useMotionPreference() {
@@ -2132,6 +2132,12 @@ End of Billflow Design System v2.2
 ---
 
 ## Changelog
+
+### v2.3 (February 2026)
+- Updated file path references for Turborepo monorepo structure
+- Components now live in `packages/ui/src/components/`
+- Hooks now live in `packages/ui/src/hooks/`
+- Utilities now live in `packages/ui/src/lib/`
 
 ### v2.2 (January 2026)
 - Synced with actual codebase implementation

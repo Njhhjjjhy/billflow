@@ -36,9 +36,10 @@ Provide Taiwan freelancers with a professional, bilingual invoicing tool that ha
 
 | Layer | Technology | Purpose |
 |-------|------------|---------|
-| Frontend | Next.js 14 (App Router) | SSR, routing, React |
-| Styling | Tailwind CSS | Utility-first CSS |
-| UI Components | Custom Neo-Brutalist | Bold borders, hard shadows |
+| Monorepo | Turborepo 2 + npm workspaces | Build orchestration, workspace management |
+| Frontend | Next.js 16 (App Router) | SSR, routing, React |
+| Styling | Tailwind CSS 4 | Utility-first CSS |
+| UI Components | Custom Neo-Brutalist (`@billflow/ui`) | Shared design system package |
 | Animations | Motion.dev (Framer Motion) | React component animations |
 | Scroll Animations | GSAP + ScrollTrigger | Complex timeline/scroll animations |
 | Backend | Next.js API Routes | Serverless functions |
@@ -168,15 +169,42 @@ import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
 import { z } from 'zod';
 
-// 3. Internal imports (absolute)
-import { Button } from '@/components/ui/button';
-import { useInvoice } from '@/hooks/useInvoice';
+// 3. Shared UI package imports
+import { Button } from '@billflow/ui/components/Button';
+import { useMotionPreference } from '@billflow/ui/hooks/useReducedMotion';
+import { cn } from '@billflow/ui/lib/utils';
 
-// 4. Relative imports
+// 4. App-local imports (absolute)
+import { useInvoice } from '@/hooks/useInvoice';
+import { InvoiceForm } from '@/components/forms/InvoiceForm';
+
+// 5. Relative imports
 import { InvoiceLineItem } from './InvoiceLineItem';
 
-// 5. Types
+// 6. Types
 import type { Invoice } from '@/types/invoice';
+```
+
+### Shared Package Imports
+
+Components in `apps/web` and `apps/website` import shared code from `@billflow/ui`:
+
+```typescript
+// UI components
+import { Button } from '@billflow/ui/components/Button';
+import { Card } from '@billflow/ui/components/Card';
+
+// Hooks
+import { useMotionPreference } from '@billflow/ui/hooks/useReducedMotion';
+
+// Utilities
+import { cn } from '@billflow/ui/lib/utils';
+import { spring, duration } from '@billflow/ui/lib/motion';
+import { formatCurrency } from '@billflow/ui/lib/format';
+
+// App-local code stays with @/ alias
+import { useZodForm } from '@/hooks/useZodForm';
+import { validateInvoice } from '@/lib/validations';
 ```
 
 ### API Routes
@@ -336,83 +364,98 @@ formatDate(date, 'en') // "01/25/2026" or "25/01/2026"
 
 ## File Structure
 
+This is a Turborepo monorepo with npm workspaces.
+
 ```
 billflow/
-├── app/                      # Next.js App Router
-│   ├── (auth)/              # Auth routes (login, signup)
-│   │   ├── login/
-│   │   └── signup/
-│   ├── (marketing)/         # Public pages
-│   │   └── page.tsx         # Landing page
-│   ├── app/                  # Protected app routes
-│   │   ├── layout.tsx       # App shell with sidebar
-│   │   ├── page.tsx         # Dashboard
-│   │   ├── invoices/
-│   │   │   ├── page.tsx     # Invoice list
-│   │   │   ├── new/
-│   │   │   └── [id]/
-│   │   ├── clients/
-│   │   │   ├── page.tsx
-│   │   │   ├── new/
-│   │   │   └── [id]/
-│   │   └── settings/
-│   ├── api/                  # API routes
-│   │   ├── auth/
-│   │   ├── invoices/
-│   │   ├── clients/
-│   │   └── dashboard/
-│   ├── layout.tsx           # Root layout
-│   └── globals.css          # Global styles + CSS variables
-├── components/
-│   ├── ui/                  # Neo-Brutalist UI components
-│   │   ├── Button.tsx       # Press effect animations
-│   │   ├── Card.tsx         # Lift effect on hover
-│   │   ├── Input.tsx        # Focus shadow animations
-│   │   ├── Select.tsx       # Dropdown component
-│   │   ├── Badge.tsx        # Status badges
-│   │   ├── Table.tsx        # Sortable, accessible
-│   │   ├── Modal.tsx        # With focus trap
-│   │   ├── Toast.tsx        # Notification system
-│   │   └── Skeleton.tsx     # Loading states
-│   ├── forms/               # Form components
-│   ├── invoices/            # Invoice-specific components
-│   ├── clients/             # Client-specific components
-│   └── layout/              # Layout components (Sidebar, Nav)
-├── lib/
-│   ├── motion.ts           # Animation tokens (spring, duration, ease)
-│   ├── supabase/           # Supabase client setup
-│   │   ├── client.ts
-│   │   ├── server.ts
-│   │   └── middleware.ts
-│   ├── validations/        # Zod schemas
-│   ├── utils/              # Utility functions
-│   ├── format.ts           # Currency, date formatters
-│   └── pdf/                # PDF generation
-├── hooks/
-│   ├── useReducedMotion.ts # Accessibility: motion preference
-│   ├── useShakeAnimation.ts # Error shake effect
-│   └── ...                  # Other custom hooks
-├── types/                   # TypeScript types
-│   ├── database.ts         # Supabase generated types
-│   ├── invoice.ts
-│   └── client.ts
-├── locales/                 # Translation files (react-i18next)
-│   ├── en.json
-│   └── zh-TW.json
-├── public/
-│   ├── fonts/              # Space Grotesk, Noto Sans TC, Space Mono
-│   └── images/
-├── tests/
-│   ├── unit/
-│   ├── integration/
-│   └── e2e/
-├── CLAUDE.md               # Technical guidelines (this file)
-├── DESIGN_GUIDELINES.md    # Neo-Brutalist design system
-├── docs/
-│   └── THINGS_TO_AVOID.md  # Anti-patterns
-├── package.json
-├── tailwind.config.ts      # Custom breakpoints, colors
-├── tsconfig.json
+├── apps/
+│   ├── web/                          # @billflow/web — Invoicing app
+│   │   ├── src/
+│   │   │   ├── app/
+│   │   │   │   ├── (dashboard)/      # Protected app routes (AppShell wrapper)
+│   │   │   │   │   ├── layout.tsx    # AppShell + ToastProvider
+│   │   │   │   │   ├── page.tsx      # Dashboard
+│   │   │   │   │   ├── invoices/     # Invoice CRUD
+│   │   │   │   │   ├── clients/      # Client CRUD
+│   │   │   │   │   ├── settings/
+│   │   │   │   │   └── help/
+│   │   │   │   ├── api/              # API routes
+│   │   │   │   │   ├── clients/
+│   │   │   │   │   └── invoices/
+│   │   │   │   ├── demo/             # Demo pages
+│   │   │   │   ├── layout.tsx        # Root layout (fonts, globals.css)
+│   │   │   │   └── globals.css       # Imports @billflow/ui styles
+│   │   │   ├── components/
+│   │   │   │   ├── forms/            # Form components (FormField, FormInput, etc.)
+│   │   │   │   ├── invoices/         # Invoice-specific (LineItemsTable, etc.)
+│   │   │   │   ├── layout/           # AppShell, Sidebar, MobileNav
+│   │   │   │   └── charts/           # RevenueChart, StatusChart
+│   │   │   ├── hooks/                # App-specific hooks (useZodForm)
+│   │   │   ├── lib/
+│   │   │   │   ├── pdf/              # PDF generation (@react-pdf/renderer)
+│   │   │   │   └── validations/      # Zod schemas
+│   │   │   ├── types/                # TypeScript types
+│   │   │   └── locales/              # i18n translation files
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── next.config.ts
+│   │   └── postcss.config.mjs
+│   │
+│   └── website/                      # @billflow/website — Marketing site
+│       ├── src/
+│       │   ├── app/
+│       │   │   ├── layout.tsx        # Root layout (fonts, Navbar, Footer)
+│       │   │   ├── page.tsx          # Landing page
+│       │   │   └── globals.css       # Imports @billflow/ui styles
+│       │   └── components/
+│       │       └── landing/          # Hero, FeaturesSection, BottomCTA, etc.
+│       ├── package.json
+│       ├── tsconfig.json
+│       ├── next.config.ts
+│       └── postcss.config.mjs
+│
+├── packages/
+│   └── ui/                           # @billflow/ui — Shared design system
+│       ├── src/
+│       │   ├── components/           # Neo-Brutalist UI components + stories
+│       │   │   ├── Button.tsx        # Press effect animations
+│       │   │   ├── Card.tsx          # Lift effect on hover
+│       │   │   ├── Input.tsx         # Focus shadow animations
+│       │   │   ├── Select.tsx        # Dropdown component
+│       │   │   ├── Badge.tsx         # Status badges
+│       │   │   ├── Table.tsx         # Sortable, accessible
+│       │   │   ├── Modal.tsx         # With focus trap
+│       │   │   ├── Toast.tsx         # Notification system
+│       │   │   ├── Skeleton.tsx      # Loading states
+│       │   │   ├── *.stories.tsx     # Storybook stories
+│       │   │   └── index.ts          # Barrel export
+│       │   ├── docs/                 # Storybook MDX documentation
+│       │   ├── hooks/                # Shared hooks
+│       │   │   ├── useReducedMotion.ts
+│       │   │   ├── useMediaQuery.ts
+│       │   │   └── useShakeAnimation.ts
+│       │   ├── lib/                  # Shared utilities
+│       │   │   ├── motion.ts         # Animation tokens
+│       │   │   ├── gsap.ts           # GSAP setup
+│       │   │   ├── format.ts         # Currency, date formatters
+│       │   │   └── utils.ts          # cn() helper, etc.
+│       │   ├── styles/
+│       │   │   └── globals.css       # Design tokens, base styles
+│       │   ├── types/
+│       │   │   └── index.ts          # Shared types (Currency, Language)
+│       │   └── index.ts              # Package entry point
+│       ├── .storybook/               # Storybook config
+│       ├── package.json
+│       └── tsconfig.json
+│
+├── docs/                             # Project documentation
+│   ├── THINGS_TO_AVOID.md
+│   └── plans/                        # Implementation plans
+├── CLAUDE.md                         # Technical guidelines (this file)
+├── DESIGN_GUIDELINES.md              # Neo-Brutalist design system
+├── turbo.json                        # Turborepo task config
+├── package.json                      # Workspace root
+├── vercel.json                       # Must stay empty {} — see deployment notes
 └── .env.local
 ```
 
@@ -566,13 +609,32 @@ GET    /api/export/invoices
 
 ---
 
+## Vercel Deployment
+
+Three Vercel projects deploy from this repo:
+
+| Project | Package | Root Directory | Framework | Build Command |
+|---------|---------|----------------|-----------|---------------|
+| `billflow` | `@billflow/web` | `apps/web` | Next.js | `next build` |
+| `billflow-design-system` | `@billflow/ui` | `packages/ui` | None | `npx storybook build` |
+| `billflow-website` | `@billflow/website` | `apps/website` | Next.js | `next build` |
+
+**`vercel.json` must stay empty `{}`** — framework is set at project level, not in the file.
+
+---
+
 ## Quick Reference Commands
 
 ```bash
-# Development
+# Development (all packages)
 npm run dev
 
-# Build
+# Development (specific)
+npm run dev:web          # Invoicing app on port 3000
+npm run dev:website      # Marketing site on port 3001
+npm run dev:storybook    # Storybook on port 6006
+
+# Build (all packages via Turborepo)
 npm run build
 
 # Type check
@@ -581,8 +643,10 @@ npm run typecheck
 # Lint
 npm run lint
 
-# Test
-npm run test
+# Build a specific package
+npx turbo build --filter=@billflow/web
+npx turbo build --filter=@billflow/website
+npx turbo build --filter=@billflow/ui
 
 # Generate Supabase types
 npm run db:generate-types
@@ -590,5 +654,5 @@ npm run db:generate-types
 
 ---
 
-*Last updated: January 2026*
-*Version: 1.0*
+*Last updated: February 2026*
+*Version: 2.0*
