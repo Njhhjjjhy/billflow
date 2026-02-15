@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@billflow/ui/lib/gsap";
-import { Badge } from "@billflow/ui/components/Badge";
 import { EmailSignupForm } from "./EmailSignupForm";
 import { InvoiceIllustration } from "./InvoiceIllustration";
 
@@ -65,25 +64,50 @@ export function Hero() {
     };
   }, []);
 
-  const headlineWords = "Invoicing Built for Taiwan".split(" ");
+  const headlineParts = [
+    { text: "Invoice in", highlight: false },
+    { text: "2 Minutes.", highlight: true },
+    { text: "Get Paid", highlight: false },
+    { text: "Faster.", highlight: true },
+  ];
 
   return (
     <section ref={sectionRef} className="pt-40 pb-32 lg:pt-48 lg:pb-40">
       <div className="max-w-4xl mx-auto px-6 text-center">
         {/* Overline badge */}
-        <div ref={badgeRef} className="mb-6" style={{ opacity: 0 }}>
-          <Badge variant="info">Built for freelancers in Taiwan</Badge>
+        <div ref={badgeRef} className="mb-8" style={{ opacity: 0 }}>
+          <span
+            className="inline-flex items-center gap-2 bg-[var(--color-accent-yellow)] border-2 border-black rounded-full px-5 py-2 text-sm font-bold text-[var(--color-text-primary)] shadow-[var(--shadow-sm)]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            <span aria-hidden="true">🇹🇼</span>
+            Built for freelancers in Taiwan
+          </span>
         </div>
 
         {/* Headline */}
         <h1
           ref={headlineRef}
-          className="text-5xl lg:text-7xl font-bold tracking-tight text-[var(--color-text-primary)] mb-6"
+          className="text-5xl lg:text-7xl font-bold tracking-tight text-[var(--color-text-primary)] mb-8 leading-[1.1]"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          {headlineWords.map((word, i) => (
-            <span key={i} className="hero-word inline-block mr-[0.3em]" style={{ opacity: 0 }}>
-              {word}
+          {headlineParts.map((part) => (
+            <span
+              key={part.text}
+              className={`hero-word inline-block mr-[0.3em] ${
+                part.highlight
+                  ? "relative"
+                  : ""
+              }`}
+              style={{ opacity: 0 }}
+            >
+              {part.text}
+              {part.highlight && (
+                <span
+                  className="absolute bottom-1 left-0 right-0 h-[0.3em] bg-[var(--color-accent-yellow)] -z-10 -skew-x-2"
+                  aria-hidden="true"
+                />
+              )}
             </span>
           ))}
         </h1>
@@ -91,15 +115,15 @@ export function Hero() {
         {/* Sub-headline */}
         <p
           ref={subRef}
-          className="text-lg lg:text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto mb-10"
+          className="text-lg lg:text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto mb-12"
           style={{ fontFamily: "var(--font-body)", opacity: 0 }}
         >
-          Create bilingual invoices, handle local tax compliance, and get paid faster — all in one
-          tool designed for freelancers like you.
+          Bilingual invoices, Taiwan tax compliance, and payment tracking — all in one tool. Stop
+          juggling spreadsheets.
         </p>
 
         {/* Email signup */}
-        <div ref={formRef} id="signup" className="max-w-md mx-auto mb-16" style={{ opacity: 0 }}>
+        <div ref={formRef} id="signup" className="max-w-lg mx-auto mb-20" style={{ opacity: 0 }}>
           <EmailSignupForm variant="light" />
         </div>
 

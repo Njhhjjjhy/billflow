@@ -35,54 +35,68 @@ export function InvoiceIllustration() {
   }
 
   return (
-    <div className="relative mx-auto mt-12" style={{ perspective: "1000px", maxWidth: "340px" }}>
+    <div className="relative mx-auto mt-12" style={{ perspective: "1000px", maxWidth: "400px" }}>
       {/* Floating decorative chips */}
       {shouldAnimate ? (
         <>
           <motion.div
-            className="absolute -top-4 -left-6 bg-[var(--color-accent-yellow)] border-2 border-black rounded-full px-3 py-1 text-sm font-bold shadow-[var(--shadow-sm)]"
+            className="absolute -top-5 -left-8 bg-[var(--color-accent-yellow)] border-2 border-black rounded-full px-4 py-1.5 text-base font-bold shadow-[var(--shadow-md)]"
             style={{ fontFamily: "var(--font-mono)" }}
-            animate={{ y: [0, -8, 0] }}
+            animate={{ y: [0, -10, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             NT$
           </motion.div>
           <motion.div
-            className="absolute -top-2 -right-5 bg-[var(--color-success-bg)] border-2 border-black rounded-full w-9 h-9 flex items-center justify-center shadow-[var(--shadow-sm)]"
-            animate={{ y: [0, -6, 0] }}
+            className="absolute -top-3 -right-7 bg-[var(--color-success-bg)] border-2 border-[var(--color-success-border)] rounded-full w-11 h-11 flex items-center justify-center shadow-[var(--shadow-md)]"
+            animate={{ y: [0, -8, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-success-border)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-success-border)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </motion.div>
           <motion.div
-            className="absolute -bottom-3 -right-4 bg-[var(--color-primary-100)] border-2 border-black rounded-lg px-2 py-1 text-xs font-bold text-[var(--color-primary-700)] shadow-[var(--shadow-sm)]"
+            className="absolute -bottom-4 -right-6 bg-[var(--color-accent-coral)] border-2 border-black rounded-lg px-3 py-1.5 text-xs font-bold text-white shadow-[var(--shadow-md)]"
             style={{ fontFamily: "var(--font-display)" }}
-            animate={{ y: [0, -5, 0] }}
+            animate={{ y: [0, -6, 0] }}
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
           >
             統一發票
+          </motion.div>
+          <motion.div
+            className="absolute -bottom-2 -left-5 bg-[var(--color-primary-600)] border-2 border-black rounded-full px-3 py-1 text-xs font-bold text-white shadow-[var(--shadow-sm)]"
+            style={{ fontFamily: "var(--font-mono)" }}
+            animate={{ y: [0, -7, 0] }}
+            transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+          >
+            5% 稅
           </motion.div>
         </>
       ) : (
         <>
           <div
-            className="absolute -top-4 -left-6 bg-[var(--color-accent-yellow)] border-2 border-black rounded-full px-3 py-1 text-sm font-bold shadow-[var(--shadow-sm)]"
+            className="absolute -top-5 -left-8 bg-[var(--color-accent-yellow)] border-2 border-black rounded-full px-4 py-1.5 text-base font-bold shadow-[var(--shadow-md)]"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             NT$
           </div>
-          <div className="absolute -top-2 -right-5 bg-[var(--color-success-bg)] border-2 border-black rounded-full w-9 h-9 flex items-center justify-center shadow-[var(--shadow-sm)]">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-success-border)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <div className="absolute -top-3 -right-7 bg-[var(--color-success-bg)] border-2 border-[var(--color-success-border)] rounded-full w-11 h-11 flex items-center justify-center shadow-[var(--shadow-md)]">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-success-border)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </div>
           <div
-            className="absolute -bottom-3 -right-4 bg-[var(--color-primary-100)] border-2 border-black rounded-lg px-2 py-1 text-xs font-bold text-[var(--color-primary-700)] shadow-[var(--shadow-sm)]"
+            className="absolute -bottom-4 -right-6 bg-[var(--color-accent-coral)] border-2 border-black rounded-lg px-3 py-1.5 text-xs font-bold text-white shadow-[var(--shadow-md)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             統一發票
+          </div>
+          <div
+            className="absolute -bottom-2 -left-5 bg-[var(--color-primary-600)] border-2 border-black rounded-full px-3 py-1 text-xs font-bold text-white shadow-[var(--shadow-sm)]"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            5% 稅
           </div>
         </>
       )}
@@ -93,53 +107,53 @@ export function InvoiceIllustration() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={shouldAnimate ? { rotateX, rotateY } : undefined}
-        className="relative bg-white border-2 border-black rounded-[12px] p-6 shadow-[var(--shadow-lg)]"
+        className="relative bg-white border-3 border-black rounded-[16px] p-8 shadow-[var(--shadow-xl)]"
       >
         {/* Invoice header */}
-        <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center justify-between mb-6">
           <span
-            className="text-xs font-bold tracking-widest text-[var(--color-text-tertiary)] uppercase"
+            className="text-sm font-bold tracking-widest text-[var(--color-primary-600)] uppercase"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             Invoice
           </span>
           <span
-            className="text-xs text-[var(--color-text-tertiary)]"
+            className="text-sm font-medium text-[var(--color-text-secondary)]"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             #BF-0042
           </span>
         </div>
 
-        {/* Fake line items */}
-        <div className="space-y-3 mb-5">
+        {/* Fake line items with color */}
+        <div className="space-y-3.5 mb-6">
           <div className="flex items-center gap-3">
-            <div className="h-2.5 bg-[var(--color-bg-tertiary)] rounded-full flex-1" />
-            <div className="h-2.5 bg-[var(--color-bg-tertiary)] rounded-full w-16" />
+            <div className="h-3 bg-[var(--color-primary-100)] rounded-full flex-1" />
+            <div className="h-3 bg-[var(--color-accent-yellow-light)] rounded-full w-20" />
           </div>
           <div className="flex items-center gap-3">
-            <div className="h-2.5 bg-[var(--color-bg-tertiary)] rounded-full w-3/4" />
-            <div className="h-2.5 bg-[var(--color-bg-tertiary)] rounded-full w-16" />
+            <div className="h-3 bg-[var(--color-primary-100)] rounded-full w-3/4" />
+            <div className="h-3 bg-[var(--color-accent-yellow-light)] rounded-full w-20" />
           </div>
           <div className="flex items-center gap-3">
-            <div className="h-2.5 bg-[var(--color-bg-tertiary)] rounded-full w-1/2" />
-            <div className="h-2.5 bg-[var(--color-bg-tertiary)] rounded-full w-16" />
+            <div className="h-3 bg-[var(--color-primary-100)] rounded-full w-1/2" />
+            <div className="h-3 bg-[var(--color-accent-yellow-light)] rounded-full w-20" />
           </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t-2 border-dashed border-[var(--color-border-light)] mb-4" />
+        <div className="border-t-3 border-dashed border-[var(--color-border-light)] mb-5" />
 
         {/* Total */}
         <div className="flex items-center justify-between">
           <span
-            className="text-sm font-semibold text-[var(--color-text-secondary)]"
+            className="text-base font-semibold text-[var(--color-text-secondary)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Total
           </span>
           <span
-            className="text-lg font-bold text-[var(--color-text-primary)]"
+            className="text-2xl font-bold text-[var(--color-text-primary)]"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             NT$42,000
@@ -149,7 +163,7 @@ export function InvoiceIllustration() {
         {/* PAID stamp */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-12deg] pointer-events-none">
           <div
-            className="border-3 border-[var(--color-success-border)] rounded-lg px-4 py-1 text-[var(--color-success-border)] font-bold text-2xl tracking-widest opacity-30"
+            className="border-4 border-[var(--color-success-border)] bg-[var(--color-success-bg)] rounded-lg px-5 py-1.5 text-[var(--color-success-text)] font-bold text-3xl tracking-widest opacity-50"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             PAID

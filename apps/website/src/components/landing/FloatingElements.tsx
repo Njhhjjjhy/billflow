@@ -18,18 +18,20 @@ interface ShapeConfig {
 }
 
 const heroToFeaturesShapes: ShapeConfig[] = [
-  { type: "circle", color: "var(--color-accent-yellow)", size: 20, x: "10%", y: "20%", speed: 80, rotation: 0 },
-  { type: "square", color: "var(--color-accent-coral)", size: 16, x: "85%", y: "40%", speed: 120, rotation: 45 },
-  { type: "cross", color: "var(--color-primary-400)", size: 18, x: "75%", y: "15%", speed: 60, rotation: 15 },
-  { type: "line", color: "var(--color-accent-yellow)", size: 30, x: "20%", y: "60%", speed: 100, rotation: -30 },
-  { type: "circle", color: "var(--color-primary-300)", size: 12, x: "50%", y: "70%", speed: 90, rotation: 0 },
+  { type: "circle", color: "var(--color-accent-yellow)", size: 28, x: "8%", y: "20%", speed: 80, rotation: 0 },
+  { type: "square", color: "var(--color-accent-coral)", size: 22, x: "88%", y: "40%", speed: 120, rotation: 45 },
+  { type: "cross", color: "var(--color-primary-500)", size: 24, x: "75%", y: "10%", speed: 60, rotation: 15 },
+  { type: "line", color: "var(--color-accent-yellow)", size: 40, x: "20%", y: "60%", speed: 100, rotation: -30 },
+  { type: "circle", color: "var(--color-accent-coral)", size: 16, x: "50%", y: "70%", speed: 90, rotation: 0 },
+  { type: "square", color: "var(--color-primary-400)", size: 18, x: "40%", y: "15%", speed: 75, rotation: 30 },
 ];
 
 const featuresToCtaShapes: ShapeConfig[] = [
-  { type: "square", color: "var(--color-accent-yellow)", size: 14, x: "15%", y: "30%", speed: 70, rotation: 20 },
-  { type: "cross", color: "var(--color-accent-coral)", size: 16, x: "80%", y: "50%", speed: 110, rotation: -10 },
-  { type: "circle", color: "var(--color-primary-400)", size: 18, x: "60%", y: "20%", speed: 85, rotation: 0 },
-  { type: "line", color: "var(--color-accent-coral)", size: 24, x: "30%", y: "65%", speed: 95, rotation: 45 },
+  { type: "square", color: "var(--color-accent-yellow)", size: 20, x: "12%", y: "30%", speed: 70, rotation: 20 },
+  { type: "cross", color: "var(--color-accent-coral)", size: 24, x: "82%", y: "50%", speed: 110, rotation: -10 },
+  { type: "circle", color: "var(--color-primary-500)", size: 26, x: "60%", y: "20%", speed: 85, rotation: 0 },
+  { type: "line", color: "var(--color-accent-coral)", size: 36, x: "30%", y: "65%", speed: 95, rotation: 45 },
+  { type: "circle", color: "var(--color-accent-yellow)", size: 14, x: "45%", y: "45%", speed: 65, rotation: 0 },
 ];
 
 function renderShape(shape: ShapeConfig) {
@@ -110,7 +112,7 @@ export function FloatingElements({ variant }: FloatingElementsProps) {
   return (
     <div
       ref={containerRef}
-      className="relative h-24 overflow-hidden pointer-events-none select-none"
+      className="relative h-32 overflow-hidden pointer-events-none select-none"
       aria-hidden="true"
     >
       {shapes.map((shape, i) => (

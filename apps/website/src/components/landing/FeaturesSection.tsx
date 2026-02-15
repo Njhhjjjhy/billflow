@@ -93,19 +93,33 @@ export function FeaturesSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32">
+    <section ref={sectionRef} className="py-32 bg-[var(--color-bg-secondary)]">
       <div className="max-w-6xl mx-auto px-6">
         {/* Heading */}
-        <h2
-          ref={headingRef}
-          className="text-3xl lg:text-5xl font-bold text-center text-[var(--color-text-primary)] mb-16"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          Everything You Need to Invoice in Taiwan
-        </h2>
+        <div ref={headingRef} className="text-center mb-16">
+          <span
+            className="inline-block text-sm font-bold uppercase tracking-widest text-[var(--color-primary-600)] mb-4"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            Features
+          </span>
+          <h2
+            className="text-3xl lg:text-5xl font-bold text-[var(--color-text-primary)]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Everything You Need to{" "}
+            <span className="relative inline-block">
+              Invoice in Taiwan
+              <span
+                className="absolute bottom-1 left-0 right-0 h-[0.25em] bg-[var(--color-accent-yellow)] -z-10"
+                aria-hidden="true"
+              />
+            </span>
+          </h2>
+        </div>
 
         {/* Feature grid */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
           {features.map((feature) => (
             <FeatureCard key={feature.title} {...feature} />
           ))}

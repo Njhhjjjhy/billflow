@@ -24,6 +24,7 @@ export function Navbar() {
 
   return (
     <nav
+      aria-label="Main navigation"
       className={`fixed top-0 left-0 right-0 z-50 border-b-2 border-black transition-all ${
         scrolled
           ? "py-3 bg-white/90 backdrop-blur-md"
@@ -40,7 +41,12 @@ export function Navbar() {
           Billflow
         </a>
 
-        <Button size="sm" variant="primary" onClick={scrollToSignup}>
+        <Button
+          size="sm"
+          variant="primary"
+          onClick={scrollToSignup}
+          className="!bg-[var(--color-accent-yellow)] !text-[var(--color-text-primary)] !border-black"
+        >
           Get Early Access
         </Button>
       </div>

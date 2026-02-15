@@ -79,10 +79,15 @@ export function EmailSignupForm({ variant = "light", className = "" }: EmailSign
           aria-label="Email address"
           required
           inputSize="lg"
-          className={isDark ? "bg-white/10 text-white border-white/30 placeholder:text-white/50" : ""}
+          className={isDark ? "bg-white text-[var(--color-text-primary)] border-black placeholder:text-[var(--color-text-tertiary)]" : ""}
         />
       </div>
-      <Button type="submit" size="lg" variant={isDark ? "secondary" : "primary"}>
+      <Button
+        type="submit"
+        size="lg"
+        variant="primary"
+        className={isDark ? "!bg-[var(--color-accent-yellow)] !text-[var(--color-text-primary)] !border-black hover:!bg-[var(--color-accent-yellow-light)]" : ""}
+      >
         Get Early Access
       </Button>
     </form>
