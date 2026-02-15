@@ -2,21 +2,21 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Foundations/Shadows" />
 
-<div className="max-w-4xl p-10 font-sans">
-  <div className="mb-12">
-    <h1 className="text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+<div className="sb-unstyled" style={{ padding: '40px', fontFamily: "'Noto Sans TC', system-ui, sans-serif" }}>
+  <div style={{ marginBottom: '48px' }}>
+    <h1 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '44px', lineHeight: 1.1, fontWeight: 700, letterSpacing: '-0.02em', margin: '0 0 8px 0', color: '#0F172A' }}>
       Shadows
     </h1>
-    <p className="text-xl text-slate-500">
+    <p style={{ fontSize: '20px', lineHeight: 1.4, color: '#64748B', margin: 0 }}>
       Neo-brutalist shadows with hard offsets and no blur — a signature element of the Billflow design system.
     </p>
   </div>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Shadow Scale
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Shadow scale
     </h2>
-    <p className="text-slate-500 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       Unlike traditional soft shadows, neo-brutalist shadows use hard offsets without blur,
       creating bold, graphic depth.
     </p>
@@ -24,148 +24,150 @@ import { Meta } from '@storybook/addon-docs/blocks';
     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
       <div className="text-center">
         <div
-          className="w-24 h-24 mx-auto bg-white border-2 border-black rounded-xl mb-4"
-          style={{ boxShadow: '2px 2px 0 0 #000000' }}
+          className="w-24 h-24 mx-auto bg-white border-2 border-black rounded-2xl"
+          style={{ boxShadow: '2px 2px 0 0 #000000', marginBottom: '16px' }}
         />
-        <div className="font-semibold">Small</div>
-        <code className="text-xs text-slate-500">--shadow-sm</code>
-        <div className="text-xs text-slate-400 mt-1">2px 2px 0 0</div>
+        <div style={{ fontSize: '14px', fontWeight: 600, color: '#0F172A' }}>Small</div>
+        <code style={{ fontSize: '12px', color: '#64748B' }}>--shadow-sm</code>
+        <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>2px 2px 0 0</div>
       </div>
 
       <div className="text-center">
         <div
-          className="w-24 h-24 mx-auto bg-white border-2 border-black rounded-xl mb-4"
-          style={{ boxShadow: '4px 4px 0 0 #000000' }}
+          className="w-24 h-24 mx-auto bg-white border-2 border-black rounded-2xl"
+          style={{ boxShadow: '4px 4px 0 0 #000000', marginBottom: '16px' }}
         />
-        <div className="font-semibold">Medium</div>
-        <code className="text-xs text-slate-500">--shadow-md</code>
-        <div className="text-xs text-slate-400 mt-1">4px 4px 0 0</div>
+        <div style={{ fontSize: '14px', fontWeight: 600, color: '#0F172A' }}>Medium</div>
+        <code style={{ fontSize: '12px', color: '#64748B' }}>--shadow-md</code>
+        <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>4px 4px 0 0</div>
       </div>
 
       <div className="text-center">
         <div
-          className="w-24 h-24 mx-auto bg-white border-2 border-black rounded-xl mb-4"
-          style={{ boxShadow: '6px 6px 0 0 #000000' }}
+          className="w-24 h-24 mx-auto bg-white border-2 border-black rounded-2xl"
+          style={{ boxShadow: '6px 6px 0 0 #000000', marginBottom: '16px' }}
         />
-        <div className="font-semibold">Large</div>
-        <code className="text-xs text-slate-500">--shadow-lg</code>
-        <div className="text-xs text-slate-400 mt-1">6px 6px 0 0</div>
+        <div style={{ fontSize: '14px', fontWeight: 600, color: '#0F172A' }}>Large</div>
+        <code style={{ fontSize: '12px', color: '#64748B' }}>--shadow-lg</code>
+        <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>6px 6px 0 0</div>
       </div>
 
       <div className="text-center">
         <div
-          className="w-24 h-24 mx-auto bg-white border-2 border-black rounded-xl mb-4"
-          style={{ boxShadow: '8px 8px 0 0 #000000' }}
+          className="w-24 h-24 mx-auto bg-white border-2 border-black rounded-2xl"
+          style={{ boxShadow: '8px 8px 0 0 #000000', marginBottom: '16px' }}
         />
-        <div className="font-semibold">Extra Large</div>
-        <code className="text-xs text-slate-500">--shadow-xl</code>
-        <div className="text-xs text-slate-400 mt-1">8px 8px 0 0</div>
+        <div style={{ fontSize: '14px', fontWeight: 600, color: '#0F172A' }}>Extra Large</div>
+        <code style={{ fontSize: '12px', color: '#64748B' }}>--shadow-xl</code>
+        <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>8px 8px 0 0</div>
       </div>
     </div>
   </section>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Colored Shadows
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Colored shadows
     </h2>
-    <p className="text-slate-500 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       Semantic colored shadows reinforce meaning and add visual interest.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div className="text-center">
         <div
-          className="w-full h-24 bg-white border-2 border-black rounded-xl mb-4 flex items-center justify-center"
-          style={{ boxShadow: '4px 4px 0 0 #2563EB' }}
+          className="w-full h-24 bg-white border-2 border-black rounded-2xl flex items-center justify-center"
+          style={{ boxShadow: '4px 4px 0 0 #2563EB', marginBottom: '16px' }}
         >
-          <span className="font-semibold text-blue-600">Primary Action</span>
+          <span style={{ fontWeight: 600 }} className="text-blue-600">Primary Action</span>
         </div>
-        <code className="text-xs text-slate-500">--shadow-primary</code>
-        <div className="text-xs text-slate-400 mt-1">4px 4px 0 0 #2563EB</div>
+        <code style={{ fontSize: '12px', color: '#64748B' }}>--shadow-primary</code>
+        <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>4px 4px 0 0 #2563EB</div>
       </div>
 
       <div className="text-center">
         <div
-          className="w-full h-24 bg-white border-2 border-black rounded-xl mb-4 flex items-center justify-center"
-          style={{ boxShadow: '4px 4px 0 0 #16A34A' }}
+          className="w-full h-24 bg-white border-2 border-black rounded-2xl flex items-center justify-center"
+          style={{ boxShadow: '4px 4px 0 0 #16A34A', marginBottom: '16px' }}
         >
-          <span className="font-semibold text-green-600">Success</span>
+          <span style={{ fontWeight: 600 }} className="text-green-600">Success</span>
         </div>
-        <code className="text-xs text-slate-500">--shadow-success</code>
-        <div className="text-xs text-slate-400 mt-1">4px 4px 0 0 #16A34A</div>
+        <code style={{ fontSize: '12px', color: '#64748B' }}>--shadow-success</code>
+        <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>4px 4px 0 0 #16A34A</div>
       </div>
 
       <div className="text-center">
         <div
-          className="w-full h-24 bg-white border-2 border-black rounded-xl mb-4 flex items-center justify-center"
-          style={{ boxShadow: '4px 4px 0 0 #DC2626' }}
+          className="w-full h-24 bg-white border-2 border-black rounded-2xl flex items-center justify-center"
+          style={{ boxShadow: '4px 4px 0 0 #DC2626', marginBottom: '16px' }}
         >
-          <span className="font-semibold text-red-600">Error / Danger</span>
+          <span style={{ fontWeight: 600 }} className="text-red-600">Error / Danger</span>
         </div>
-        <code className="text-xs text-slate-500">--shadow-error</code>
-        <div className="text-xs text-slate-400 mt-1">4px 4px 0 0 #DC2626</div>
+        <code style={{ fontSize: '12px', color: '#64748B' }}>--shadow-error</code>
+        <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>4px 4px 0 0 #DC2626</div>
       </div>
     </div>
   </section>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Interactive States
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Interactive states
     </h2>
-    <p className="text-slate-500 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       Shadows shift with interaction to create a tactile, physical feel.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div className="p-4 rounded-lg border-2 border-black">
-        <h3 className="font-semibold mb-3">Default</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Default</h3>
         <div
-          className="w-full h-16 bg-blue-600 text-white border-2 border-black rounded-xl flex items-center justify-center font-semibold"
-          style={{ boxShadow: '4px 4px 0 0 #000000' }}
+          className="w-full h-16 bg-blue-600 text-white border-2 border-black rounded-xl flex items-center justify-center"
+          style={{ boxShadow: '4px 4px 0 0 #000000', fontWeight: 600 }}
         >
           Button
         </div>
-        <p className="text-sm text-slate-500 mt-3">
+        <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: '12px 0 0 0' }}>
           Standard shadow at rest position
         </p>
       </div>
 
-      <div className="p-4 rounded-lg border-2 border-black">
-        <h3 className="font-semibold mb-3">Hover</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Hover</h3>
         <div
-          className="w-full h-16 bg-blue-600 text-white border-2 border-black rounded-xl flex items-center justify-center font-semibold"
+          className="w-full h-16 bg-blue-600 text-white border-2 border-black rounded-xl flex items-center justify-center"
           style={{
             boxShadow: '6px 6px 0 0 #000000',
-            transform: 'translate(-2px, -2px)'
+            transform: 'translate(-2px, -2px)',
+            fontWeight: 600
           }}
         >
           Button
         </div>
-        <p className="text-sm text-slate-500 mt-3">
+        <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: '12px 0 0 0' }}>
           Element lifts up and shadow grows
         </p>
       </div>
 
-      <div className="p-4 rounded-lg border-2 border-black">
-        <h3 className="font-semibold mb-3">Active / Pressed</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Active / Pressed</h3>
         <div
-          className="w-full h-16 bg-blue-600 text-white border-2 border-black rounded-xl flex items-center justify-center font-semibold"
+          className="w-full h-16 bg-blue-600 text-white border-2 border-black rounded-xl flex items-center justify-center"
           style={{
             boxShadow: '2px 2px 0 0 #000000',
-            transform: 'translate(2px, 2px)'
+            transform: 'translate(2px, 2px)',
+            fontWeight: 600
           }}
         >
           Button
         </div>
-        <p className="text-sm text-slate-500 mt-3">
+        <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: '12px 0 0 0' }}>
           Element presses down, shadow shrinks
         </p>
       </div>
     </div>
 
-    <div className="mt-6 p-4 bg-slate-50 rounded-lg border-2 border-black">
-      <h3 className="font-semibold mb-2">CSS for Interactive Shadows</h3>
-      <pre className="text-sm font-mono bg-slate-900 text-slate-100 p-4 rounded overflow-x-auto">
+    <div className="rounded-2xl border-2 border-black bg-slate-50" style={{ marginTop: '24px', padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+      <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>CSS for interactive shadows</h3>
+      <pre className="bg-slate-900 rounded-xl overflow-x-auto" style={{ fontSize: '14px', fontFamily: "'Space Mono', monospace", color: '#E2E8F0', padding: '16px', margin: 0 }}>
 {`.button {
   box-shadow: var(--shadow-md);
   transition: transform 0.1s ease, box-shadow 0.1s ease;
@@ -184,26 +186,26 @@ import { Meta } from '@storybook/addon-docs/blocks';
     </div>
   </section>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Component Examples
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Component examples
     </h2>
-    <p className="text-slate-500 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       How shadows are applied across different UI components.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <h3 className="font-semibold mb-3">Cards</h3>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Cards</h3>
         <div
-          className="p-6 bg-white border-2 border-black rounded-2xl"
-          style={{ boxShadow: '4px 4px 0 0 #000000' }}
+          className="bg-white border-2 border-black rounded-2xl"
+          style={{ padding: '24px', boxShadow: '4px 4px 0 0 #000000' }}
         >
-          <h4 className="font-semibold mb-2">Invoice #INV-2024-001</h4>
-          <p className="text-sm text-slate-500 mb-4">Client: Acme Corp</p>
+          <h4 style={{ fontSize: '17px', fontWeight: 600, margin: '0 0 8px 0', color: '#0F172A' }}>Invoice #INV-2024-001</h4>
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: '0 0 16px 0' }}>Client: Acme Corp</p>
           <div className="flex justify-between items-center">
-            <span className="text-2xl font-bold font-mono">NT$12,500</span>
-            <span className="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-lg border-2 border-green-500">
+            <span style={{ fontSize: '24px', fontWeight: 700, fontFamily: "'Space Mono', monospace" }}>NT$12,500</span>
+            <span className="bg-green-100 text-green-700 rounded-lg border-2 border-green-500" style={{ padding: '6px 12px', fontSize: '14px', fontWeight: 500 }}>
               Paid
             </span>
           </div>
@@ -211,33 +213,33 @@ import { Meta } from '@storybook/addon-docs/blocks';
       </div>
 
       <div>
-        <h3 className="font-semibold mb-3">Input Fields</h3>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Input fields</h3>
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium mb-1.5 block">Default</label>
+            <label style={{ fontSize: '14px', fontWeight: 500, marginBottom: '6px', display: 'block', color: '#0F172A' }}>Default</label>
             <input
               type="text"
               placeholder="Enter amount"
-              className="w-full h-11 px-3 border-2 border-black rounded-xl"
-              style={{ boxShadow: 'none' }}
+              className="w-full h-11 border-2 border-black rounded-xl"
+              style={{ boxShadow: 'none', padding: '0 12px', fontSize: '15px' }}
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1.5 block">Focused</label>
+            <label style={{ fontSize: '14px', fontWeight: 500, marginBottom: '6px', display: 'block', color: '#0F172A' }}>Focused</label>
             <input
               type="text"
               placeholder="Enter amount"
-              className="w-full h-11 px-3 border-2 border-blue-600 rounded-xl"
-              style={{ boxShadow: '4px 4px 0 0 #2563EB' }}
+              className="w-full h-11 border-2 border-blue-600 rounded-xl"
+              style={{ boxShadow: '4px 4px 0 0 #2563EB', padding: '0 12px', fontSize: '15px' }}
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1.5 block">Error</label>
+            <label style={{ fontSize: '14px', fontWeight: 500, marginBottom: '6px', display: 'block', color: '#0F172A' }}>Error</label>
             <input
               type="text"
               placeholder="Enter amount"
-              className="w-full h-11 px-3 border-2 border-red-600 rounded-xl"
-              style={{ boxShadow: '4px 4px 0 0 #DC2626' }}
+              className="w-full h-11 border-2 border-red-600 rounded-xl"
+              style={{ boxShadow: '4px 4px 0 0 #DC2626', padding: '0 12px', fontSize: '15px' }}
             />
           </div>
         </div>
@@ -245,55 +247,55 @@ import { Meta } from '@storybook/addon-docs/blocks';
     </div>
   </section>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      CSS Variables Reference
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      CSS variables reference
     </h2>
 
-    <div className="rounded-lg border-2 border-black overflow-hidden">
-      <table className="w-full">
+    <div className="rounded-2xl border-2 border-black overflow-hidden" style={{ boxShadow: '4px 4px 0 0 #000000' }}>
+      <table className="w-full" style={{ borderCollapse: 'collapse' }}>
         <thead className="bg-slate-50">
           <tr>
-            <th className="text-left p-3 border-b-2 border-black font-semibold">Variable</th>
-            <th className="text-left p-3 border-b-2 border-black font-semibold">Value</th>
-            <th className="text-left p-3 border-b-2 border-black font-semibold">Usage</th>
+            <th style={{ textAlign: 'left', padding: '16px', borderBottom: '2px solid #000000', fontSize: '14px', fontWeight: 600, color: '#0F172A' }}>Variable</th>
+            <th style={{ textAlign: 'left', padding: '16px', borderBottom: '2px solid #000000', fontSize: '14px', fontWeight: 600, color: '#0F172A' }}>Value</th>
+            <th style={{ textAlign: 'left', padding: '16px', borderBottom: '2px solid #000000', fontSize: '14px', fontWeight: 600, color: '#0F172A' }}>Usage</th>
           </tr>
         </thead>
         <tbody>
-          <tr className="border-b border-slate-200">
-            <td className="p-3 font-mono text-sm">--shadow-sm</td>
-            <td className="p-3 font-mono text-sm">2px 2px 0 0 #000</td>
-            <td className="p-3 text-slate-500">Pressed states, subtle depth</td>
+          <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>--shadow-sm</td>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>2px 2px 0 0 #000</td>
+            <td style={{ padding: '16px', fontSize: '14px', color: '#64748B' }}>Pressed states, subtle depth</td>
           </tr>
-          <tr className="border-b border-slate-200">
-            <td className="p-3 font-mono text-sm">--shadow-md</td>
-            <td className="p-3 font-mono text-sm">4px 4px 0 0 #000</td>
-            <td className="p-3 text-slate-500">Default for cards, buttons</td>
+          <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>--shadow-md</td>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>4px 4px 0 0 #000</td>
+            <td style={{ padding: '16px', fontSize: '14px', color: '#64748B' }}>Default for cards, buttons</td>
           </tr>
-          <tr className="border-b border-slate-200">
-            <td className="p-3 font-mono text-sm">--shadow-lg</td>
-            <td className="p-3 font-mono text-sm">6px 6px 0 0 #000</td>
-            <td className="p-3 text-slate-500">Hover states, emphasis</td>
+          <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>--shadow-lg</td>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>6px 6px 0 0 #000</td>
+            <td style={{ padding: '16px', fontSize: '14px', color: '#64748B' }}>Hover states, emphasis</td>
           </tr>
-          <tr className="border-b border-slate-200">
-            <td className="p-3 font-mono text-sm">--shadow-xl</td>
-            <td className="p-3 font-mono text-sm">8px 8px 0 0 #000</td>
-            <td className="p-3 text-slate-500">Modals, dropdowns</td>
+          <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>--shadow-xl</td>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>8px 8px 0 0 #000</td>
+            <td style={{ padding: '16px', fontSize: '14px', color: '#64748B' }}>Modals, dropdowns</td>
           </tr>
-          <tr className="border-b border-slate-200">
-            <td className="p-3 font-mono text-sm">--shadow-primary</td>
-            <td className="p-3 font-mono text-sm">4px 4px 0 0 #2563EB</td>
-            <td className="p-3 text-slate-500">Focus states, primary actions</td>
+          <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>--shadow-primary</td>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>4px 4px 0 0 #2563EB</td>
+            <td style={{ padding: '16px', fontSize: '14px', color: '#64748B' }}>Focus states, primary actions</td>
           </tr>
-          <tr className="border-b border-slate-200">
-            <td className="p-3 font-mono text-sm">--shadow-success</td>
-            <td className="p-3 font-mono text-sm">4px 4px 0 0 #16A34A</td>
-            <td className="p-3 text-slate-500">Success states</td>
+          <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>--shadow-success</td>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>4px 4px 0 0 #16A34A</td>
+            <td style={{ padding: '16px', fontSize: '14px', color: '#64748B' }}>Success states</td>
           </tr>
           <tr>
-            <td className="p-3 font-mono text-sm">--shadow-error</td>
-            <td className="p-3 font-mono text-sm">4px 4px 0 0 #DC2626</td>
-            <td className="p-3 text-slate-500">Error states, validation</td>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>--shadow-error</td>
+            <td style={{ padding: '16px', fontFamily: "'Space Mono', monospace", fontSize: '14px', color: '#0F172A' }}>4px 4px 0 0 #DC2626</td>
+            <td style={{ padding: '16px', fontSize: '14px', color: '#64748B' }}>Error states, validation</td>
           </tr>
         </tbody>
       </table>
@@ -301,26 +303,26 @@ import { Meta } from '@storybook/addon-docs/blocks';
   </section>
 
   <section>
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Usage Guidelines
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Usage guidelines
     </h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="card">
-        <h3 className="font-semibold mb-2 text-green-700">Do</h3>
-        <ul className="text-sm text-slate-600 space-y-2">
-          <li>Use shadows consistently on interactive elements</li>
-          <li>Animate shadow transitions smoothly (0.1-0.15s)</li>
-          <li>Match shadow color to semantic meaning</li>
-          <li>Always pair shadows with borders</li>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '24px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#16A34A' }}>Do</h3>
+        <ul style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: 0, paddingLeft: '20px' }}>
+          <li style={{ marginBottom: '8px' }}>Use shadows consistently on interactive elements</li>
+          <li style={{ marginBottom: '8px' }}>Animate shadow transitions smoothly (0.1-0.15s)</li>
+          <li style={{ marginBottom: '8px' }}>Match shadow color to semantic meaning</li>
+          <li style={{ marginBottom: 0 }}>Always pair shadows with borders</li>
         </ul>
       </div>
-      <div className="card">
-        <h3 className="font-semibold mb-2 text-red-700">Don't</h3>
-        <ul className="text-sm text-slate-600 space-y-2">
-          <li>Don't add blur to shadows (keep them sharp)</li>
-          <li>Don't use shadows on static, non-interactive elements</li>
-          <li>Don't mix blurred and hard shadows</li>
-          <li>Don't forget to remove shadows on disabled states</li>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '24px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#DC2626' }}>Don't</h3>
+        <ul style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: 0, paddingLeft: '20px' }}>
+          <li style={{ marginBottom: '8px' }}>Don't add blur to shadows (keep them sharp)</li>
+          <li style={{ marginBottom: '8px' }}>Don't use shadows on static, non-interactive elements</li>
+          <li style={{ marginBottom: '8px' }}>Don't mix blurred and hard shadows</li>
+          <li style={{ marginBottom: 0 }}>Don't forget to remove shadows on disabled states</li>
         </ul>
       </div>
     </div>

@@ -1,0 +1,16 @@
+/* ============================================
+   STORYBOOK DOCS CSS OVERRIDES
+   Only neutralizes Storybook wrapper constraints.
+   All typography/spacing handled via sb-unstyled
+   class + inline styles in MDX files.
+   ============================================ */
+
+/* Remove Storybook's default wrapper padding/max-width so our MDX controls its own layout */
+.sbdocs.sbdocs-wrapper {
+  padding: 0 !important;
+}
+
+.sbdocs.sbdocs-wrapper .sbdocs-content {
+  max-width: 100% !important;
+  padding: 0 !important;
+}

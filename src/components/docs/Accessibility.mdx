@@ -2,134 +2,135 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Guidelines/Accessibility" />
 
-<div className="max-w-4xl p-10 font-sans">
-  <div className="mb-12">
-    <h1 className="text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+<div className="sb-unstyled" style={{ padding: '40px', fontFamily: "'Noto Sans TC', system-ui, sans-serif" }}>
+  <div style={{ marginBottom: '48px' }}>
+    <h1 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '44px', lineHeight: 1.1, fontWeight: 700, letterSpacing: '-0.02em', margin: '0 0 8px 0', color: '#0F172A' }}>
       Accessibility
     </h1>
-    <p className="text-xl text-slate-500">
+    <p style={{ fontSize: '20px', lineHeight: 1.4, color: '#64748B', margin: 0 }}>
       All components follow WCAG 2.2 Level AA guidelines. Accessibility is built-in, not bolted-on.
     </p>
   </div>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      WCAG 2.2 Level AA Compliance
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      WCAG 2.2 Level AA compliance
     </h2>
-    <p className="text-slate-600 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       Billflow meets or exceeds all Level AA success criteria. Here are the key areas we focus on:
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="p-4 rounded-lg border-2 border-black" style={{ boxShadow: '4px 4px 0 0 #000' }}>
-        <div className="flex items-center gap-2 mb-2">
-          <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</span>
-          <h3 className="font-semibold">Perceivable</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <div className="flex items-center gap-2" style={{ marginBottom: '8px' }}>
+          <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white" style={{ fontSize: '12px' }}>✓</span>
+          <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: 0, color: '#0F172A' }}>Perceivable</h3>
         </div>
-        <p className="text-sm text-slate-500">
+        <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: 0 }}>
           All content is presented in ways that users can perceive, with text alternatives for non-text content.
         </p>
       </div>
-      <div className="p-4 rounded-lg border-2 border-black" style={{ boxShadow: '4px 4px 0 0 #000' }}>
-        <div className="flex items-center gap-2 mb-2">
-          <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</span>
-          <h3 className="font-semibold">Operable</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <div className="flex items-center gap-2" style={{ marginBottom: '8px' }}>
+          <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white" style={{ fontSize: '12px' }}>✓</span>
+          <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: 0, color: '#0F172A' }}>Operable</h3>
         </div>
-        <p className="text-sm text-slate-500">
+        <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: 0 }}>
           All functionality is available from keyboard. Users have enough time and can navigate easily.
         </p>
       </div>
-      <div className="p-4 rounded-lg border-2 border-black" style={{ boxShadow: '4px 4px 0 0 #000' }}>
-        <div className="flex items-center gap-2 mb-2">
-          <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</span>
-          <h3 className="font-semibold">Understandable</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <div className="flex items-center gap-2" style={{ marginBottom: '8px' }}>
+          <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white" style={{ fontSize: '12px' }}>✓</span>
+          <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: 0, color: '#0F172A' }}>Understandable</h3>
         </div>
-        <p className="text-sm text-slate-500">
+        <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: 0 }}>
           Text is readable, UI behaves predictably, and users are helped to avoid and correct mistakes.
         </p>
       </div>
-      <div className="p-4 rounded-lg border-2 border-black" style={{ boxShadow: '4px 4px 0 0 #000' }}>
-        <div className="flex items-center gap-2 mb-2">
-          <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</span>
-          <h3 className="font-semibold">Robust</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <div className="flex items-center gap-2" style={{ marginBottom: '8px' }}>
+          <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white" style={{ fontSize: '12px' }}>✓</span>
+          <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: 0, color: '#0F172A' }}>Robust</h3>
         </div>
-        <p className="text-sm text-slate-500">
+        <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: 0 }}>
           Content can be interpreted reliably by assistive technologies and future user agents.
         </p>
       </div>
     </div>
   </section>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Keyboard Navigation
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Keyboard navigation
     </h2>
-    <p className="text-slate-600 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       All interactive elements are fully keyboard accessible with logical focus order.
     </p>
 
-    <div className="rounded-lg border-2 border-black overflow-hidden">
+    <div className="rounded-2xl border-2 border-black overflow-hidden" style={{ boxShadow: '4px 4px 0 0 #000000' }}>
       <table className="w-full">
         <thead className="bg-slate-50">
           <tr>
-            <th className="text-left p-3 border-b-2 border-black font-semibold w-32">Key</th>
-            <th className="text-left p-3 border-b-2 border-black font-semibold">Action</th>
+            <th className="w-32" style={{ textAlign: 'left', padding: '16px', borderBottom: '2px solid #000', fontWeight: 600, fontSize: '14px' }}>Key</th>
+            <th style={{ textAlign: 'left', padding: '16px', borderBottom: '2px solid #000', fontWeight: 600, fontSize: '14px' }}>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr className="border-b border-slate-200">
-            <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Tab</kbd></td>
-            <td className="p-3 text-slate-600">Move focus to next interactive element</td>
+            <td style={{ padding: '16px' }}><kbd style={{ padding: '4px 8px', backgroundColor: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '8px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>Tab</kbd></td>
+            <td style={{ padding: '16px', color: '#475569', fontSize: '14px' }}>Move focus to next interactive element</td>
           </tr>
           <tr className="border-b border-slate-200">
-            <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Shift + Tab</kbd></td>
-            <td className="p-3 text-slate-600">Move focus to previous interactive element</td>
+            <td style={{ padding: '16px' }}><kbd style={{ padding: '4px 8px', backgroundColor: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '8px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>Shift + Tab</kbd></td>
+            <td style={{ padding: '16px', color: '#475569', fontSize: '14px' }}>Move focus to previous interactive element</td>
           </tr>
           <tr className="border-b border-slate-200">
-            <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Enter</kbd></td>
-            <td className="p-3 text-slate-600">Activate buttons, submit forms, follow links</td>
+            <td style={{ padding: '16px' }}><kbd style={{ padding: '4px 8px', backgroundColor: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '8px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>Enter</kbd></td>
+            <td style={{ padding: '16px', color: '#475569', fontSize: '14px' }}>Activate buttons, submit forms, follow links</td>
           </tr>
           <tr className="border-b border-slate-200">
-            <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Space</kbd></td>
-            <td className="p-3 text-slate-600">Activate buttons, toggle checkboxes</td>
+            <td style={{ padding: '16px' }}><kbd style={{ padding: '4px 8px', backgroundColor: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '8px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>Space</kbd></td>
+            <td style={{ padding: '16px', color: '#475569', fontSize: '14px' }}>Activate buttons, toggle checkboxes</td>
           </tr>
           <tr className="border-b border-slate-200">
-            <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Arrow Keys</kbd></td>
-            <td className="p-3 text-slate-600">Navigate within components (radio groups, menus, tabs)</td>
+            <td style={{ padding: '16px' }}><kbd style={{ padding: '4px 8px', backgroundColor: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '8px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>Arrow Keys</kbd></td>
+            <td style={{ padding: '16px', color: '#475569', fontSize: '14px' }}>Navigate within components (radio groups, menus, tabs)</td>
           </tr>
           <tr>
-            <td className="p-3"><kbd className="px-2 py-1 bg-slate-100 border rounded text-sm font-mono">Escape</kbd></td>
-            <td className="p-3 text-slate-600">Close modals, dropdowns, dismiss toasts</td>
+            <td style={{ padding: '16px' }}><kbd style={{ padding: '4px 8px', backgroundColor: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '8px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>Escape</kbd></td>
+            <td style={{ padding: '16px', color: '#475569', fontSize: '14px' }}>Close modals, dropdowns, dismiss toasts</td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Focus Indicators
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Focus indicators
     </h2>
-    <p className="text-slate-600 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       All interactive elements have visible focus indicators that meet WCAG 2.4.11 requirements.
     </p>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      <div className="p-4 rounded-lg border-2 border-black">
-        <h3 className="font-semibold mb-3">Buttons</h3>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4" style={{ marginBottom: '24px' }}>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Buttons</h3>
         <button
-          className="w-full h-11 bg-blue-600 text-white border-2 border-black rounded-xl font-semibold"
+          className="w-full h-11 bg-blue-600 text-white border-2 border-black rounded-xl"
           style={{
+            fontWeight: 600,
             outline: '3px solid #2563EB',
             outlineOffset: '2px',
-            boxShadow: '4px 4px 0 0 #000'
+            boxShadow: '0 0 0 6px #DBEAFE'
           }}
         >
           Focused Button
         </button>
       </div>
-      <div className="p-4 rounded-lg border-2 border-black">
-        <h3 className="font-semibold mb-3">Inputs</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Inputs</h3>
         <input
           type="text"
           placeholder="Focused input"
@@ -141,25 +142,26 @@ import { Meta } from '@storybook/addon-docs/blocks';
           }}
         />
       </div>
-      <div className="p-4 rounded-lg border-2 border-black">
-        <h3 className="font-semibold mb-3">Cards</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Cards</h3>
         <div
-          className="p-4 bg-white border-2 border-black rounded-xl"
+          className="bg-white border-2 border-black rounded-xl"
           style={{
+            padding: '16px',
             outline: '3px solid #2563EB',
             outlineOffset: '2px',
-            boxShadow: '4px 4px 0 0 #000'
+            boxShadow: '0 0 0 6px #DBEAFE'
           }}
         >
-          <div className="font-semibold">Focused Card</div>
-          <div className="text-sm text-slate-500">Interactive content</div>
+          <div style={{ fontWeight: 600, fontSize: '14px' }}>Focused Card</div>
+          <div style={{ fontSize: '14px', color: '#64748B' }}>Interactive content</div>
         </div>
       </div>
     </div>
 
-    <div className="p-4 bg-slate-50 rounded-lg border-2 border-black">
-      <h3 className="font-semibold mb-2">CSS Implementation</h3>
-      <pre className="text-sm font-mono bg-slate-900 text-slate-100 p-4 rounded overflow-x-auto">
+    <div className="bg-slate-50 rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+      <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>CSS implementation</h3>
+      <pre className="bg-slate-900 text-slate-100 rounded-xl overflow-x-auto" style={{ fontSize: '14px', fontFamily: 'var(--font-mono)', padding: '16px', margin: 0 }}>
 {`:focus-visible {
   outline: 3px solid var(--color-primary-600);
   outline-offset: 2px;
@@ -168,86 +170,86 @@ import { Meta } from '@storybook/addon-docs/blocks';
     </div>
   </section>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Color Contrast
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Color contrast
     </h2>
-    <p className="text-slate-600 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       All text and UI components meet minimum contrast requirements.
     </p>
 
-    <div className="rounded-lg border-2 border-black overflow-hidden">
+    <div className="rounded-2xl border-2 border-black overflow-hidden" style={{ boxShadow: '4px 4px 0 0 #000000' }}>
       <table className="w-full">
         <thead className="bg-slate-50">
           <tr>
-            <th className="text-left p-3 border-b-2 border-black font-semibold">Element</th>
-            <th className="text-left p-3 border-b-2 border-black font-semibold">Minimum Ratio</th>
-            <th className="text-left p-3 border-b-2 border-black font-semibold">Our Ratio</th>
-            <th className="text-left p-3 border-b-2 border-black font-semibold">Status</th>
+            <th style={{ textAlign: 'left', padding: '16px', borderBottom: '2px solid #000', fontWeight: 600, fontSize: '14px' }}>Element</th>
+            <th style={{ textAlign: 'left', padding: '16px', borderBottom: '2px solid #000', fontWeight: 600, fontSize: '14px' }}>Minimum ratio</th>
+            <th style={{ textAlign: 'left', padding: '16px', borderBottom: '2px solid #000', fontWeight: 600, fontSize: '14px' }}>Our ratio</th>
+            <th style={{ textAlign: 'left', padding: '16px', borderBottom: '2px solid #000', fontWeight: 600, fontSize: '14px' }}>Status</th>
           </tr>
         </thead>
         <tbody>
           <tr className="border-b border-slate-200">
-            <td className="p-3">Body text (small)</td>
-            <td className="p-3 font-mono">4.5:1</td>
-            <td className="p-3 font-mono">12.6:1</td>
-            <td className="p-3"><span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded border border-green-500">AAA</span></td>
+            <td style={{ padding: '16px', fontSize: '14px' }}>Body text (small)</td>
+            <td style={{ padding: '16px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>4.5:1</td>
+            <td style={{ padding: '16px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>12.6:1</td>
+            <td style={{ padding: '16px' }}><span className="bg-green-100 text-green-700 border border-green-500" style={{ padding: '4px 8px', fontSize: '12px', borderRadius: '8px' }}>AAA</span></td>
           </tr>
           <tr className="border-b border-slate-200">
-            <td className="p-3">Large text (18px+ bold)</td>
-            <td className="p-3 font-mono">3:1</td>
-            <td className="p-3 font-mono">12.6:1</td>
-            <td className="p-3"><span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded border border-green-500">AAA</span></td>
+            <td style={{ padding: '16px', fontSize: '14px' }}>Large text (18px+ bold)</td>
+            <td style={{ padding: '16px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>3:1</td>
+            <td style={{ padding: '16px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>12.6:1</td>
+            <td style={{ padding: '16px' }}><span className="bg-green-100 text-green-700 border border-green-500" style={{ padding: '4px 8px', fontSize: '12px', borderRadius: '8px' }}>AAA</span></td>
           </tr>
           <tr className="border-b border-slate-200">
-            <td className="p-3">UI components</td>
-            <td className="p-3 font-mono">3:1</td>
-            <td className="p-3 font-mono">21:1</td>
-            <td className="p-3"><span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded border border-green-500">AAA</span></td>
+            <td style={{ padding: '16px', fontSize: '14px' }}>UI components</td>
+            <td style={{ padding: '16px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>3:1</td>
+            <td style={{ padding: '16px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>21:1</td>
+            <td style={{ padding: '16px' }}><span className="bg-green-100 text-green-700 border border-green-500" style={{ padding: '4px 8px', fontSize: '12px', borderRadius: '8px' }}>AAA</span></td>
           </tr>
           <tr>
-            <td className="p-3">Focus indicators</td>
-            <td className="p-3 font-mono">3:1</td>
-            <td className="p-3 font-mono">4.5:1</td>
-            <td className="p-3"><span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded border border-green-500">AA</span></td>
+            <td style={{ padding: '16px', fontSize: '14px' }}>Focus indicators</td>
+            <td style={{ padding: '16px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>3:1</td>
+            <td style={{ padding: '16px', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>4.5:1</td>
+            <td style={{ padding: '16px' }}><span className="bg-green-100 text-green-700 border border-green-500" style={{ padding: '4px 8px', fontSize: '12px', borderRadius: '8px' }}>AA</span></td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Screen Reader Support
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Screen reader support
     </h2>
-    <p className="text-slate-600 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       Components include proper ARIA attributes and semantic HTML.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="p-4 rounded-lg border-2 border-black">
-        <h3 className="font-semibold mb-3">ARIA Labels</h3>
-        <ul className="text-sm text-slate-600 space-y-2">
-          <li>All buttons have descriptive labels</li>
-          <li>Form inputs are associated with labels</li>
-          <li>Icons have aria-hidden or aria-label</li>
-          <li>Live regions announce dynamic content</li>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>ARIA labels</h3>
+        <ul style={{ fontSize: '14px', color: '#475569', paddingLeft: '20px', margin: 0 }}>
+          <li style={{ marginBottom: '8px' }}>All buttons have descriptive labels</li>
+          <li style={{ marginBottom: '8px' }}>Form inputs are associated with labels</li>
+          <li style={{ marginBottom: '8px' }}>Icons have aria-hidden or aria-label</li>
+          <li style={{ marginBottom: '0' }}>Live regions announce dynamic content</li>
         </ul>
       </div>
-      <div className="p-4 rounded-lg border-2 border-black">
-        <h3 className="font-semibold mb-3">Semantic HTML</h3>
-        <ul className="text-sm text-slate-600 space-y-2">
-          <li>Proper heading hierarchy (h1-h6)</li>
-          <li>Lists use ul/ol/li elements</li>
-          <li>Tables use thead, tbody, th elements</li>
-          <li>Landmarks for navigation (nav, main, aside)</li>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Semantic HTML</h3>
+        <ul style={{ fontSize: '14px', color: '#475569', paddingLeft: '20px', margin: 0 }}>
+          <li style={{ marginBottom: '8px' }}>Proper heading hierarchy (h1-h6)</li>
+          <li style={{ marginBottom: '8px' }}>Lists use ul/ol/li elements</li>
+          <li style={{ marginBottom: '8px' }}>Tables use thead, tbody, th elements</li>
+          <li style={{ marginBottom: '0' }}>Landmarks for navigation (nav, main, aside)</li>
         </ul>
       </div>
     </div>
 
-    <div className="mt-6 p-4 bg-slate-50 rounded-lg border-2 border-black">
-      <h3 className="font-semibold mb-2">Screen Reader Only Text</h3>
-      <pre className="text-sm font-mono bg-slate-900 text-slate-100 p-4 rounded overflow-x-auto">
+    <div className="bg-slate-50 rounded-2xl border-2 border-black" style={{ marginTop: '24px', padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+      <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Screen reader only text</h3>
+      <pre className="bg-slate-900 text-slate-100 rounded-xl overflow-x-auto" style={{ fontSize: '14px', fontFamily: 'var(--font-mono)', padding: '16px', margin: 0 }}>
 {`.sr-only {
   position: absolute;
   width: 1px;
@@ -263,16 +265,16 @@ import { Meta } from '@storybook/addon-docs/blocks';
     </div>
   </section>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Reduced Motion
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Reduced motion
     </h2>
-    <p className="text-slate-600 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       Animations are disabled when users prefer reduced motion.
     </p>
 
-    <div className="p-4 bg-slate-50 rounded-lg border-2 border-black">
-      <pre className="text-sm font-mono bg-slate-900 text-slate-100 p-4 rounded overflow-x-auto">
+    <div className="bg-slate-50 rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+      <pre className="bg-slate-900 text-slate-100 rounded-xl overflow-x-auto" style={{ fontSize: '14px', fontFamily: 'var(--font-mono)', padding: '16px', margin: 0 }}>
 {`@media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -285,33 +287,33 @@ import { Meta } from '@storybook/addon-docs/blocks';
     </div>
   </section>
 
-  <section className="mb-12">
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Touch Targets (WCAG 2.5.8)
+  <section style={{ marginBottom: '48px' }}>
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Touch targets (WCAG 2.5.8)
     </h2>
-    <p className="text-slate-600 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       Interactive elements meet minimum size requirements for motor accessibility.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="p-4 rounded-lg border-2 border-black">
-        <h3 className="font-semibold mb-3">Mobile (48x48px minimum)</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Mobile (48x48px minimum)</h3>
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-blue-600 rounded-lg border-2 border-black flex items-center justify-center">
-            <span className="text-white text-lg">+</span>
+          <div className="w-12 h-12 bg-blue-600 rounded-xl border-2 border-black flex items-center justify-center">
+            <span className="text-white" style={{ fontSize: '18px' }}>+</span>
           </div>
-          <p className="text-sm text-slate-500">
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: 0 }}>
             Touch targets are at least 48x48 pixels on mobile devices
           </p>
         </div>
       </div>
-      <div className="p-4 rounded-lg border-2 border-black">
-        <h3 className="font-semibold mb-3">Desktop (40x40px minimum)</h3>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '20px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Desktop (40x40px minimum)</h3>
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 bg-blue-600 rounded-lg border-2 border-black flex items-center justify-center">
-            <span className="text-white text-lg">+</span>
+          <div className="w-10 h-10 bg-blue-600 rounded-xl border-2 border-black flex items-center justify-center">
+            <span className="text-white" style={{ fontSize: '18px' }}>+</span>
           </div>
-          <p className="text-sm text-slate-500">
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#475569', margin: 0 }}>
             Clickable areas are at least 40x40 pixels on desktop
           </p>
         </div>
@@ -320,30 +322,30 @@ import { Meta } from '@storybook/addon-docs/blocks';
   </section>
 
   <section>
-    <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-      Testing Accessibility
+    <h2 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '26px', lineHeight: 1.3, fontWeight: 700, margin: '0 0 8px 0', color: '#0F172A' }}>
+      Testing accessibility
     </h2>
-    <p className="text-slate-600 mb-6">
+    <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 24px 0' }}>
       We recommend using these tools to verify accessibility:
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="card">
-        <h3 className="font-semibold mb-2">Automated Testing</h3>
-        <ul className="text-sm text-slate-600 space-y-2">
-          <li>Storybook a11y addon (included)</li>
-          <li>axe DevTools browser extension</li>
-          <li>Lighthouse accessibility audits</li>
-          <li>WAVE evaluation tool</li>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '24px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Automated testing</h3>
+        <ul style={{ fontSize: '14px', color: '#475569', paddingLeft: '20px', margin: 0 }}>
+          <li style={{ marginBottom: '8px' }}>Storybook a11y addon (included)</li>
+          <li style={{ marginBottom: '8px' }}>axe DevTools browser extension</li>
+          <li style={{ marginBottom: '8px' }}>Lighthouse accessibility audits</li>
+          <li style={{ marginBottom: '0' }}>WAVE evaluation tool</li>
         </ul>
       </div>
-      <div className="card">
-        <h3 className="font-semibold mb-2">Manual Testing</h3>
-        <ul className="text-sm text-slate-600 space-y-2">
-          <li>Keyboard-only navigation</li>
-          <li>Screen reader testing (VoiceOver, NVDA)</li>
-          <li>High contrast mode</li>
-          <li>Zoom to 200%</li>
+      <div className="rounded-2xl border-2 border-black" style={{ padding: '24px', boxShadow: '4px 4px 0 0 #000000' }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', var(--font-display), system-ui, sans-serif", fontSize: '20px', lineHeight: 1.4, fontWeight: 600, margin: '0 0 12px 0', color: '#0F172A' }}>Manual testing</h3>
+        <ul style={{ fontSize: '14px', color: '#475569', paddingLeft: '20px', margin: 0 }}>
+          <li style={{ marginBottom: '8px' }}>Keyboard-only navigation</li>
+          <li style={{ marginBottom: '8px' }}>Screen reader testing (VoiceOver, NVDA)</li>
+          <li style={{ marginBottom: '8px' }}>High contrast mode</li>
+          <li style={{ marginBottom: '0' }}>Zoom to 200%</li>
         </ul>
       </div>
     </div>
