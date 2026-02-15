@@ -16,7 +16,7 @@ import {
   TableCell,
   TableEmpty,
   InvoiceStatusBadge,
-} from "@/components/ui";
+} from "@billflow/ui/components";
 
 type InvoiceStatus = "draft" | "sent" | "viewed" | "paid" | "overdue";
 

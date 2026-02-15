@@ -12,7 +12,7 @@ import {
   Badge,
   SkeletonClientCard,
   Skeleton,
-} from "@/components/ui";
+} from "@billflow/ui/components";
 
 interface Client {
   id: string;

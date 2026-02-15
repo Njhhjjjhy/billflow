@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import { pageVariants } from "@/lib/motion";
-import { useMotionPreference } from "@/hooks/useReducedMotion";
+import { pageVariants } from "@billflow/ui/lib/motion";
+import { useMotionPreference } from "@billflow/ui/hooks/useReducedMotion";
 
 export interface PageTransitionProps {
   /** Page content */

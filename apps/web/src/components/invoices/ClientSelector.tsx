@@ -10,7 +10,7 @@ import {
 } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Check, Search, Plus, User } from "lucide-react";
-import { spring, dropdownVariants } from "@/lib/motion";
+import { spring, dropdownVariants } from "@billflow/ui/lib/motion";
 import type { Client } from "@/types";
 
 export interface ClientSelectorProps {

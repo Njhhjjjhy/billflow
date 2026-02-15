@@ -26,9 +26,9 @@ import {
   Modal,
   ModalHeader,
   ModalFooter,
-} from "@/components/ui";
-import { useToast } from "@/components/ui/Toast";
-import { formatCurrency, formatDate, formatDueDate, getDaysUntilDue } from "@/lib/format";
+} from "@billflow/ui/components";
+import { useToast } from "@billflow/ui/components/Toast";
+import { formatCurrency, formatDate, formatDueDate, getDaysUntilDue } from "@billflow/ui/lib/format";
 import type { InvoiceFull } from "@/types";
 
 // Mock invoice data - will be replaced with real data from Supabase

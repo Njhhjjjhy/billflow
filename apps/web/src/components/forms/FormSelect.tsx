@@ -10,7 +10,7 @@ import {
 } from "react-hook-form";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Check } from "lucide-react";
-import { dropdownVariants } from "@/lib/motion";
+import { dropdownVariants } from "@billflow/ui/lib/motion";
 import { FormField } from "./FormField";
 
 export interface SelectOption {

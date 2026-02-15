@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { invoiceSchema, calculateInvoiceTotals, formatZodErrors } from "@/lib/validations";
-import { generateInvoiceNumber } from "@/lib/format";
+import { generateInvoiceNumber } from "@billflow/ui/lib/format";
 import type { Invoice, InvoiceWithClient, PaginatedResponse } from "@/types";
 
 // Mock data - will be replaced with Supabase

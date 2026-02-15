@@ -33,9 +33,9 @@ import {
   TableHead,
   TableCell,
   TableEmpty,
-} from "@/components/ui";
-import { useToast } from "@/components/ui/Toast";
-import { formatCurrency, formatDate, getInitials } from "@/lib/format";
+} from "@billflow/ui/components";
+import { useToast } from "@billflow/ui/components/Toast";
+import { formatCurrency, formatDate, getInitials } from "@billflow/ui/lib/format";
 import type { ClientWithStats, InvoiceWithClient } from "@/types";
 
 // Mock client data - will be replaced with real data from Supabase

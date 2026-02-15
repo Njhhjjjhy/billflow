@@ -18,7 +18,7 @@ import {
   InvoiceStatusBadge,
   ToastProvider,
   useToast,
-} from "@/components/ui";
+} from "@billflow/ui/components";
 
 // KPI Card Component
 function KPICard({

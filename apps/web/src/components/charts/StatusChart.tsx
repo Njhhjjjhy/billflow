@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "motion/react";
-import { duration, ease } from "@/lib/motion";
+import { duration, ease } from "@billflow/ui/lib/motion";
 
 interface StatusData {
   label: string;

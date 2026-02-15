@@ -14,7 +14,7 @@ import {
   Select,
   Checkbox,
   useToast,
-} from "@/components/ui";
+} from "@billflow/ui/components";
 
 const currencyOptions = [
   { value: "TWD", label: "TWD - New Taiwan Dollar" },

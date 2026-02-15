@@ -10,7 +10,7 @@ import {
 } from "react-hook-form";
 import { motion } from "motion/react";
 import { Check } from "lucide-react";
-import { spring } from "@/lib/motion";
+import { spring } from "@billflow/ui/lib/motion";
 
 export interface FormCheckboxProps<T extends FieldValues> {
   /** Field name (must match schema) */

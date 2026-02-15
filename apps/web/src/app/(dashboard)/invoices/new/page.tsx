@@ -8,15 +8,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowLeft, Send, Save, Info } from "lucide-react";
 import { PageTransition, PageHeader, PageSection } from "@/components/layout";
-import { Button, Card, CardContent, Select, Input } from "@/components/ui";
+import { Button, Card, CardContent, Select, Input } from "@billflow/ui/components";
 import { ClientSelector, LineItemsTable, InvoiceSummary } from "@/components/invoices";
-import { useToast } from "@/components/ui/Toast";
+import { useToast } from "@billflow/ui/components/Toast";
 import { invoiceSchema } from "@/lib/validations";
 
 // Infer the form type from the schema
 type InvoiceFormData = z.infer<typeof invoiceSchema>;
-import { formatDateForInput, generateInvoiceNumber } from "@/lib/format";
-import { addDays } from "@/lib/utils";
+import { formatDateForInput, generateInvoiceNumber } from "@billflow/ui/lib/format";
+import { addDays } from "@billflow/ui/lib/utils";
 import type { Client, Currency, Language, DiscountType } from "@/types";
 
 // Mock clients - will be replaced with real data from Supabase

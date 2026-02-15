@@ -2,7 +2,7 @@
 
 import { Mail, FileText, Users, CreditCard, Settings } from "lucide-react";
 import { PageTransition, PageHeader } from "@/components/layout";
-import { Card, CardContent } from "@/components/ui";
+import { Card, CardContent } from "@billflow/ui/components";
 
 interface HelpTopic {
   title: string;

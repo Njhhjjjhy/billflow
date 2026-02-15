@@ -9,7 +9,7 @@ import {
   type Control,
 } from "react-hook-form";
 import { motion } from "motion/react";
-import { inputVariants, spring } from "@/lib/motion";
+import { inputVariants, spring } from "@billflow/ui/lib/motion";
 import { FormField } from "./FormField";
 
 export interface FormTextareaProps<T extends FieldValues> {

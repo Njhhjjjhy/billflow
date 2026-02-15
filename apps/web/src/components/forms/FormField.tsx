@@ -2,7 +2,7 @@
 
 import { useId } from "react";
 import { motion } from "motion/react";
-import { useShakeAnimation } from "@/hooks/useShakeAnimation";
+import { useShakeAnimation } from "@billflow/ui/hooks/useShakeAnimation";
 import { useEffect } from "react";
 
 export interface FormFieldProps {

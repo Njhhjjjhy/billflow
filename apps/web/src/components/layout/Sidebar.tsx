@@ -19,7 +19,7 @@ import {
   sidebarLabelVariants,
   navItemVariants,
   spring,
-} from "@/lib/motion";
+} from "@billflow/ui/lib/motion";
 
 export interface NavItem {
   label: string;

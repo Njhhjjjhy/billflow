@@ -3,9 +3,9 @@
 import { useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Plus, Trash2, GripVertical } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { formatCurrency } from "@/lib/format";
-import { spring } from "@/lib/motion";
+import { Button } from "@billflow/ui/components/Button";
+import { formatCurrency } from "@billflow/ui/lib/format";
+import { spring } from "@billflow/ui/lib/motion";
 import type { Currency } from "@/types";
 
 export interface LineItem {

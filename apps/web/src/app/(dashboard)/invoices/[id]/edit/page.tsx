@@ -8,11 +8,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowLeft, Save, AlertTriangle } from "lucide-react";
 import { PageTransition, PageHeader, PageSection } from "@/components/layout";
-import { Button, Card, CardContent, Select, Input } from "@/components/ui";
+import { Button, Card, CardContent, Select, Input } from "@billflow/ui/components";
 import { ClientSelector, LineItemsTable, InvoiceSummary } from "@/components/invoices";
-import { useToast } from "@/components/ui/Toast";
+import { useToast } from "@billflow/ui/components/Toast";
 import { invoiceSchema } from "@/lib/validations";
-import { formatDateForInput } from "@/lib/format";
+import { formatDateForInput } from "@billflow/ui/lib/format";
 import type { Client, Currency, DiscountType, InvoiceFull } from "@/types";
 
 type InvoiceFormData = z.infer<typeof invoiceSchema>;

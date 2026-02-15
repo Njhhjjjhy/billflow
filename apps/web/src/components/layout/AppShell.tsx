@@ -4,8 +4,8 @@ import { useState, useCallback, createContext, useContext } from "react";
 import { motion } from "motion/react";
 import { Sidebar, type NavItem } from "./Sidebar";
 import { MobileNav, type MobileNavItem } from "./MobileNav";
-import { spring } from "@/lib/motion";
-import { useIsTablet } from "@/hooks/useMediaQuery";
+import { spring } from "@billflow/ui/lib/motion";
+import { useIsTablet } from "@billflow/ui/hooks/useMediaQuery";
 
 // Context for app shell state
 interface AppShellContextValue {

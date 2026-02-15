@@ -10,7 +10,7 @@ import {
   Settings,
   Plus,
 } from "lucide-react";
-import { mobileNavVariants, spring } from "@/lib/motion";
+import { mobileNavVariants, spring } from "@billflow/ui/lib/motion";
 
 export interface MobileNavItem {
   label: string;

@@ -2,9 +2,9 @@
 
 import { useMemo } from "react";
 import { motion } from "motion/react";
-import { formatCurrency, formatPercentage } from "@/lib/format";
+import { formatCurrency, formatPercentage } from "@billflow/ui/lib/format";
 import { calculateInvoiceTotals } from "@/lib/validations";
-import { spring } from "@/lib/motion";
+import { spring } from "@billflow/ui/lib/motion";
 import type { Currency, DiscountType } from "@/types";
 
 interface LineItemData {

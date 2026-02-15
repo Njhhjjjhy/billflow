@@ -47,7 +47,7 @@ import {
   SkeletonText,
   SkeletonCard,
   SkeletonKPI,
-} from "@/components/ui";
+} from "@billflow/ui/components";
 
 // Demo section wrapper
 function DemoSection({

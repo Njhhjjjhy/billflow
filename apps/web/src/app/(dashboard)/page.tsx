@@ -8,7 +8,7 @@ import {
   Card,
   CardContent,
   InvoiceStatusBadge,
-} from "@/components/ui";
+} from "@billflow/ui/components";
 import { RevenueChart, StatusChart } from "@/components/charts";
 
 // KPI Card Component

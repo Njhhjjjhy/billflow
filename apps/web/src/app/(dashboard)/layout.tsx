@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { AppShell } from "@/components/layout";
-import { ToastProvider } from "@/components/ui";
+import { ToastProvider } from "@billflow/ui/components";
 
 export default function AppLayout({
   children,
@@ -17,7 +17,7 @@ export default function AppLayout({
   };
 
   const handleQuickAction = () => {
-    router.push("/app/invoices/new");
+    router.push("/invoices/new");
   };
 
   return (
