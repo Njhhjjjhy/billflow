@@ -1,0 +1,5 @@
+/* Import shared design system tokens and base styles */
+@import "../../../../packages/ui/src/styles/globals.css";
+
+/* Tell Tailwind to scan the shared UI package for class names */
+@source "../../../../packages/ui/src";
