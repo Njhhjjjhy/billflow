@@ -9,7 +9,7 @@ import {
   AlertTriangle,
   Clock,
 } from "lucide-react";
-import { spring } from "@/lib/motion";
+import { spring } from "../lib/motion";
 
 export type BadgeVariant =
   | "draft"

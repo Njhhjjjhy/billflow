@@ -2,7 +2,7 @@
 
 import { forwardRef, useState, useId } from "react";
 import { motion, useAnimationControls } from "motion/react";
-import { inputVariants, spring, shakeAnimation } from "@/lib/motion";
+import { inputVariants, spring, shakeAnimation } from "../lib/motion";
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "onAnimationStart" | "onDragStart" | "onDragEnd" | "onDrag"> {
   /** Label text for the input */

@@ -3,7 +3,7 @@
 import { forwardRef } from "react";
 import { motion, type HTMLMotionProps } from "motion/react";
 import { Loader2 } from "lucide-react";
-import { buttonVariants, spring } from "@/lib/motion";
+import { buttonVariants, spring } from "../lib/motion";
 
 export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
 export type ButtonSize = "sm" | "md" | "lg";

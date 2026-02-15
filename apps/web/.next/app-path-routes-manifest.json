@@ -1,0 +1,23 @@
+{
+  "/(dashboard)/clients/[id]/edit/page": "/clients/[id]/edit",
+  "/(dashboard)/clients/[id]/page": "/clients/[id]",
+  "/(dashboard)/clients/new/page": "/clients/new",
+  "/(dashboard)/clients/page": "/clients",
+  "/(dashboard)/help/page": "/help",
+  "/(dashboard)/invoices/[id]/edit/page": "/invoices/[id]/edit",
+  "/(dashboard)/invoices/[id]/page": "/invoices/[id]",
+  "/(dashboard)/invoices/new/page": "/invoices/new",
+  "/(dashboard)/invoices/page": "/invoices",
+  "/(dashboard)/page": "/",
+  "/(dashboard)/settings/page": "/settings",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/clients/[id]/route": "/api/clients/[id]",
+  "/api/clients/route": "/api/clients",
+  "/api/invoices/[id]/pdf/route": "/api/invoices/[id]/pdf",
+  "/api/invoices/[id]/route": "/api/invoices/[id]",
+  "/api/invoices/route": "/api/invoices",
+  "/demo/layout-demo/page": "/demo/layout-demo",
+  "/demo/page": "/demo",
+  "/favicon.ico/route": "/favicon.ico"
+}

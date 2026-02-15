@@ -2,7 +2,7 @@
 
 import { forwardRef, useState, useId } from "react";
 import { motion, useAnimationControls } from "motion/react";
-import { inputVariants, spring, shakeAnimation } from "@/lib/motion";
+import { inputVariants, spring, shakeAnimation } from "../lib/motion";
 
 export interface TextareaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size" | "onAnimationStart" | "onDragStart" | "onDragEnd" | "onDrag"> {

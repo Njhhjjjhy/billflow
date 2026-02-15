@@ -10,7 +10,7 @@ import {
 } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Check } from "lucide-react";
-import { spring, dropdownVariants } from "@/lib/motion";
+import { spring, dropdownVariants } from "../lib/motion";
 
 export interface SelectOption {
   value: string;

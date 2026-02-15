@@ -3,7 +3,7 @@
 import { forwardRef, useId } from "react";
 import { motion } from "motion/react";
 import { Check } from "lucide-react";
-import { spring } from "@/lib/motion";
+import { spring } from "../lib/motion";
 
 export interface CheckboxProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "size"> {

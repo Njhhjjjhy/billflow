@@ -11,7 +11,7 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
 import { createPortal } from "react-dom";
-import { modalOverlayVariants, modalContentVariants } from "@/lib/motion";
+import { modalOverlayVariants, modalContentVariants } from "../lib/motion";
 import { Button } from "./Button";
 
 // Modal context for nested components

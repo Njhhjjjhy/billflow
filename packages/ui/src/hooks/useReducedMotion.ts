@@ -2,7 +2,7 @@
 // Used to disable animations for users who prefer reduced motion
 
 import { useReducedMotion as useMotionReducedMotion } from "motion/react";
-import { spring } from "@/lib/motion";
+import { spring } from "../lib/motion";
 
 /**
  * Hook to get user's motion preference and provide appropriate animation settings

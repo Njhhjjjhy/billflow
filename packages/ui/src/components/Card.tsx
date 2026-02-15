@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react";
 import { motion, type HTMLMotionProps } from "motion/react";
-import { cardVariants, spring } from "@/lib/motion";
+import { cardVariants, spring } from "../lib/motion";
 
 export interface CardProps extends Omit<HTMLMotionProps<"div">, "ref" | "children"> {
   /** Makes the card interactive with hover/tap animations */

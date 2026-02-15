@@ -17,7 +17,7 @@ import {
   Info,
   X,
 } from "lucide-react";
-import { toastVariants } from "@/lib/motion";
+import { toastVariants } from "../lib/motion";
 
 // Types
 export type ToastType = "success" | "error" | "warning" | "info";

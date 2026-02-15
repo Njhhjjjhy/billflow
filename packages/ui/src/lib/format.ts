@@ -1,7 +1,7 @@
 // Formatting utilities for Billflow
 // Handles currency, dates, and other display formatting
 
-import type { Currency, Language } from '@/types';
+import type { Currency, Language } from '../types';
 
 // ============================================
 // Currency Formatting
