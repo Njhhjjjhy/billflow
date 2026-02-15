@@ -37,60 +37,29 @@ const mockClients: Client[] = [
 
 function ClientCard({ client }: { client: Client }) {
   return (
-    <Link href={`/app/clients/${client.id}`} className="block no-underline">
-      <Card interactive>
-        <CardContent>
-          <div className="flex items-start gap-4">
-            {/* Avatar */}
-            <div className="w-12 h-12 bg-[var(--color-bg-tertiary)] rounded-full flex items-center justify-center border-2 border-black text-lg font-bold flex-shrink-0">
+    <Link href={`/app/clients/${client.id}`} className="block no-underline h-full">
+      <Card interactive className="h-full">
+        <CardContent className="flex flex-col h-full">
+          {/* Header: Avatar + Name + Stats */}
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 bg-[var(--color-bg-tertiary)] rounded-full flex items-center justify-center border-2 border-black text-sm font-bold flex-shrink-0">
               {client.name.charAt(0).toUpperCase()}
             </div>
-
-            {/* Info */}
             <div className="flex-1 min-w-0">
               <h3
-                className="font-semibold text-[var(--color-text-primary)] truncate"
+                className="font-semibold text-[var(--color-text-primary)] text-sm"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {client.name}
               </h3>
               {client.company && (
-                <p className="text-sm text-[var(--color-text-secondary)] truncate">
+                <p className="text-xs text-[var(--color-text-secondary)]">
                   {client.company}
                 </p>
               )}
-
-              {/* Contact info */}
-              <div className="mt-2 space-y-1">
-                <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
-                  <Mail size={14} className="flex-shrink-0" aria-hidden="true" />
-                  <span className="truncate">{client.email}</span>
-                </div>
-                {client.phone && (
-                  <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
-                    <Phone size={14} className="flex-shrink-0" aria-hidden="true" />
-                    <span>{client.phone}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Tags */}
-              {client.tags.length > 0 && (
-                <div className="mt-3 flex flex-row flex-wrap gap-2">
-                  {client.tags.map((tag) => (
-                    <Badge key={tag} variant="neutral">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              )}
             </div>
-
-            {/* Stats */}
             <div className="text-right flex-shrink-0">
-              <p
-                className="font-mono font-semibold text-[var(--color-text-primary)]"
-              >
+              <p className="font-mono font-semibold text-sm text-[var(--color-text-primary)]">
                 {client.totalValue}
               </p>
               <p className="text-xs text-[var(--color-text-tertiary)]">
@@ -98,6 +67,34 @@ function ClientCard({ client }: { client: Client }) {
               </p>
             </div>
           </div>
+
+          {/* Divider */}
+          <div className="border-t border-[var(--color-border-light)] my-3" />
+
+          {/* Contact info - full width */}
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
+              <Mail size={14} className="flex-shrink-0" aria-hidden="true" />
+              <span>{client.email}</span>
+            </div>
+            {client.phone && (
+              <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
+                <Phone size={14} className="flex-shrink-0" aria-hidden="true" />
+                <span>{client.phone}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Tags - pushed to bottom */}
+          {client.tags.length > 0 && (
+            <div className="mt-auto pt-3 flex flex-row flex-wrap gap-1.5">
+              {client.tags.map((tag) => (
+                <Badge key={tag} variant="neutral">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
         </CardContent>
       </Card>
     </Link>
@@ -158,7 +155,7 @@ export default function ClientsPage() {
 
           {/* Client Grid skeleton */}
           <PageSection>
-            <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 desktop-lg:grid-cols-4 gap-4 tablet:gap-5 desktop:gap-6">
+            <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-4 tablet:gap-5 desktop:gap-6">
               {Array.from({ length: 6 }).map((_, i) => (
                 <SkeletonClientCard key={i} />
               ))}
@@ -182,7 +179,7 @@ export default function ClientsPage() {
           {/* Client Grid */}
           <PageSection>
             {filteredClients.length > 0 ? (
-              <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 desktop-lg:grid-cols-4 gap-4 tablet:gap-5 desktop:gap-6">
+              <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-4 tablet:gap-5 desktop:gap-6">
                 {filteredClients.map((client) => (
                   <ClientCard key={client.id} client={client} />
                 ))}

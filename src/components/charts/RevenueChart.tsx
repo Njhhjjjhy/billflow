@@ -1,6 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState, useRef } from "react";
+import { motion } from "motion/react";
+import { duration, ease } from "@/lib/motion";
 
 interface RevenueDataPoint {
   month: string;
@@ -14,6 +16,9 @@ interface RevenueChartProps {
 }
 
 export function RevenueChart({ data, currency = "NT$" }: RevenueChartProps) {
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const { maxValue, chartData } = useMemo(() => {
     const max = Math.max(...data.map((d) => Math.max(d.revenue, d.paid)));
     // Round up to nice number
@@ -41,7 +46,13 @@ export function RevenueChart({ data, currency = "NT$" }: RevenueChartProps) {
   };
 
   return (
-    <div className="w-full">
+    <div
+      ref={containerRef}
+      className="w-full"
+      onMouseEnter={() => {
+        if (!hasAnimated) setHasAnimated(true);
+      }}
+    >
       {/* Legend */}
       <div className="flex items-center gap-4 mb-4">
         <div className="flex items-center gap-2">
@@ -55,10 +66,11 @@ export function RevenueChart({ data, currency = "NT$" }: RevenueChartProps) {
       </div>
 
       {/* Chart */}
-      <div className="overflow-x-auto">
+      <div>
         <svg
-          width={Math.max(chartWidth, 300)}
-          height={chartHeight + 40}
+          viewBox={`0 0 ${chartWidth + 60} ${chartHeight + 40}`}
+          width="100%"
+          preserveAspectRatio="xMidYMid meet"
           className="overflow-visible"
         >
           {/* Y-axis labels */}
@@ -118,26 +130,44 @@ export function RevenueChart({ data, currency = "NT$" }: RevenueChartProps) {
             return (
               <g key={d.month}>
                 {/* Revenue bar (light) */}
-                <rect
+                <motion.rect
                   x={x}
-                  y={chartHeight - revenueHeight}
                   width={barWidth}
-                  height={revenueHeight}
                   fill="var(--color-primary-200)"
                   stroke="black"
                   strokeWidth={2}
                   rx={2}
+                  initial={{ height: 0, y: chartHeight }}
+                  animate={
+                    hasAnimated
+                      ? { height: revenueHeight, y: chartHeight - revenueHeight }
+                      : undefined
+                  }
+                  transition={{
+                    duration: duration.slow,
+                    ease: ease.out,
+                    delay: i * 0.08,
+                  }}
                 />
                 {/* Paid bar (dark) */}
-                <rect
+                <motion.rect
                   x={x + barWidth + barGap}
-                  y={chartHeight - paidHeight}
                   width={barWidth}
-                  height={paidHeight}
                   fill="var(--color-primary-600)"
                   stroke="black"
                   strokeWidth={2}
                   rx={2}
+                  initial={{ height: 0, y: chartHeight }}
+                  animate={
+                    hasAnimated
+                      ? { height: paidHeight, y: chartHeight - paidHeight }
+                      : undefined
+                  }
+                  transition={{
+                    duration: duration.slow,
+                    ease: ease.out,
+                    delay: i * 0.08 + 0.04,
+                  }}
                 />
                 {/* Month label */}
                 <text

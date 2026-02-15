@@ -1,6 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { motion } from "motion/react";
+import { duration, ease } from "@/lib/motion";
 
 interface StatusData {
   label: string;
@@ -15,6 +17,7 @@ interface StatusChartProps {
 }
 
 export function StatusChart({ data, centerLabel, centerValue }: StatusChartProps) {
+  const [hasAnimated, setHasAnimated] = useState(false);
   const segments = useMemo(() => {
     const sum = data.reduce((acc, d) => acc + d.value, 0);
 
@@ -65,8 +68,19 @@ export function StatusChart({ data, centerLabel, centerValue }: StatusChartProps
     ].join(" ");
   };
 
+  // Calculate arc length for animation
+  const calculateArcLength = (startAngle: number, endAngle: number): number => {
+    const angleInRadians = ((endAngle - startAngle) * Math.PI) / 180;
+    return radius * angleInRadians;
+  };
+
   return (
-    <div className="flex items-center gap-6">
+    <div
+      className="flex items-center gap-6"
+      onMouseEnter={() => {
+        if (!hasAnimated) setHasAnimated(true);
+      }}
+    >
       {/* Chart */}
       <div className="relative" style={{ width: size, height: size }}>
         <svg width={size} height={size} className="transform -rotate-90">
@@ -81,13 +95,16 @@ export function StatusChart({ data, centerLabel, centerValue }: StatusChartProps
           />
 
           {/* Segments */}
-          {segments.map((seg) => {
+          {segments.map((seg, index) => {
             if (seg.value === 0) return null;
+
+            const arcLength = calculateArcLength(seg.startAngle, seg.endAngle - 1);
 
             // Handle full circle case
             if (seg.percentage >= 0.999) {
+              const circumference = 2 * Math.PI * radius;
               return (
-                <circle
+                <motion.circle
                   key={seg.label}
                   cx={center}
                   cy={center}
@@ -95,20 +112,42 @@ export function StatusChart({ data, centerLabel, centerValue }: StatusChartProps
                   fill="none"
                   stroke={seg.color}
                   strokeWidth={strokeWidth}
-                  className="transition-all duration-300"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={circumference}
+                  animate={
+                    hasAnimated
+                      ? { strokeDashoffset: 0 }
+                      : undefined
+                  }
+                  transition={{
+                    duration: duration.slower,
+                    ease: ease.out,
+                    delay: index * 0.1,
+                  }}
                 />
               );
             }
 
             return (
-              <path
+              <motion.path
                 key={seg.label}
                 d={createArcPath(seg.startAngle, seg.endAngle - 1)} // -1 for gap
                 fill="none"
                 stroke={seg.color}
                 strokeWidth={strokeWidth}
                 strokeLinecap="round"
-                className="transition-all duration-300"
+                strokeDasharray={arcLength}
+                strokeDashoffset={arcLength}
+                animate={
+                  hasAnimated
+                    ? { strokeDashoffset: 0 }
+                    : undefined
+                }
+                transition={{
+                  duration: duration.slower,
+                  ease: ease.out,
+                  delay: index * 0.1,
+                }}
               />
             );
           })}

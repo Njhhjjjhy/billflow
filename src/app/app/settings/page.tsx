@@ -78,7 +78,7 @@ function SettingsNav({
             <p className="font-medium" style={{ fontFamily: "var(--font-display)" }}>
               {section.title}
             </p>
-            <p className="text-xs text-[var(--color-text-tertiary)]">
+            <p className="text-xs text-[var(--color-text-secondary)]">
               {section.description}
             </p>
           </div>
