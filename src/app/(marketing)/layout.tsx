@@ -1,7 +1,15 @@
+import { Navbar, Footer } from "@/components/landing";
+
 export default function MarketingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <main id="main-content">{children}</main>;
+  return (
+    <>
+      <Navbar />
+      <main id="main-content">{children}</main>
+      <Footer />
+    </>
+  );
 }
