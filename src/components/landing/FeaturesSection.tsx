@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { Languages, ShieldCheck, Coins, FileDown, Users, TrendingUp } from "lucide-react";
 import { FeatureCard } from "./FeatureCard";
 

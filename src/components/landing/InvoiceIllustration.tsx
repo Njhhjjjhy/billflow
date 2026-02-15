@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useTransform, useSpring } from "motion/react";
 import { useMotionPreference } from "@/hooks/useReducedMotion";
-import { spring } from "@/lib/motion";
 
 export function InvoiceIllustration() {
   const cardRef = useRef<HTMLDivElement>(null);
