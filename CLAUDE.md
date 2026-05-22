@@ -656,3 +656,10 @@ npm run db:generate-types
 
 *Last updated: February 2026*
 *Version: 2.0*
+
+
+## Obsidian vault
+
+- Path: /Users/riaan/Documents/personal/obsidian-vault
+- After each session, write a handoff note to /Users/riaan/Documents/personal/obsidian-vault/sessions/
+- Use filename format: YYYY-MM-DD-[project-name]-[topic].md

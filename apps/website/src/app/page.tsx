@@ -1,13 +1,21 @@
-import { Hero, FeaturesSection, BottomCTA, FloatingElements } from "@/components/landing";
+import {
+  Scene1Setup,
+  Scene2Chaos,
+  Scene3Snap,
+  Scene4Create,
+  Scene5SendPaid,
+  Scene6Close,
+} from "@/components/landing/scenes";
 
 export default function LandingPage() {
   return (
     <>
-      <Hero />
-      <FloatingElements variant="hero-to-features" />
-      <FeaturesSection />
-      <FloatingElements variant="features-to-cta" />
-      <BottomCTA />
+      <Scene1Setup />
+      <Scene2Chaos />
+      <Scene3Snap />
+      <Scene4Create />
+      <Scene5SendPaid />
+      <Scene6Close />
     </>
   );
 }

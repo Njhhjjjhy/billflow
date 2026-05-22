@@ -40,3 +40,6 @@ storybook-static
 
 # turbo
 .turbo
+
+# portfolio showcase
+showcase/
